@@ -1,6 +1,6 @@
 //
-//  Playtomic.h
-//  Playtomic
+//  PlaytomicLink.h
+//  ObjectiveCTest
 //
 //  This file is part of the official Playtomic API for iOS games.  
 //  Playtomic is a real time analytics platform for casual games 
@@ -35,40 +35,13 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import <Foundation/Foundation.h>
-#import "PlaytomicLog.h"
-#import "PlaytomicGameVars.h"
-#import "PlaytomicGeoIP.h"
-#import "PlaytomicLeaderboards.h"
-#import "PlaytomicPlayerLevels.h"
-#import "PlaytomicLink.h"
-#import "PlaytomicData.h"
 
-@interface Playtomic : NSObject {
-    
-    NSInteger gameId;
-    NSString *gameGuid;
-    NSString *sourceUrl;
-    NSString *baseUrl;
-    PlaytomicLog *log;
-    PlaytomicGameVars *gameVars;
-    PlaytomicGeoIP *geoIP;
-    PlaytomicLeaderboards *leaderboards;
-    PlaytomicPlayerLevels *playerLevels;
-    PlaytomicLink *link;
-    PlaytomicData *data;
+
+@interface PlaytomicLink : NSObject {
+    NSMutableDictionary* clicks;
 }
 
-- (id)initWithGameId: (NSInteger) gameid andGUID:(NSString*) gameguid;
-+ (PlaytomicLog*) Log;
-+ (PlaytomicGameVars*) GameVars;
-+ (PlaytomicGeoIP*) GeoIP;
-+ (PlaytomicLeaderboards*) Leaderboards;
-+ (PlaytomicPlayerLevels*) PlayerLevels;
-+ (PlaytomicLink*) Link;
-+ (PlaytomicData*) Data;
-+ (NSInteger) getGameId;
-+ (NSString*) getGameGuid;
-+ (NSString*) getSourceUrl;
-+ (NSString*) getBaseUrl;
+
+-(void) track:(NSString*) url andName:(NSString*) name andGroup: (NSString*) group;
 
 @end

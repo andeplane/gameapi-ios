@@ -39,6 +39,8 @@
 #import "PlaytomicGameVars.h"
 #import "PlaytomicGeoIP.h"
 #import "PlaytomicLeaderboards.h"
+#import "PlaytomicLink.h"
+#import "PlaytomicData.h"
 
 @interface Playtomic ()
 @property (nonatomic,readwrite) NSInteger gameId;
@@ -50,6 +52,8 @@
 @property (assign) PlaytomicGeoIP *geoIP;
 @property (assign) PlaytomicLeaderboards *leaderboards;
 @property (assign) PlaytomicPlayerLevels *playerLevels;
+@property (assign) PlaytomicLink *link;
+@property (assign) PlaytomicData *data;
 @end
 
 @implementation Playtomic
@@ -63,6 +67,8 @@
 @synthesize geoIP;
 @synthesize leaderboards;
 @synthesize playerLevels;
+@synthesize link;
+@synthesize data;
 
 static Playtomic *instance = nil;
 
@@ -99,6 +105,16 @@ static Playtomic *instance = nil;
     return instance.playerLevels;
 }
 
++ (PlaytomicLink*) Link
+{
+    return instance.link;
+}
+
++ (PlaytomicData*) Data
+{
+    return instance.data;
+}
+
 + (NSInteger) getGameId
 {
     return instance.gameId;
@@ -131,6 +147,8 @@ static Playtomic *instance = nil;
     instance.geoIP = [[PlaytomicGeoIP alloc] init];
     instance.leaderboards = [[PlaytomicLeaderboards alloc] init];
     instance.playerLevels = [[PlaytomicPlayerLevels alloc] init];
+    instance.link = [[PlaytomicLink alloc] init];
+    instance.data = [[PlaytomicData alloc] init];
     return instance;    
 }
 

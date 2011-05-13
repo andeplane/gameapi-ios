@@ -139,12 +139,14 @@
 }
 
 // links
-- (void) link 
+- (void) link: (NSString*) url andName: (NSString*) name andGroup: (NSString*) group andUnique: (NSInteger) unique andTotal: (NSInteger) total andFail: (NSInteger) fail
 { 
+    [self send: [NSString stringWithFormat: @"l/%@/%@/%@/%d/%d/%d", [self clean: name], [self clean: group], [self clean: url], unique, total, fail] andCommit: NO];
 }
 
-- (void) heatmap 
+- (void) heatmap: (NSString*) name andGroup: (NSString*) group andX: (NSInteger) x andY: (NSInteger) y;
 {
+    [self send: [NSString stringWithFormat: @"h/%@/%@/%d/%d", [self clean: name], [self clean: group], x, y] andCommit: NO];
 }
 
 - (void) funnel 
@@ -230,20 +232,24 @@
 
 
 // player levels
-- (void) playerLevelStart 
+- (void) playerLevelStart: (NSString*) levelid
 {
+    [self send: [NSString stringWithFormat: @"pls/%@", [self clean: levelid]] andCommit: NO];
 }
 
-- (void) playerLevelWin 
+- (void) playerLevelWin: (NSString*) levelid
 {
+   [self send: [NSString stringWithFormat: @"plw/%@", [self clean: levelid]] andCommit: NO]; 
 }
 
-- (void) playerLevelQuit 
+- (void) playerLevelQuit: (NSString*) levelid
 {
+    [self send: [NSString stringWithFormat: @"plq/%@", [self clean: levelid]] andCommit: NO];
 }
 
-- (void) playerLevelFlag 
+- (void) playerLevelFlag: (NSString*) levelid
 {
+    [self send: [NSString stringWithFormat: @"plf/%@", [self clean: levelid]] andCommit: NO];
 }
 
 // misc
@@ -260,11 +266,8 @@
 
 - (void) forceSend 
 {
-    //NSLog(@"[PlaytomicLog forceSend]");
-    
     if([self.queue count] > 0)
     {
-        //NSLog(@" - sending %d events", [self.queue count]);
         PlaytomicLogRequest *request = [[PlaytomicLogRequest alloc] initWithTrackUrl: self.trackUrl];
         [request massQueue: self.queue];
     }
@@ -272,16 +275,13 @@
      
 - (void) send: (NSString*) event andCommit:(Boolean) commit
 {
-    //NSLog(@"[PlaytomicLog send]");
     [self.queue addObject: event];
     
     if(self.frozen == YES || commit == NO)
     {
-        //NSLog(@"- frozen, or not committing");
         return;
     }
     
-    //NSLog(@"- sending");
     PlaytomicLogRequest *request = [[PlaytomicLogRequest alloc] initWithTrackUrl: self.trackUrl];
     [request massQueue: self.queue];
     [self.queue removeAllObjects];
@@ -291,6 +291,7 @@
 {    
     string = [string stringByReplacingOccurrencesOfString:@"/" withString:@"\\"];
     string = [string stringByReplacingOccurrencesOfString:@"~" withString:@"-"];
+    string = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     return string;
 }
 

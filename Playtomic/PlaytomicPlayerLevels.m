@@ -305,4 +305,12 @@
     }
 }
 
+- (NSString*) clean: (NSString*) string
+{    
+    string = [string stringByReplacingOccurrencesOfString:@"/" withString:@"\\"];
+    string = [string stringByReplacingOccurrencesOfString:@"~" withString:@"-"];
+    string = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return string;
+}
+
 @end

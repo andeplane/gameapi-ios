@@ -10,6 +10,8 @@
 		7835BEF3137A27B400CF0211 /* PlaytomicLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835BEF1137A27B300CF0211 /* PlaytomicLog.m */; };
 		7835BEF4137A27B400CF0211 /* PlaytomicLogRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835BEF2137A27B400CF0211 /* PlaytomicLogRequest.m */; };
 		7835BEFA137A400500CF0211 /* PlaytomicResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835BEF9137A400500CF0211 /* PlaytomicResponse.m */; };
+		78565DA0137DDBC80062E5D5 /* PlaytomicLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 78565D9F137DDBC80062E5D5 /* PlaytomicLink.m */; };
+		78565DA4137DDC9D0062E5D5 /* PlaytomicData.m in Sources */ = {isa = PBXBuildFile; fileRef = 78565DA3137DDC9D0062E5D5 /* PlaytomicData.m */; };
 		785E87481379FEAD00094336 /* PlaytomicGameVars.m in Sources */ = {isa = PBXBuildFile; fileRef = 785E87471379FEAD00094336 /* PlaytomicGameVars.m */; };
 		785E8872137A18A200094336 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 785E8867137A18A200094336 /* NSObject+SBJSON.m */; };
 		785E8873137A18A200094336 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 785E8869137A18A200094336 /* NSString+SBJSON.m */; };
@@ -55,6 +57,11 @@
 		7835BEF2137A27B400CF0211 /* PlaytomicLogRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicLogRequest.m; sourceTree = "<group>"; };
 		7835BEF8137A400500CF0211 /* PlaytomicResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicResponse.h; sourceTree = "<group>"; };
 		7835BEF9137A400500CF0211 /* PlaytomicResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicResponse.m; sourceTree = "<group>"; };
+		78565D9C137DDBA60062E5D5 /* ObjectiveCTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjectiveCTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		78565D9E137DDBC80062E5D5 /* PlaytomicLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicLink.h; sourceTree = "<group>"; };
+		78565D9F137DDBC80062E5D5 /* PlaytomicLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicLink.m; sourceTree = "<group>"; };
+		78565DA2137DDC9D0062E5D5 /* PlaytomicData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicData.h; sourceTree = "<group>"; };
+		78565DA3137DDC9D0062E5D5 /* PlaytomicData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicData.m; sourceTree = "<group>"; };
 		785E87461379FEAD00094336 /* PlaytomicGameVars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicGameVars.h; sourceTree = "<group>"; };
 		785E87471379FEAD00094336 /* PlaytomicGameVars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicGameVars.m; sourceTree = "<group>"; };
 		785E8864137A18A200094336 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
@@ -68,7 +75,6 @@
 		785E886D137A18A200094336 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		785E886E137A18A200094336 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		785E886F137A18A200094336 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		7881E3F6135FB42600B4E7F5 /* ObjectiveCTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = ObjectiveCTest.app; path = "/Users/benlowry/Work/Playtomic/Game APIs/VERSION 3.12/ObjectiveCTest/build/Release-iphoneos/ObjectiveCTest.app"; sourceTree = "<absolute>"; };
 		7881E3FA135FB42600B4E7F5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7881E3FC135FB42600B4E7F5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7881E3FE135FB42600B4E7F5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -182,6 +188,7 @@
 		7881E3F7135FB42600B4E7F5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				78565D9C137DDBA60062E5D5 /* ObjectiveCTest.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -246,6 +253,8 @@
 		7881E42B135FB93500B4E7F5 /* Playtomic */ = {
 			isa = PBXGroup;
 			children = (
+				78565D9E137DDBC80062E5D5 /* PlaytomicLink.h */,
+				78565D9F137DDBC80062E5D5 /* PlaytomicLink.m */,
 				78F04D9B137C4D2F000C9E8D /* ASI */,
 				78F04D75137C49F7000C9E8D /* Reachability */,
 				7835BEF1137A27B300CF0211 /* PlaytomicLog.m */,
@@ -271,6 +280,8 @@
 				78F04DC1137C6C84000C9E8D /* PlaytomicLevel.m */,
 				78F04DC6137C7982000C9E8D /* PlaytomicPlayerLevels.h */,
 				78F04DC7137C7982000C9E8D /* PlaytomicPlayerLevels.m */,
+				78565DA2137DDC9D0062E5D5 /* PlaytomicData.h */,
+				78565DA3137DDC9D0062E5D5 /* PlaytomicData.m */,
 			);
 			path = Playtomic;
 			sourceTree = "<group>";
@@ -337,7 +348,7 @@
 			);
 			name = ObjectiveCTest;
 			productName = ObjectiveCTest;
-			productReference = 7881E3F6135FB42600B4E7F5 /* ObjectiveCTest.app */;
+			productReference = 78565D9C137DDBA60062E5D5 /* ObjectiveCTest.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -411,6 +422,8 @@
 				78F04DBF137C5495000C9E8D /* PlaytomicEncrypt.m in Sources */,
 				78F04DC2137C6C85000C9E8D /* PlaytomicLevel.m in Sources */,
 				78F04DC8137C7983000C9E8D /* PlaytomicPlayerLevels.m in Sources */,
+				78565DA0137DDBC80062E5D5 /* PlaytomicLink.m in Sources */,
+				78565DA4137DDC9D0062E5D5 /* PlaytomicData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -45,8 +45,7 @@
 
 - (PlaytomicResponse*) load
 {
-    //NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/gamevars/load.aspx?swfid=%d&js=y", [Playtomic getGameGuid], [Playtomic getGameId]];
-    NSString *url = [NSString stringWithFormat:@"http://playtomictestapi.apphb.com/gamevars/load.aspx?swfid=%d&guid=%@&js=m", [Playtomic getGameId], [Playtomic getGameGuid]];
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/gamevars/load.aspx?swfid=%d&js=y", [Playtomic getGameGuid], [Playtomic getGameId]];
     
     ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL: [NSURL URLWithString: url]];
     [request startSynchronous];

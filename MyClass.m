@@ -47,7 +47,7 @@
     if (self)
     {
 
-        [[Playtomic alloc] initWithGameId: 0 andGUID: @""]; // Get your credentials from the Playtomic dashboard (add or select game then go to API page)
+        [[Playtomic alloc] initWithGameId: 1339 andGUID: @"e24ff1548e204607"]; // Get your credentials from the Playtomic dashboard (add or select game then go to API page)
         [[Playtomic Log] view];
     }
     
@@ -177,7 +177,19 @@
     [levelrate setTitle:@"Level Rate" forState:UIControlStateNormal];
     [levelrate addTarget:self action:@selector(levelRate) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:levelrate];
-
+    
+    // data
+    UIButton *dataViews = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    dataViews.frame = CGRectMake(80, 750, 200.0, 30.0);
+    [dataViews setTitle:@"Load Views" forState:UIControlStateNormal];
+    [dataViews addTarget:self action:@selector(getViews) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:dataViews];
+    
+    UIButton *dataCustom = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    dataCustom.frame = CGRectMake(300, 750, 200.0, 30.0);
+    [dataCustom setTitle:@"Load Custom" forState:UIControlStateNormal];
+    [dataCustom addTarget:self action:@selector(getCustom) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:dataCustom];
 }
 
 // logging analytics
@@ -439,6 +451,41 @@
     else
     {
         NSLog(@"Level failed to load because of errorcode #%d", [response errorCode]);
+    }
+}
+
+// data
+- (void) getViews
+{
+    NSLog(@"get views");
+    
+    PlaytomicResponse* response = [[Playtomic Data] views];
+    
+    if([response success])
+    {
+        NSLog(@"data was returned: %@", [response getValue: @"Value"]);
+
+    }
+    else
+    {
+        NSLog(@"data failed to load because of errorcode #%d", [response errorCode]);
+    }
+}
+
+- (void) getCustom
+{
+    NSLog(@"get custom");
+    
+    PlaytomicResponse* response = [[Playtomic Data] customMetric: @"hi"];
+    
+    if([response success])
+    {
+        NSLog(@"data was returned: %@", [response getValue: @"Value"]);
+        
+    }
+    else
+    {
+        NSLog(@"data failed to load because of errorcode #%d", [response errorCode]);
     }
 }
 

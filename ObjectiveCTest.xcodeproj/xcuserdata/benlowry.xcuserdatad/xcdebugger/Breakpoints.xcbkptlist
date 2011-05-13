@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "MyClass.m"
-         timestampString = "326931888.106248"
+         timestampString = "327022567.767686"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "188"
-         endingLineNumber = "188"
+         startingLineNumber = "189"
+         endingLineNumber = "189"
          landmarkName = "-logLevelCounter"
          landmarkType = "5">
       </FileBreakpoint>
