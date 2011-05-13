@@ -1,0 +1,147 @@
+Playtomic iOS API
+-------------------------------------------------------------------------
+This file is part of the official Playtomic API for iPhone, iPod and iPad
+games using Objective C.  Playtomic is a real time analytics platform for 
+casual games  and services that go in casual games.  If you haven't used it 
+before check it out:
+
+http://playtomic.com/
+
+Created by ben at the above domain on 2/25/11.
+Copyright 2011 Playtomic LLC. All rights reserved.
+
+Documentation is available at:
+
+http://playtomic.com/api/ios
+
+PLEASE NOTE:
+You may modify this SDK if you wish but be kind to our servers.  Be
+careful about modifying the analytics stuff as it may give you 
+borked reports.
+
+If you make any awesome improvements feel free to let us know!
+
+-------------------------------------------------------------------------
+THIS SOFTWARE IS PROVIDED BY PLAYTOMIC, LLC "AS IS" AND ANY
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+-------------------------------------------------------------------------
+GENERAL NOTES
+-------------------------------------------------------------------------
+Don't use crazy characters in your metric, level, leaderboard table etc 
+names.  A very good idea is to use the same naming conventions for variables:
+
+    - alphanumeric
+    - keep them short (50 chars is the max)
+
+Play time, country and source information is handled automatically, you do not 
+need to do anything to collect that data.
+
+
+Begin by logging a view which initializes the API, and then log any metrics you 
+want.  Play time, repeat visitors etc are handled automatically.
+
+-------------------------------------------------------------------------
+Setting up
+-------------------------------------------------------------------------
+Add these frameworks to your game by clicking the projcet, then selecting 
+the target, build phases, and expanding Link Binary with Libraries.
+
+- libz.1.2.3.dylib
+- CFNetwork.framework
+- MobileCoreServices.framework
+- SystemConfiguration.framework
+
+-------------------------------------------------------------------------
+Initialize
+-------------------------------------------------------------------------
+Get your credentials from the Playtomic dashboard (add or select game then go to API page)
+
+[Playtomic alloc] initWithGameId: 0 andGUID:@""]; 
+
+
+-------------------------------------------------------------------------
+Logging a view
+-------------------------------------------------------------------------
+Call this at the very start of your game loading:
+
+	[[Playtomic Log] view];
+
+This registers that the player has viewed your game.  You can track when 
+the player actually starts playing (eg play button) by calling this 0 or 
+more times in your game:
+
+	[[Playtomic Log] play];
+
+
+-------------------------------------------------------------------------
+CUSTOM METRICS
+-------------------------------------------------------------------------
+
+Custom metrics can track any general events you want to follow, like 
+tracking who views your credits screen or anything else.
+
+Call this to log any custom data you want to track.
+
+[[Playtomic Log] customMetric:name andGroup: group andUnique: unique];
+	
+	(NSString*)	name = your metric name, eg "ViewedCredits"
+	(NSString*)	group = optional, specify the group name for sorting in reports
+	(Boolean)	unique = optional, only count unique occurrences 
+
+
+-------------------------------------------------------------------------
+LEVEL METRICS
+-------------------------------------------------------------------------
+
+Level metrics can identify problems players are having with your difficulty 
+or anything else by logging information like how many people begin vs. finish
+each level.  They can help you identify major problems in your player retention.
+
+These methods log the 3 types of level metrics - counters, ranged-value 
+and average-value metrics.
+
+- Counter metrics count how many times an event occurs across levels
+- Ranged-value metrics track multiple values across a single event across levels
+- Average-value metrics track the average of something across levels
+
+[[Playtomic Log] levelCounterMetric: name andLevel: levelname andUnique: unique];
+[[Playtomic Log] levelCounterMetric: name andLevelNumber: levelnumber andUnique: unique];
+
+	(NSString*) name = your metric name
+	(NSString*) or (NSInteger) levelname / levelnumber = either a 
+		level number (int > 0) or a level name
+	(Boolean) unique = optional, only count unique-per-view occurrences
+
+[[Playtomic Log] levelAverageMetric: name andLevel: levelname andValue: value andUnique: unique];
+[[Playtomic Log] levelAverageMetric: name andLevelNumber: levelnumber andValue: value andUnique: unique];
+
+	(NSString*) name = your metric name
+	(NSString*) or (NSInteger) levelname / level number = either a 
+		level number (int > 0) or a level name
+	(NSInteger) value = the value you want to track
+	(Boolean) unique = optional, only count unique-per-view occurrences 
+
+[[Playtomic Log] levelRangedMetric: name andLevel: levelname andTrackValue: value andUnique: unique];
+[[Playtomic Log] levelRangedMetric: name andLevelNumber: levenumber andTrackValue: value andUnique: unique];
+
+	(NSString*) name = your metric name
+	(NSString*) or (NSInteger) levelname / level number = either a 
+		level number (int > 0) or a level name
+	(NSInteger) value = the value you want to track
+	(Boolean) unique = optional, only count unique-per-view occurrences 
+
+-------------------------------------------------------------------------
+LEADERBOARDS, LEVEL SHARING, DATA AND GEOIP
+-------------------------------------------------------------------------
+This stuff gets a little more complicated.  Please check the documentation at
+http://playtomic.com/api/ios
