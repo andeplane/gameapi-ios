@@ -117,12 +117,12 @@
     return [[PlaytomicResponse alloc] initWithSuccess: YES andErrorCode: errorcode];
 }
 
--(PlaytomicResponse*) list:(NSString*) mode andPage:(NSInteger) page andPerPage:(NSInteger) perpage andIncludeData: (Boolean) includedata andIncludeThumbs: (Boolean) includethumbs andCustomFilter: (NSString*) customfilter;
+-(PlaytomicResponse*) list:(NSString*) mode andPage:(NSInteger) page andPerPage:(NSInteger) perpage andIncludeData: (Boolean) includedata andIncludeThumbs: (Boolean) includethumbs andCustomFilter: (NSDictionary*) customfilter;
 {
     return [self listWithDateRange: mode andPage: page andPerPage: perpage andIncludeData: includedata andIncludeThumbs: includethumbs andCustomFilter: customfilter andDateMin: nil andDateMax: nil];
 }
 
--(PlaytomicResponse*) listWithDateRange:(NSString*) mode andPage:(NSInteger) page andPerPage:(NSInteger) perpage andIncludeData: (Boolean) includedata andIncludeThumbs: (Boolean) includethumbs andCustomFilter: (NSString*) customfilter andDateMin: (NSDate*) datemin andDateMax: (NSDate*) datemax
+-(PlaytomicResponse*) listWithDateRange:(NSString*) mode andPage:(NSInteger) page andPerPage:(NSInteger) perpage andIncludeData: (Boolean) includedata andIncludeThumbs: (Boolean) includethumbs andCustomFilter: (NSDictionary*) customfilter andDateMin: (NSDate*) datemin andDateMax: (NSDate*) datemax
 {
     NSDateFormatter* df = [[NSDateFormatter alloc] init];
     [df setFormatterBehavior:NSDateFormatterBehavior10_4];
@@ -133,9 +133,26 @@
     NSString *thumbsafe = includethumbs ? @"y" : @"n";
     NSString *dateminsafe = datemin == nil ? @"" : [df stringFromDate:datemin];
     NSString *datemaxsafe = datemax == nil ? @"" : [df stringFromDate:datemax];
+    NSInteger numfilters = customfilter == nil ? 0 : [customfilter count];
     
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/playerlevels/list.aspx?swfid=%d&js=m&mode=%@&page=%d&perpage=%d&data=%@&thumbs=%@&datemin=%@&datemax=%@", [Playtomic getGameGuid], [Playtomic getGameId], modesafe, page, perpage, datasafe, thumbsafe, dateminsafe, datemaxsafe];
-    ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL: [NSURL URLWithString: url]];
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/playerlevels/list.aspx?swfid=%d&js=m&mode=%@&page=%d&perpage=%d&data=%@&thumbs=%@&datemin=%@&datemax=%@&filters=%d", [Playtomic getGameGuid], [Playtomic getGameId], modesafe, page, perpage, datasafe, thumbsafe, dateminsafe, datemaxsafe, numfilters];
+    ASIFormDataRequest *request = [[ASIFormDataRequest alloc] initWithURL: [NSURL URLWithString: url]];
+    
+    if(customfilter != nil)
+    {
+        NSInteger fieldnumber = 0;
+            
+        for(id customfield in customfilter)
+        {
+            NSString* ckey = [NSString stringWithFormat: @"ckey%d", fieldnumber];
+            NSString* cdata = [NSString stringWithFormat: @"cdata%d", fieldnumber];
+            NSString* value = [customfilter objectForKey: customfield];
+            fieldnumber++;
+            
+            [request setPostValue: customfield forKey: ckey];
+            [request setPostValue: value forKey: cdata];
+        }
+    }
     
     [request startSynchronous];
     
@@ -170,12 +187,12 @@
     NSNumberFormatter* nf = [[NSNumberFormatter alloc] init];
     [nf setFormatterBehavior:NSNumberFormatterDecimalStyle];
     
-    
     for(id level in levels)
     {
         NSString* levelid = [level valueForKey: @"LevelId"];
         NSString* playerid = [level valueForKey: @"PlayerId"];
         NSString* playername = [[level valueForKey: @"PlayerName"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString* playersource = [level valueForKey: @"PlayerSource"];
         NSString* name = [[level valueForKey: @"Name"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         NSString* ldata = [[level valueForKey: @"Data"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         NSString* lthumb = [level valueForKey: @"Thumb"];
@@ -195,7 +212,7 @@
             [customdata setObject: cvalue forKey: key];
         }
         
-        [md addObject: [[PlaytomicLevel alloc] initWithName:name andPlayerName:playername andPlayerId:playerid andData:ldata andThumb: lthumb andVotes:votes andPlays:plays andRating:rating andScore:score andDate:date andRelativeDate:relativedate andCustomData:customdata andLevelId: levelid]];
+        [md addObject: [[PlaytomicLevel alloc] initWithName:name andPlayerName:playername andPlayerId:playerid andPlayerSource: playersource andData:ldata andThumb: lthumb andVotes:votes andPlays:plays andRating:rating andScore:score andDate:date andRelativeDate:relativedate andCustomData:customdata andLevelId: levelid]];
     }
     
     return [[PlaytomicResponse alloc] initWithSuccess: true andErrorCode: 0 andData: md andNumResults: numlevels];

@@ -75,12 +75,29 @@
     }
 }
 
-- (PlaytomicResponse*) list: (NSString*) table andHighest:(Boolean)highest andMode:(NSString*) mode andPage: (NSInteger) page andPerPage:(NSInteger) perpage andCustomFilter: (NSString*) customfilter
+- (PlaytomicResponse*) list: (NSString*) table andHighest:(Boolean)highest andMode:(NSString*) mode andPage: (NSInteger) page andPerPage:(NSInteger) perpage andCustomFilter: (NSDictionary*) customfilter
 {
     NSString *tablesafe = [table stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/leaderboards/list.aspx?swfid=%d&js=y&table=%@&mode=%@&page=%d&perpage=%d", [Playtomic getGameGuid], [Playtomic getGameId], tablesafe, mode, page, perpage];
+    NSInteger numfilters = customfilter == nil ? 0 : [customfilter count];
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/leaderboards/list.aspx?swfid=%d&js=y&table=%@&mode=%@&page=%d&perpage=%d&numfilters=%d", [Playtomic getGameGuid], [Playtomic getGameId], tablesafe, mode, page, perpage, numfilters];
 
-    ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL: [NSURL URLWithString: url]];
+    ASIFormDataRequest *request = [[ASIFormDataRequest alloc] initWithURL: [NSURL URLWithString: url]];
+    
+    if(customfilter != nil)
+    {
+        NSInteger fieldnumber = 0;
+        
+        for(id customfield in customfilter)
+        {
+            NSString* ckey = [NSString stringWithFormat: @"ckey%d", fieldnumber];
+            NSString* cdata = [NSString stringWithFormat: @"cdata%d", fieldnumber];
+            NSString* value = [customfilter objectForKey: customfield];
+            fieldnumber++;
+            
+            [request setPostValue: customfield forKey: ckey];
+            [request setPostValue: value forKey: cdata];
+        }
+    }
     
     [request startSynchronous];
     

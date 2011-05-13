@@ -13,6 +13,7 @@
     NSString *levelId;
     NSString *playerId;
     NSString *playerName;
+    NSString *playerSource;
     NSString *name;
     NSString *data;
     NSString *thumb;
@@ -26,10 +27,11 @@
 }
 
 -(id)initWithName: (NSString*) pname andPlayerName: (NSString*) pplayername andPlayerId: (NSString*) pplayerid andData: (NSString*) pdata;
--(id)initWithName: (NSString*) pname andPlayerName: (NSString*) pplayername andPlayerId: (NSString*) pplayerid andData: (NSString*) pdata andThumb: (NSString*) pthumb andVotes: (NSInteger) pvotes andPlays: (NSInteger) pplays andRating: (NSDecimalNumber*) rpating andScore: (NSInteger) pscore andDate: (NSDate*) pdate andRelativeDate: (NSString*) prelativedate andCustomData: (NSMutableDictionary*) pcustomdata andLevelId:(NSString*)levelid;
+-(id)initWithName: (NSString*) pname andPlayerName: (NSString*) pplayername andPlayerId: (NSString*) pplayerid andPlayerSource: (NSString*) playersource andData: (NSString*) pdata andThumb: (NSString*) pthumb andVotes: (NSInteger) pvotes andPlays: (NSInteger) pplays andRating: (NSDecimalNumber*) rpating andScore: (NSInteger) pscore andDate: (NSDate*) pdate andRelativeDate: (NSString*) prelativedate andCustomData: (NSMutableDictionary*) pcustomdata andLevelId:(NSString*)levelid;
 -(NSString*) getLevelId;
 -(NSString*) getPlayerId;
 -(NSString*) getPlayerName;
+-(NSString*) getPlayerSource;
 -(NSString*) getName;
 -(NSString*) getData;
 -(NSMutableData*) getThumbnail;

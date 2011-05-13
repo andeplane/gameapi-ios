@@ -13,6 +13,7 @@
 @property (nonatomic,copy) NSString *levelId;
 @property (nonatomic,copy) NSString *playerId;
 @property (nonatomic,copy) NSString *playerName;
+@property (nonatomic,copy) NSString *playerSource;
 @property (nonatomic,copy) NSString *name;
 @property (nonatomic,copy) NSString *data;
 @property (nonatomic,copy) NSString *thumb;
@@ -30,6 +31,7 @@
 @synthesize levelId;
 @synthesize playerId; 
 @synthesize playerName;
+@synthesize playerSource;
 @synthesize name;
 @synthesize data;
 @synthesize thumb;
@@ -50,11 +52,12 @@
     return self;
 }
 
--(id)initWithName: (NSString*) pname andPlayerName: (NSString*) pplayername andPlayerId: (NSString*) pplayerid andData: (NSString*) pdata andThumb: (NSString*) pthumb andVotes: (NSInteger) pvotes andPlays: (NSInteger) pplays andRating: (NSDecimalNumber*) prating andScore: (NSInteger) pscore andDate: (NSDate*) pdate andRelativeDate: (NSString*) prelativedate andCustomData: (NSMutableDictionary*) pcustomdata andLevelId:(NSString*) levelid
+-(id)initWithName: (NSString*) pname andPlayerName: (NSString*) pplayername andPlayerId: (NSString*) pplayerid andPlayerSource: (NSString*) playersource andData: (NSString*) pdata andThumb: (NSString*) pthumb andVotes: (NSInteger) pvotes andPlays: (NSInteger) pplays andRating: (NSDecimalNumber*) prating andScore: (NSInteger) pscore andDate: (NSDate*) pdate andRelativeDate: (NSString*) prelativedate andCustomData: (NSMutableDictionary*) pcustomdata andLevelId:(NSString*) levelid
 {
     self.name = pname;
     self.playerName = pplayername;
     self.playerId = pplayerid;
+    self.playerSource = playersource;
     self.data = pdata;
     self.thumb = pthumb;
     self.votes = pvotes;
@@ -81,6 +84,11 @@
 -(NSString*) getPlayerName
 {
     return self.playerName;
+}
+
+-(NSString*) getPlayerSource
+{
+    return self.playerSource;
 }
 
 -(NSString*) getName

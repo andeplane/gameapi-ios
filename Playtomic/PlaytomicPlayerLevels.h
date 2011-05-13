@@ -16,7 +16,7 @@
 
 -(PlaytomicResponse*) load:(NSString*) levelid;
 -(PlaytomicResponse*) rate:(NSString*) levelid andRating: (NSInteger) rating;
--(PlaytomicResponse*) list:(NSString*) mode andPage:(NSInteger) page andPerPage:(NSInteger) perpage andIncludeData: (Boolean) includedata andIncludeThumbs: (Boolean) includethumbs andCustomFilter: (NSString*) customfilter;
--(PlaytomicResponse*) listWithDateRange:(NSString*) mode andPage:(NSInteger) page andPerPage:(NSInteger) perpage andIncludeData: (Boolean) data andIncludeThumbs: (Boolean) includethumbs andCustomFilter: (NSString*) customfilter andDateMin: (NSDate*) datemin andDateMax: (NSDate*) datemax;
+-(PlaytomicResponse*) list:(NSString*) mode andPage:(NSInteger) page andPerPage:(NSInteger) perpage andIncludeData: (Boolean) includedata andIncludeThumbs: (Boolean) includethumbs andCustomFilter: (NSDictionary*) customfilter;
+-(PlaytomicResponse*) listWithDateRange:(NSString*) mode andPage:(NSInteger) page andPerPage:(NSInteger) perpage andIncludeData: (Boolean) data andIncludeThumbs: (Boolean) includethumbs andCustomFilter: (NSDictionary*) customfilter andDateMin: (NSDate*) datemin andDateMax: (NSDate*) datemax;
 -(PlaytomicResponse*) save:(PlaytomicLevel*) level;
 @end
