@@ -95,7 +95,7 @@
 		7881E42C135FB93500B4E7F5 /* Playtomic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playtomic.h; sourceTree = "<group>"; };
 		7881E42D135FB93500B4E7F5 /* Playtomic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Playtomic.m; sourceTree = "<group>"; };
 		7881E42E135FB93500B4E7F5 /* PlaytomicLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicLog.h; sourceTree = "<group>"; };
-		7881E430135FB93500B4E7F5 /* PlaytomicLogRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicLogRequest.h; sourceTree = "<group>"; };
+		7881E430135FB93500B4E7F5 /* PlaytomicLogRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; name = PlaytomicLogRequest.h; path = ../Playtomic/PlaytomicLogRequest.h; sourceTree = "<group>"; };
 		78F04CE7137B2238000C9E8D /* PlaytomicGeoIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicGeoIP.h; sourceTree = "<group>"; };
 		78F04CE8137B2238000C9E8D /* PlaytomicGeoIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicGeoIP.m; sourceTree = "<group>"; };
 		78F04CEA137B56AD000C9E8D /* PlaytomicLeaderboards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicLeaderboards.h; sourceTree = "<group>"; };
@@ -222,6 +222,7 @@
 		7881E401135FB42600B4E7F5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7881E430135FB93500B4E7F5 /* PlaytomicLogRequest.h */,
 				7881E402135FB42600B4E7F5 /* ObjectiveCTest-Info.plist */,
 				7881E403135FB42600B4E7F5 /* InfoPlist.strings */,
 				7881E406135FB42600B4E7F5 /* ObjectiveCTest-Prefix.pch */,
@@ -233,8 +234,8 @@
 		7881E40C135FB42700B4E7F5 /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
-				7881E40D135FB42700B4E7F5 /* ObjectiveCTestAppDelegate_iPhone.h */,
 				7881E40E135FB42700B4E7F5 /* ObjectiveCTestAppDelegate_iPhone.m */,
+				7881E40D135FB42700B4E7F5 /* ObjectiveCTestAppDelegate_iPhone.h */,
 				7881E410135FB42700B4E7F5 /* MainWindow_iPhone.xib */,
 			);
 			name = iPhone;
@@ -263,7 +264,6 @@
 				7881E42C135FB93500B4E7F5 /* Playtomic.h */,
 				7881E42D135FB93500B4E7F5 /* Playtomic.m */,
 				7881E42E135FB93500B4E7F5 /* PlaytomicLog.h */,
-				7881E430135FB93500B4E7F5 /* PlaytomicLogRequest.h */,
 				785E87461379FEAD00094336 /* PlaytomicGameVars.h */,
 				785E87471379FEAD00094336 /* PlaytomicGameVars.m */,
 				7835BEF8137A400500CF0211 /* PlaytomicResponse.h */,

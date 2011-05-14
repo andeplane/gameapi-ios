@@ -47,7 +47,7 @@
     if (self)
     {
 
-        [[Playtomic alloc] initWithGameId: 1339 andGUID: @"e24ff1548e204607"]; // Get your credentials from the Playtomic dashboard (add or select game then go to API page)
+        [[Playtomic alloc] initWithGameId: 0 andGUID: @""]; // Get your credentials from the Playtomic dashboard (add or select game then go to API page)
         [[Playtomic Log] view];
     }
     
