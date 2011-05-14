@@ -137,9 +137,17 @@ static Playtomic *instance = nil;
 
 - (id)initWithGameId: (NSInteger) gameid andGUID:(NSString*) gameguid
 {
+    NSString* model = [[UIDevice currentDevice] model];
+    NSString* system = [[UIDevice currentDevice] systemName];
+    NSString* version = [[UIDevice currentDevice] systemVersion];
+    
+    model = [model stringByReplacingOccurrencesOfString:@" " withString: @"+"];
+    system = [system stringByReplacingOccurrencesOfString:@" " withString: @"+"];
+    version = [version stringByReplacingOccurrencesOfString:@" " withString: @"+"];
+    
     instance.gameId = gameid;
     instance.gameGuid = gameguid;
-    instance.sourceUrl = [NSString stringWithFormat:@"http://ios.com/%@/%@", [[UIDevice currentDevice] model], [[UIDevice currentDevice] systemVersion]];
+    instance.sourceUrl = [NSString stringWithFormat:@"http://ios.com/%@/%@/%@", model, system, version];
     instance.baseUrl = @"ios.com";
 
     instance.log = [[PlaytomicLog alloc] initWithGameId : gameid andGUID:  gameguid];

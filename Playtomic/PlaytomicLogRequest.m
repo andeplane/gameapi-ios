@@ -92,6 +92,8 @@
                 
                 PlaytomicLogRequest* request = [[PlaytomicLogRequest alloc] initWithTrackUrl: trackUrl];
                 [request massQueue: eventqueue];
+                
+                break;
             }
         } 
     }
@@ -105,6 +107,8 @@
 	NSString *fullurl = self.trackUrl;
     fullurl = [fullurl stringByAppendingString: self.data];
     
+    NSLog(fullurl);
+    
     ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL: [NSURL URLWithString: fullurl]];
     [request HEADRequest];
     [request setDelegate:self];
@@ -113,10 +117,12 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
+    NSLog(@"request finished");
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
+    NSLog(@"request failed %@", [request error]);
 }
 
 @end

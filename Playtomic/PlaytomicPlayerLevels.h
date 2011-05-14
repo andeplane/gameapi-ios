@@ -47,4 +47,9 @@
 -(PlaytomicResponse*) list:(NSString*) mode andPage:(NSInteger) page andPerPage:(NSInteger) perpage andIncludeData: (Boolean) includedata andIncludeThumbs: (Boolean) includethumbs andCustomFilter: (NSDictionary*) customfilter;
 -(PlaytomicResponse*) listWithDateRange:(NSString*) mode andPage:(NSInteger) page andPerPage:(NSInteger) perpage andIncludeData: (Boolean) data andIncludeThumbs: (Boolean) includethumbs andCustomFilter: (NSDictionary*) customfilter andDateMin: (NSDate*) datemin andDateMax: (NSDate*) datemax;
 -(PlaytomicResponse*) save:(PlaytomicLevel*) level;
+-(void) start: (NSString*) levelid;
+-(void) retry: (NSString*) levelid;
+-(void) win: (NSString*) levelid;
+-(void) quit: (NSString*) levelid;
+-(void) flag: (NSString*) levelid;
 @end

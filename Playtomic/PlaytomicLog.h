@@ -70,6 +70,7 @@
 - (void) heatmap: (NSString*) name andGroup: (NSString*) group andX: (NSInteger) x andY: (NSInteger) y;
 - (void) funnel;
 - (void) playerLevelStart: (NSString*) levelid;
+- (void) playerLevelRetry: (NSString*) levelid;
 - (void) playerLevelWin: (NSString*) levelid;
 - (void) playerLevelQuit: (NSString*) levelid;
 - (void) playerLevelFlag: (NSString*) levelid;

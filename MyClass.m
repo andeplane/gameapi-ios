@@ -409,6 +409,15 @@
 {
     NSLog(@"Level rate");
     
+    [[Playtomic PlayerLevels] start: @"4d2703f8cf1e8c28140028c6"];
+    [[Playtomic PlayerLevels] start: @"4d2703f8cf1e8c28140028c6"];
+    [[Playtomic PlayerLevels] start: @"4d2703f8cf1e8c28140028c6"];
+    [[Playtomic PlayerLevels] retry: @"4d2703f8cf1e8c28140028c6"];
+    [[Playtomic PlayerLevels] win: @"4d2703f8cf1e8c28140028c6"];
+    [[Playtomic PlayerLevels] quit: @"4d2703f8cf1e8c28140028c6"];
+    [[Playtomic PlayerLevels] flag: @"4d2703f8cf1e8c28140028c6"];
+    [[Playtomic Log] forceSend];
+    
     PlaytomicResponse* response = [[Playtomic PlayerLevels] rate: @"4d2703f8cf1e8c28140028c6" andRating: 8];
     
     if([response success])

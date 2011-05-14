@@ -305,6 +305,31 @@
     }
 }
 
+-(void) start: (NSString*) levelid
+{
+    [[Playtomic Log] playerLevelStart: levelid];
+}
+
+-(void) retry: (NSString*) levelid
+{
+    [[Playtomic Log] playerLevelRetry: levelid];
+}
+
+-(void) win: (NSString*) levelid
+{
+    [[Playtomic Log] playerLevelWin: levelid];
+}
+
+-(void) quit: (NSString*) levelid
+{
+    [[Playtomic Log] playerLevelQuit: levelid];
+}
+
+-(void) flag: (NSString*) levelid
+{
+    [[Playtomic Log] playerLevelFlag: levelid];
+}
+
 - (NSString*) clean: (NSString*) string
 {    
     string = [string stringByReplacingOccurrencesOfString:@"/" withString:@"\\"];

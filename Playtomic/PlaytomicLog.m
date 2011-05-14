@@ -242,6 +242,11 @@
    [self send: [NSString stringWithFormat: @"plw/%@", [self clean: levelid]] andCommit: NO]; 
 }
 
+- (void) playerLevelRetry: (NSString*) levelid
+{
+    [self send: [NSString stringWithFormat: @"plr/%@", [self clean: levelid]] andCommit: NO]; 
+}
+
 - (void) playerLevelQuit: (NSString*) levelid
 {
     [self send: [NSString stringWithFormat: @"plq/%@", [self clean: levelid]] andCommit: NO];
