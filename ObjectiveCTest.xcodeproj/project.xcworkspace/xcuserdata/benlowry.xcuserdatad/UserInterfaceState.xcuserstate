@@ -11583,8 +11583,8 @@
 				</dict>
 			</array>
 		</dict>
-		<real>327097734.29958397</real>
-		<string>{13902, 1558}</string>
+		<real>327099505.814789</real>
+		<string>{999, 1631}</string>
 		<string>{2235, 0}</string>
 		<dict>
 			<key>$class</key>
@@ -45807,7 +45807,7 @@
 				</dict>
 			</array>
 		</dict>
-		<real>327097734.30283499</real>
+		<real>327099505.8193</real>
 		<string>{15796, 1372}</string>
 		<string>{17018, 0}</string>
 		<string>-levelRate</string>
@@ -113376,8 +113376,8 @@
 				</dict>
 			</array>
 		</dict>
-		<real>327097734.30214697</real>
-		<string>{13902, 1558}</string>
+		<real>327099505.81850398</real>
+		<string>{999, 1631}</string>
 		<string>{2235, 0}</string>
 		<string>-drawRect:</string>
 		<dict>
