@@ -95,7 +95,7 @@
 		7881E42C135FB93500B4E7F5 /* Playtomic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playtomic.h; sourceTree = "<group>"; };
 		7881E42D135FB93500B4E7F5 /* Playtomic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Playtomic.m; sourceTree = "<group>"; };
 		7881E42E135FB93500B4E7F5 /* PlaytomicLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicLog.h; sourceTree = "<group>"; };
-		7881E430135FB93500B4E7F5 /* PlaytomicLogRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; name = PlaytomicLogRequest.h; path = ../Playtomic/PlaytomicLogRequest.h; sourceTree = "<group>"; };
+		7881E430135FB93500B4E7F5 /* PlaytomicLogRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlaytomicLogRequest.h; path = ../Playtomic/PlaytomicLogRequest.h; sourceTree = "<group>"; };
 		78F04CE7137B2238000C9E8D /* PlaytomicGeoIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicGeoIP.h; sourceTree = "<group>"; };
 		78F04CE8137B2238000C9E8D /* PlaytomicGeoIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicGeoIP.m; sourceTree = "<group>"; };
 		78F04CEA137B56AD000C9E8D /* PlaytomicLeaderboards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicLeaderboards.h; sourceTree = "<group>"; };
