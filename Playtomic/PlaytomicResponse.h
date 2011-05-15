@@ -54,6 +54,7 @@
 -(NSInteger) errorCode;
 -(NSArray*) data;
 -(NSString*) getValue: (NSString*) name;
+-(void) setValue: (NSString*) name andValue: (NSString*) value;
 -(NSInteger) getNumResults;
 
 @end

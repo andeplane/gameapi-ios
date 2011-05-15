@@ -249,10 +249,8 @@
 
 -(PlaytomicResponse*) save:(PlaytomicLevel*) level
 {
-    // NSLog(@"Setting up the url");
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/playerlevels/save.aspx?swfid=%d&js=y&url=%@", [Playtomic getGameGuid], [Playtomic getGameId], [Playtomic getSourceUrl]];
+     NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/playerlevels/save.aspx?swfid=%d&js=y&url=%@", [Playtomic getGameGuid], [Playtomic getGameId], [Playtomic getSourceUrl]];
     
-    //NSLog(@"Setting up the request");
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
     [request setPostValue:[level getData] forKey:@"data"];
     [request setPostValue:[level getPlayerId] forKey:@"playerid"];
@@ -291,16 +289,20 @@
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     NSArray *data = [parser objectWithString:json error:nil];
     NSInteger status = [[data valueForKey: @"Status"] integerValue];
-    
+    NSInteger errorcode = [[data valueForKey: @"ErrorCode"] integerValue];
+
     if(status == 1)
     {
-        NSInteger errorcode = [[data valueForKey: @"ErrorCode"] integerValue];
-        return [[PlaytomicResponse alloc] initWithSuccess: true andErrorCode: errorcode]; 
+        NSDictionary* dvars = [data valueForKey: @"Data"];
+        NSString *levelid = [dvars valueForKey: @"LevelId"];
+        
+        NSMutableDictionary* md = [[NSMutableDictionary alloc] init];
+        [md setValue: levelid forKey: @"LevelId"];
+                
+        return [[PlaytomicResponse alloc] initWithSuccess:YES andErrorCode: errorcode andDict: md];
     }
     else
     {
-        NSLog(@"failed here %@", response);
-        NSInteger errorcode = [[data valueForKey: @"ErrorCode"] integerValue];
         return [[PlaytomicResponse alloc] initWithError: errorcode];
     }
 }

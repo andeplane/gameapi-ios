@@ -62,7 +62,6 @@
 
 -(id) initWithSuccess:(Boolean)success andErrorCode:(NSInteger)errorcode
 {
-    //NSLog(@"Creating PlaytomicResponse with success %d and error %d", success, errorcode);
     self.responseSucceeded = success;
     self.responseError = errorcode;
     return self;
@@ -70,7 +69,6 @@
 
 -(id) initWithSuccess: (Boolean) success andErrorCode: (NSInteger) errorcode andData: (NSArray*) data andNumResults: (NSInteger) numresults
 {
-    //NSLog(@"Creating PlaytomicResponse with success %d and error %d", success, errorcode);
     self.responseSucceeded = success;
     self.responseError = errorcode;
     self.responseData = data;
@@ -105,6 +103,16 @@
 - (NSString*) getValue: (NSString*) name
 {
     return [self.responseDictionary valueForKey:name];
+}
+
+- (void) setValue: (NSString*) name andValue: (NSString*) value
+{
+    if(self.responseDictionary == nil)
+    {
+        self.responseDictionary = [[NSMutableDictionary alloc] init];
+    }
+    
+    [self.responseDictionary setValue: value forKey: name];
 }
 
 - (NSInteger) getNumResults

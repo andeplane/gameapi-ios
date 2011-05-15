@@ -392,12 +392,12 @@
 {
     NSLog(@"Level save");
     
-    PlaytomicLevel* level = [[PlaytomicLevel alloc] initWithName: @"level name" andPlayerName: @"ben" andPlayerId: 0 andData: @"r=-152&i0=13,440,140&i1=24,440,140&i2=25,440,140&i3=37,440,140"];
+    PlaytomicLevel* level = [[PlaytomicLevel alloc] initWithName: @"level name4" andPlayerName: @"ben4" andPlayerId: 0 andData: @"r=-152&i0=13,440,140&i1=24,440,140&i2=25,440,140&i3=37,440,140,ie,37,450,150"];
     PlaytomicResponse* response = [[Playtomic PlayerLevels] save: level];
     
     if([response success])
     {
-        NSLog(@"Save succeeded");
+        NSLog(@"Save succeeded: %@", [response getValue: @"levelid"]);
     }
     else
     {
