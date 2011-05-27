@@ -43,6 +43,7 @@
 @property (nonatomic,copy) NSDate *date;
 @property (nonatomic,copy) NSString *relativeDate;
 @property (nonatomic,retain) NSMutableDictionary *customData;
+@property (nonatomic,readwrite) long rank;
 @end
 
 @implementation PlaytomicScore
@@ -52,6 +53,7 @@
 @synthesize date;
 @synthesize relativeDate;
 @synthesize customData;
+@synthesize rank;
 
 -(id) initNewScoreWithName:(NSString *)pname andPoints:(NSInteger)ppoints
 {
@@ -61,13 +63,14 @@
     return self; 
 }
 
--(id) initWithName:(NSString*) pname andPoints: (NSInteger) ppoints andDate: (NSDate*) pdate andRelativeDate:(NSString*)relativedate andCustomData: (NSMutableDictionary*) customdata
+-(id) initWithName:(NSString*) pname andPoints: (NSInteger) ppoints andDate: (NSDate*) pdate andRelativeDate:(NSString*)relativedate andCustomData: (NSMutableDictionary*) customdata andRank: (long) prank
 {
     self.name = pname;
     self.points = ppoints;
     self.date = pdate;
     self.relativeDate = relativedate;
     self.customData = customdata;
+    self.rank = prank;
     return self;
 }
 
@@ -89,6 +92,11 @@
 -(NSString*) getRelativeDate
 {
     return self.relativeDate;
+}
+
+-(long) getRank
+{
+    return self.rank;
 }
 
 -(NSMutableDictionary*) getCustomData

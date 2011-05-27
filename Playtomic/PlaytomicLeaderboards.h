@@ -43,6 +43,6 @@
 
 - (PlaytomicResponse*) save: (NSString*) table andScore:(PlaytomicScore*) score andHighest: (Boolean)highest andAllowDuplicates: (Boolean)allowduplicates;
 - (PlaytomicResponse*) list: (NSString*) table andHighest:(Boolean)highest andMode:(NSString*) mode andPage: (NSInteger) page andPerPage:(NSInteger) perpage andCustomFilter: (NSDictionary*) customfilter;
-
+- (PlaytomicResponse*) saveAndList: (NSString*) table andScore:(PlaytomicScore*) score andHighest: (Boolean)highest andAllowDuplicates: (Boolean)allowduplicates andMode:(NSString*) mode andPerPage:(NSInteger) perpage andCustomFilter: (NSDictionary*) customfilter;
 
 @end
