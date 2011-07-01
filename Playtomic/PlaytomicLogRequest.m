@@ -107,7 +107,7 @@
 	NSString *fullurl = self.trackUrl;
     fullurl = [fullurl stringByAppendingString: self.data];
     
-    NSLog(fullurl);
+    NSLog(@"%@", fullurl);
     
     ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL: [NSURL URLWithString: fullurl]];
     [request HEADRequest];
