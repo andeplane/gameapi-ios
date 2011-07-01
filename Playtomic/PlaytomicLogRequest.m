@@ -73,7 +73,7 @@
 {
     while([eventqueue count] > 0)
     {
-        id event = [eventqueue objectAtIndex: 0];
+        id event = [[[eventqueue objectAtIndex: 0] retain] autorelease];
         [eventqueue removeObjectAtIndex: 0];
         
         if([data length] == 0)
