@@ -53,35 +53,91 @@
     NSMutableArray *levelCounters;
     NSMutableArray *levelAverages;
     NSMutableArray *levelRangeds;
+    NSDate *lastEventOccurence;
 }
 
-- (id) initWithGameId: (NSInteger) gameid andGUID:(NSString*) gameguid;
+- (id)initWithGameId:(NSInteger)gameid 
+             andGUID:(NSString*)gameguid;
+
 - (void) view;
+
 - (void) play;
+
 - (void) pingServer;
-- (void) customMetric: (NSString*) name andGroup: (NSString*) group andUnique: (Boolean) unique;
-- (void) levelCounterMetric: (NSString*) name andLevel: (NSString*) level andUnique: (Boolean) unique;
-- (void) levelCounterMetric: (NSString*) name andLevelNumber: (NSInteger) levelnumber andUnique: (Boolean) unique;
-- (void) levelRangedMetric: (NSString*) name andLevel: (NSString*) level andTrackValue: (NSUInteger) trackvalue andUnique: (Boolean) unique;
-- (void) levelRangedMetric: (NSString*) name andLevelNumber: (NSInteger) levelnumber andTrackValue: (NSUInteger) trackvalue andUnique: (Boolean) unique;
-- (void) levelAverageMetric: (NSString*) name andLevel: (NSString*) level andValue: (NSUInteger) value andUnique: (Boolean) unique;
-- (void) levelAverageMetric: (NSString*) name andLevelNumber: (NSInteger) levelnumber andValue: (NSUInteger) value andUnique: (Boolean) unique;
-- (void) link: (NSString*) url andName: (NSString*) name andGroup: (NSString*) group andUnique: (NSInteger) unique andTotal: (NSInteger) total andFail: (NSInteger) fail;
-- (void) heatmap: (NSString*) name andGroup: (NSString*) group andX: (NSInteger) x andY: (NSInteger) y;
-- (void) funnel;
-- (void) playerLevelStart: (NSString*) levelid;
-- (void) playerLevelRetry: (NSString*) levelid;
-- (void) playerLevelWin: (NSString*) levelid;
-- (void) playerLevelQuit: (NSString*) levelid;
-- (void) playerLevelFlag: (NSString*) levelid;
-- (void) freeze;
-- (void) unfreeze;
-- (void) forceSend;
-- (void) send:(NSString*) event andCommit: (Boolean) commit;
-- (NSString*) clean: (NSString*) string;
-- (NSInteger) getCookie: (NSString*) name;
-- (void) saveCookie;
-- (void) increaseViews;
-- (void) increasePlays;
+
+- (void)customMetricName:(NSString*)name 
+                andGroup:(NSString*)group 
+               andUnique:(Boolean)unique;
+
+- (void)levelCounterMetricName:(NSString*)name 
+                      andLevel:(NSString*)level 
+                     andUnique:(Boolean)unique;
+
+- (void)levelCounterMetricName:(NSString*)name 
+                andLevelNumber:(NSInteger)levelnumber 
+                     andUnique:(Boolean)unique;
+
+- (void)levelRangedMetricName:(NSString*)name 
+                     andLevel:(NSString*)level 
+                andTrackValue:(NSUInteger)trackvalue 
+                    andUnique:(Boolean)unique;
+
+- (void)levelRangedMetricName:(NSString*)name 
+               andLevelNumber:(NSInteger)levelnumber 
+                andTrackValue:(NSUInteger)trackvalue 
+                    andUnique:(Boolean)unique;
+
+- (void)levelAverageMetricName:(NSString*)name 
+                      andLevel:(NSString*)level 
+                      andValue:(NSUInteger)value 
+                     andUnique:(Boolean)unique;
+
+- (void)levelAverageMetricName:(NSString*)name 
+                andLevelNumber:(NSInteger)levelnumber 
+                      andValue:(NSUInteger)value 
+                     andUnique:(Boolean)unique;
+
+- (void)linkUrl:(NSString*)url 
+        andName:(NSString*)name 
+       andGroup:(NSString*)group 
+      andUnique:(NSInteger)unique 
+       andTotal:(NSInteger)total 
+        andFail:(NSInteger)fail;
+
+- (void)heatmapName:(NSString*)name 
+           andGroup:(NSString*)group 
+               andX:(NSInteger)x 
+               andY:(NSInteger)y;
+
+- (void)funnel;
+
+- (void)playerLevelStartLevelid:(NSString*)levelid;
+
+- (void)playerLevelRetryLevelid:(NSString*)levelid;
+
+- (void)playerLevelWinLevelid:(NSString*)levelid;
+
+- (void)playerLevelQuitLevelid:(NSString*)levelid;
+
+- (void)playerLevelFlagLevelid:(NSString*)levelid;
+
+- (void)freeze;
+
+- (void)unfreeze;
+
+- (void)forceSend;
+
+- (void)sendEvent:(NSString*)event 
+        andCommit:(Boolean)commit;
+
+- (NSString*)clean:(NSString*)string;
+
+- (NSInteger)getCookie:(NSString*)name;
+
+- (void)saveCookie;
+
+- (void)increaseViews;
+
+- (void)increasePlays;
 
 @end

@@ -38,9 +38,10 @@
 #import "PlaytomicResponse.h"
 
 @interface PlaytomicGeoIP : NSObject {
+    id<PlaytomicDelegate> delegate;
 }
 
 - (PlaytomicResponse*) load;
-
+- (void) loadAsync: (id<PlaytomicDelegate>)delegate;
 
 @end

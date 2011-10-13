@@ -54,24 +54,59 @@
     NSMutableDictionary *customData;
 }
 
--(id)initWithName: (NSString*) pname andPlayerName: (NSString*) pplayername andPlayerId: (NSString*) pplayerid andData: (NSString*) pdata;
--(id)initWithName: (NSString*) pname andPlayerName: (NSString*) pplayername andPlayerId: (NSString*) pplayerid andPlayerSource: (NSString*) playersource andData: (NSString*) pdata andThumb: (NSString*) pthumb andVotes: (NSInteger) pvotes andPlays: (NSInteger) pplays andRating: (NSDecimalNumber*) rpating andScore: (NSInteger) pscore andDate: (NSDate*) pdate andRelativeDate: (NSString*) prelativedate andCustomData: (NSMutableDictionary*) pcustomdata andLevelId:(NSString*)levelid;
--(NSString*) getLevelId;
--(NSString*) getPlayerId;
--(NSString*) getPlayerName;
--(NSString*) getPlayerSource;
--(NSString*) getName;
--(NSString*) getData;
--(NSMutableData*) getThumbnail;
--(NSInteger) getVotes;
--(NSInteger) getPlays;
--(NSDecimalNumber*) getRating;
--(NSInteger) getScore;
--(NSDate*) getDate;
--(NSString*) getRelativeDate;
--(NSMutableDictionary*) getCustomData;
--(NSString*) getThumbnailURL;
--(NSString*) getCustomValue: (NSString*) key;
--(void) addCustomValue: (NSString*) key andValue: (NSString*) value;
+- (id)initWithName:(NSString*)pname 
+    andPlayerName:(NSString*)pplayername 
+      andPlayerId:(NSString*)pplayerid 
+          andData:(NSString*)pdata;
+
+- (id)initWithName:(NSString*)pname 
+    andPlayerName:(NSString*)pplayername 
+      andPlayerId:(NSString*)pplayerid 
+  andPlayerSource:(NSString*)playersource 
+          andData:(NSString*)pdata 
+         andThumb:(NSString*)pthumb 
+         andVotes:(NSInteger)pvotes 
+         andPlays:(NSInteger)pplays 
+        andRating:(NSDecimalNumber*)rpating 
+         andScore:(NSInteger)pscore 
+          andDate:(NSDate*)pdate 
+  andRelativeDate:(NSString*)prelativedate 
+    andCustomData:(NSMutableDictionary*)pcustomdata 
+       andLevelId:(NSString*)levelid;
+
+- (NSString*)getLevelId;
+
+- (NSString*)getPlayerId;
+
+- (NSString*)getPlayerName;
+
+- (NSString*)getPlayerSource;
+
+- (NSString*)getName;
+
+- (NSString*)getData;
+
+- (NSMutableData*)getThumbnail;
+
+- (NSInteger)getVotes;
+
+- (NSInteger)getPlays;
+
+- (NSDecimalNumber*)getRating;
+
+- (NSInteger)getScore;
+
+- (NSDate*)getDate;
+
+- (NSString*)getRelativeDate;
+
+- (NSMutableDictionary*)getCustomData;
+
+- (NSString*)getThumbnailURL;
+
+- (NSString*)getCustomValue:(NSString*)key;
+
+- (void)addCustomValue:(NSString*)key 
+              andValue:(NSString*)value;
 
 @end

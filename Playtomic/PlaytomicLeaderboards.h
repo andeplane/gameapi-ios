@@ -39,10 +39,57 @@
 #import "PlaytomicScore.h"
 
 @interface PlaytomicLeaderboards : NSObject {
+    
+    id<PlaytomicDelegate> delegate;
+    
 }
 
-- (PlaytomicResponse*) save: (NSString*) table andScore:(PlaytomicScore*) score andHighest: (Boolean)highest andAllowDuplicates: (Boolean)allowduplicates;
-- (PlaytomicResponse*) list: (NSString*) table andHighest:(Boolean)highest andMode:(NSString*) mode andPage: (NSInteger) page andPerPage:(NSInteger) perpage andCustomFilter: (NSDictionary*) customfilter;
-- (PlaytomicResponse*) saveAndList: (NSString*) table andScore:(PlaytomicScore*) score andHighest: (Boolean)highest andAllowDuplicates: (Boolean)allowduplicates andMode:(NSString*) mode andPerPage:(NSInteger) perpage andCustomFilter: (NSDictionary*) customfilter;
+// synchronous calls
+//
+- (PlaytomicResponse*)saveTable:(NSString*)table 
+                       andScore:(PlaytomicScore*)score 
+                     andHighest:(Boolean)highest 
+             andAllowDuplicates:(Boolean)allowduplicates;
+
+- (PlaytomicResponse*)listTable:(NSString*)table 
+                     andHighest:(Boolean)highest 
+                        andMode:(NSString*)mode 
+                        andPage:(NSInteger)page 
+                     andPerPage:(NSInteger)perpage 
+                andCustomFilter:(NSDictionary*)customfilter;
+
+- (PlaytomicResponse*)saveAndListTable:(NSString*)table 
+                              andScore:(PlaytomicScore*)score 
+                            andHighest:(Boolean)highest 
+                    andAllowDuplicates:(Boolean)allowduplicates 
+                               andMode:(NSString*)mode 
+                            andPerPage:(NSInteger)perpage 
+                       andCustomFilter:(NSDictionary*)customfilter;
+
+// asynchronous calls
+//
+- (void)saveAsyncTable:(NSString*)table 
+              andScore:(PlaytomicScore*)score 
+            andHighest:(Boolean)highest 
+    andAllowDuplicates:(Boolean)allowduplicates 
+           andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void)listAsyncTable:(NSString*)table 
+            andHighest:(Boolean)highest 
+               andMode:(NSString*)mode 
+               andPage:(NSInteger)page 
+            andPerPage:(NSInteger)perpage 
+       andCustomFilter:(NSDictionary*)customfilter 
+           andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void)saveAndListAsyncTable:(NSString*)table 
+                     andScore:(PlaytomicScore*)score 
+                   andHighest:(Boolean)highest 
+           andAllowDuplicates:(Boolean)allowduplicates 
+                      andMode:(NSString*)mode 
+                   andPerPage:(NSInteger)perpage 
+              andCustomFilter:(NSDictionary*)customfilter 
+                  andDelegate:(id<PlaytomicDelegate>)delegate;
 
 @end
+

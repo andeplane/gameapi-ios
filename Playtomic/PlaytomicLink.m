@@ -39,45 +39,49 @@
 #import "PlaytomicLog.h"
 
 @interface PlaytomicLink()
-    @property (nonatomic,retain) NSMutableDictionary *clicks;
+
+@property (nonatomic,retain) NSMutableDictionary *clicks;
+
 @end
 
 @implementation PlaytomicLink
 
 @synthesize clicks;
 
--(void) track:(NSString*) url andName:(NSString*) name andGroup: (NSString*) group
+- (void)trackUrl:(NSString*)url 
+         andName:(NSString*)name 
+        andGroup:(NSString*)group
 {
     NSInteger unique = 0;
     NSInteger bunique = 0;
     NSInteger total = 0;
     NSInteger btotal = 0;
-    NSString* key = [NSString stringWithFormat: @"%@.%@", url, name];
+    NSString* key = [NSString stringWithFormat:@"%@.%@", url, name];
     
-    NSString* baseurl = [NSString stringWithString: url];
-    [baseurl stringByReplacingOccurrencesOfString: @"http://" withString:@""];
-    [baseurl stringByReplacingOccurrencesOfString: @"https://" withString:@""];
+    NSString* baseurl = [NSString stringWithString:url];
+    [baseurl stringByReplacingOccurrencesOfString:@"http://" withString:@""];
+    [baseurl stringByReplacingOccurrencesOfString:@"https://" withString:@""];
     
-    NSRange slash = [baseurl rangeOfString: @"/"];
+    NSRange slash = [baseurl rangeOfString:@"/"];
     
     if(slash.location > 0)
     {
-        baseurl = [baseurl substringToIndex: slash.location];
+        baseurl = [baseurl substringToIndex:slash.location];
     }
     
-    NSString* baseurlname = [NSString stringWithString: baseurl];
-    NSRange www = [baseurlname rangeOfString: @"www."];
+    NSString* baseurlname = [NSString stringWithString:baseurl];
+    NSRange www = [baseurlname rangeOfString:@"www."];
     
     if(www.location == 0 && www.length == 4)
     {
-        baseurlname = [baseurlname substringFromIndex: www.location];
+        baseurlname = [baseurlname substringFromIndex:www.location];
     }
     
-    if([clicks objectForKey: key] == 0)
+    if([clicks objectForKey:key] == 0)
     {
         total = 1;
         unique = 1;
-        [clicks setObject: 0 forKey: key];
+        [clicks setObject:0 forKey:key];
     }
     else
     {
@@ -88,16 +92,33 @@
     {
         btotal = 1;
         bunique = 1;
-        [clicks setObject: 0 forKey: baseurlname];
+        [clicks setObject:0 forKey:baseurlname];
     }
     else
     {
         btotal = 1;
     }
     
-    [[Playtomic Log] link:baseurl andName:baseurlname andGroup:@"DomainTotals" andUnique:bunique andTotal:btotal andFail:0];
-    [[Playtomic Log] link: url andName: name andGroup: group andUnique: unique andTotal:total andFail: 0];
+    [[Playtomic Log] linkUrl:baseurl 
+                     andName:baseurlname 
+                    andGroup:@"DomainTotals" 
+                   andUnique:bunique 
+                    andTotal:btotal 
+                     andFail:0];
+    
+    [[Playtomic Log] linkUrl:url 
+                     andName:name 
+                    andGroup:group 
+                   andUnique:unique 
+                    andTotal:total 
+                     andFail:0];
+    
     [[Playtomic Log] forceSend];
+}
+
+- (void)dealloc {
+    self.clicks = nil;
+    [super dealloc];
 }
 
 @end

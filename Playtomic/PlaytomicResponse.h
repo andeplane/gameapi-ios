@@ -37,24 +37,77 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface PlaytomicResponse : NSObject {
     Boolean responseSucceeded;
     NSInteger responseError;
-    NSArray* responseData;
-    NSDictionary* responseDict;
+    NSArray *responseData;
+    NSDictionary *responseDictionary;
     NSInteger numResults;
 }
 
--(id) initWithError: (NSInteger) errorcode;
--(id) initWithSuccess: (Boolean) success andErrorCode: (NSInteger) errorcode;
--(id) initWithSuccess: (Boolean) success andErrorCode: (NSInteger) errorcode andData: (NSArray*) data andNumResults: (NSInteger) numresults;
--(id) initWithSuccess: (Boolean) success andErrorCode: (NSInteger) errorcode andDict: (NSDictionary*) dict;
--(Boolean) success;
--(NSInteger) errorCode;
--(NSArray*) data;
--(NSString*) getValue: (NSString*) name;
--(void) setValue: (NSString*) name andValue: (NSString*) value;
--(NSInteger) getNumResults;
+- (id)initWithError:(NSInteger)errorcode;
+
+- (id)initWithSuccess:(Boolean)success 
+         andErrorCode:(NSInteger)errorcode;
+
+- (id)initWithSuccess:(Boolean)success 
+         andErrorCode:(NSInteger)errorcode 
+              andData:(NSArray*)data 
+        andNumResults:(NSInteger)numresults;
+
+- (id)initWithSuccess:(Boolean)success 
+         andErrorCode:(NSInteger)errorcode 
+              andDict:(NSDictionary*)dict;
+
+- (Boolean)success;
+
+- (NSInteger)errorCode;
+
+- (NSArray*)data;
+
+- (NSString*)getValueForName:(NSString*)name;
+
+- (void)setValueForName:(NSString*)name 
+               andValue:(NSString*)value;
+
+- (NSInteger)getNumResults;
 
 @end
+
+@protocol PlaytomicDelegate <NSObject>
+
+@optional
+
+// Leaderboards
+//
+- (void)requestSaveLeaderboardFinished:(PlaytomicResponse*)response;
+- (void)requestListLeaderboardFinished:(PlaytomicResponse*)response;
+- (void)requestSaveAndListLeaderboardFinished:(PlaytomicResponse*)response;
+
+// GeoIP
+//
+- (void)requestLoadGeoIPFinished:(PlaytomicResponse*)response;
+
+// GameVars
+//
+- (void)requestLoadGameVarsFinished:(PlaytomicResponse*)response;
+
+// PlayerLevels
+//
+- (void)requestLoadPlayerLevelsFinished:(PlaytomicResponse*)response;
+- (void)requestSavePlayerLevelsFinished:(PlaytomicResponse*)response;
+- (void)requestRatePlayerLevelsFinished:(PlaytomicResponse*)response;
+- (void)requestListPlayerLevelsFinished:(PlaytomicResponse*)response;
+
+// Data
+//
+- (void)requestViewsDataFinished:(PlaytomicResponse*)response;
+- (void)requestPlaysDataFinished:(PlaytomicResponse*)response;
+- (void)requestPlaytimeDataFinished:(PlaytomicResponse*)response;
+- (void)requestCustomMetricDataFinished:(PlaytomicResponse*)response;
+- (void)requestLevelMetricCounterDataFinished:(PlaytomicResponse*)response;
+- (void)requestLevelMetricAverageDataFinished:(PlaytomicResponse*)response;
+- (void)requestLevelMetricRangeDataFinished:(PlaytomicResponse*)response;
+
+@end
+

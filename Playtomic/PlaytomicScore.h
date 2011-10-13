@@ -46,15 +46,31 @@
     long rank;
 }
 
--(id) initWithName:(NSString*) pname andPoints: (NSInteger) ppoints andDate: (NSDate*) pdate andRelativeDate:(NSString*)relativedate andCustomData: (NSMutableDictionary*) customdata andRank: (long)rank;
--(id) initNewScoreWithName:(NSString*) pname andPoints: (NSInteger) ppoints;
--(NSString*) getName;
--(NSInteger) getPoints;
--(NSDate*) getDate;
--(long) getRank;
--(NSString*) getRelativeDate;
--(NSMutableDictionary*) getCustomData;
--(NSString*) getCustomValue: (NSString*) key;
--(void) addCustomValue: (NSString*) key andValue: (NSString*) value;
+- (id)initWithName:(NSString*)pname 
+         andPoints:(NSInteger)ppoints 
+           andDate:(NSDate*)pdate 
+   andRelativeDate:(NSString*)relativedate 
+     andCustomData:(NSMutableDictionary*)customdata 
+           andRank: (long)rank;
+
+- (id)initNewScoreWithName:(NSString*)pname 
+                 andPoints:(NSInteger)ppoints;
+
+- (NSString*)getName;
+
+- (NSInteger)getPoints;
+
+- (NSDate*)getDate;
+
+- (long)getRank;
+
+- (NSString*)getRelativeDate;
+
+- (NSMutableDictionary*)getCustomData;
+
+- (NSString*)getCustomValue:(NSString*)key;
+
+- (void)addCustomValue:(NSString*)key 
+              andValue:(NSString*)value;
 
 @end

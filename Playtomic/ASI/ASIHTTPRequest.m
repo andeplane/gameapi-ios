@@ -1032,9 +1032,9 @@ static NSOperationQueue *sharedQueue = nil;
 		NSString *cookieHeader = nil;
 		for (cookie in cookies) {
 			if (!cookieHeader) {
-				cookieHeader = [NSString stringWithFormat: @"%@=%@",[cookie name],[cookie value]];
+				cookieHeader = [NSString stringWithFormat:@"%@=%@",[cookie name],[cookie value]];
 			} else {
-				cookieHeader = [NSString stringWithFormat: @"%@; %@=%@",cookieHeader,[cookie name],[cookie value]];
+				cookieHeader = [NSString stringWithFormat:@"%@; %@=%@",cookieHeader,[cookie name],[cookie value]];
 			}
 		}
 		if (cookieHeader) {

@@ -58,17 +58,29 @@
     PlaytomicData *data;
 }
 
-- (id)initWithGameId: (NSInteger) gameid andGUID:(NSString*) gameguid;
-+ (PlaytomicLog*) Log;
-+ (PlaytomicGameVars*) GameVars;
-+ (PlaytomicGeoIP*) GeoIP;
-+ (PlaytomicLeaderboards*) Leaderboards;
-+ (PlaytomicPlayerLevels*) PlayerLevels;
-+ (PlaytomicLink*) Link;
-+ (PlaytomicData*) Data;
-+ (NSInteger) getGameId;
-+ (NSString*) getGameGuid;
-+ (NSString*) getSourceUrl;
-+ (NSString*) getBaseUrl;
+- (id)initWithGameId:(NSInteger)gameid 
+             andGUID:(NSString*)gameguid;
+
++ (PlaytomicLog*)Log;
+
++ (PlaytomicGameVars*)GameVars;
+
++ (PlaytomicGeoIP*)GeoIP;
+
++ (PlaytomicLeaderboards*)Leaderboards;
+
++ (PlaytomicPlayerLevels*)PlayerLevels;
+
++ (PlaytomicLink*)Link;
+
++ (PlaytomicData*)Data;
+
++ (NSInteger)getGameId;
+
++ (NSString*)getGameGuid;
+
++ (NSString*)getSourceUrl;
+
++ (NSString*)getBaseUrl;
 
 @end

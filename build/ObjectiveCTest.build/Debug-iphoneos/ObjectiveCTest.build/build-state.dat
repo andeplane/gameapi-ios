@@ -1,0 +1,75 @@
+TObjectiveCTest
+v7
+r1
+
+N/Users/javier/work/gameapi-ios/ObjectiveCTest/en.lproj/InfoPlist.strings
+c000000004E84A930000000000000002D
+t1317316912
+s45
+
+N/Users/javier/work/gameapi-ios/ObjectiveCTest/iPad/en.lproj/MainWindow_iPad.xib
+c000000004E84A9300000000000003F3C
+t1317316912
+s16188
+
+N/Users/javier/work/gameapi-ios/ObjectiveCTest/iPhone/en.lproj/MainWindow_iPhone.xib
+c000000004E84A93000000000000028DE
+t1317316912
+s10462
+
+N/Users/javier/work/gameapi-ios/Playtomic/ASI/ASI LICENSE
+c000000004E84A930000000000000070A
+t1317316912
+s1802
+
+N/Users/javier/work/gameapi-ios/build/Debug-iphoneos/ObjectiveCTest.app
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/Debug-iphoneos/ObjectiveCTest.app/ASI LICENSE
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/Debug-iphoneos/ObjectiveCTest.app/Info.plist
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/Debug-iphoneos/ObjectiveCTest.app/PkgInfo
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/Debug-iphoneos/ObjectiveCTest.app/en.lproj/InfoPlist.strings
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/Debug-iphoneos/ObjectiveCTest.app/en.lproj/MainWindow_iPad.nib
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/Debug-iphoneos/ObjectiveCTest.app/en.lproj/MainWindow_iPhone.nib
+t2
+s0
+
+NObjectiveCTest/ObjectiveCTest-Info.plist
+c000000004E84A930000000000000060A
+t1317316912
+s1546
+
+CCompileXIB /Users/javier/work/gameapi-ios/ObjectiveCTest/iPad/en.lproj/MainWindow_iPad.xib
+r0
+
+CCompileXIB /Users/javier/work/gameapi-ios/ObjectiveCTest/iPhone/en.lproj/MainWindow_iPhone.xib
+r0
+
+CCopyStringsFile /Users/javier/work/gameapi-ios/build/Debug-iphoneos/ObjectiveCTest.app/en.lproj/InfoPlist.strings ObjectiveCTest/en.lproj/InfoPlist.strings
+r0
+
+CCpResource "build/Debug-iphoneos/ObjectiveCTest.app/ASI LICENSE" "Playtomic/ASI/ASI LICENSE"
+r0
+
+CProcessInfoPlistFile /Users/javier/work/gameapi-ios/build/Debug-iphoneos/ObjectiveCTest.app/Info.plist ObjectiveCTest/ObjectiveCTest-Info.plist
+r0
+
+CTouch /Users/javier/work/gameapi-ios/build/Debug-iphoneos/ObjectiveCTest.app
+r0
+

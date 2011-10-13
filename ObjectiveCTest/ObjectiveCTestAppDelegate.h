@@ -35,9 +35,12 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import <UIKit/UIKit.h>
+#import "MyClass.h"
+#import "Playtomic.h"
 
 @interface ObjectiveCTestAppDelegate : NSObject <UIApplicationDelegate> {
 
+    MyClass *view;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

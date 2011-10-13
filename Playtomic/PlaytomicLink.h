@@ -38,10 +38,14 @@
 
 
 @interface PlaytomicLink : NSObject {
+    
     NSMutableDictionary* clicks;
+    
 }
 
 
--(void) track:(NSString*) url andName:(NSString*) name andGroup: (NSString*) group;
+- (void)trackUrl:(NSString*)url 
+         andName:(NSString*)name 
+        andGroup:(NSString*)group;
 
 @end

@@ -39,60 +39,69 @@
 #import "PlaytomicLog.h"
 #import "ASI/ASIHTTPRequest.h"
 
+NSString * const PLAYTOMIC_QUEUE_SIZE = @"playtomic.queue.size";
+NSString * const PLAYTOMIC_QUEUE_ITEM = @"playtomic.queue.item_%d";
+NSString * const PLAYTOMIC_QUEUE_READY = @"playtomic.queue.ready";
+int const PLAYTOMIC_QUEUE_MAX_SIZE = 101; // actually the max size is 100.
+                                          // the 101 value allow us to do
+                                          // if (queueSize < PLAYTOMIC_QUEUE_MAX_SIZE) {...}
+
+
 @interface PlaytomicLogRequest ()
+
 @property (nonatomic,copy) NSString *data;
 @property (nonatomic,copy) NSString *trackUrl;
+@property (assign) BOOL mustReleaseOnRequestFinished;
+
 @end
 
 @implementation PlaytomicLogRequest
 
 @synthesize data;
 @synthesize trackUrl;
+@synthesize mustReleaseOnRequestFinished;
 
-- (id) initWithTrackUrl: (NSString*) url
+- (id)initWithTrackUrl:(NSString*)url
 {
-    trackUrl = url;
-    data = @"";
+    self.trackUrl = url;
+    self.data = @"";
     return self;
 }
 
--(void) queue: (NSString*) event
+- (void)queueEvent:(NSString*)event
 {
-    if([data length] == 0)
+    if([self.data length] == 0)
     {
-        data = event;
+        self.data = event;
     }
     else
     {
-        data = [data stringByAppendingString:@"~"];
-        data = [data stringByAppendingString: event];
+        self.data = [self.data stringByAppendingString:@"~"];
+        self.data = [self.data stringByAppendingString:event];
     }
 }
 
--(void) massQueue:(NSMutableArray*) eventqueue
+- (void)massQueue:(NSMutableArray*)eventqueue
 {
     while([eventqueue count] > 0)
     {
-        id event = [[[eventqueue objectAtIndex: 0] retain] autorelease];
-        [eventqueue removeObjectAtIndex: 0];
+        id event = [[[eventqueue objectAtIndex:0] retain] autorelease];
+        [eventqueue removeObjectAtIndex:0];
         
-        if([data length] == 0)
+        if([self.data length] == 0)
         {
-            data = event;
-
+            self.data = event;
         }
         else
         {
-            data = [data stringByAppendingString:@"~"];
-            data = [data stringByAppendingString: event];
+            self.data = [self.data stringByAppendingString:@"~"];
+            self.data = [self.data stringByAppendingString:event];
             
-            if([data length] > 300)
+            if([self.data length] > 300)
             {
-                [self send];
-                
-                PlaytomicLogRequest* request = [[PlaytomicLogRequest alloc] initWithTrackUrl: trackUrl];
-                [request massQueue: eventqueue];
-                
+                [self send];                
+                PlaytomicLogRequest* request = [[PlaytomicLogRequest alloc] initWithTrackUrl:trackUrl];
+                [request massQueue:eventqueue];
                 break;
             }
         } 
@@ -102,27 +111,102 @@
 }
 
 
--(void) send
+- (void)send
 {
 	NSString *fullurl = self.trackUrl;
-    fullurl = [fullurl stringByAppendingString: self.data];
+    fullurl = [fullurl stringByAppendingString:self.data];
     
-    NSLog(@"%@", fullurl);
+    //NSLog(@"%@", fullurl);
     
-    ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL: [NSURL URLWithString: fullurl]];
+    ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:fullurl]];
     [request HEADRequest];
     [request setDelegate:self];
     [request startAsynchronous];
+    [request release];
 }
 
-- (void)requestFinished:(ASIHTTPRequest *)request
+- (void)requestFinished:(ASIHTTPRequest*)request
 {
-    NSLog(@"request finished");
+    //NSLog(@"request finished");
+    
+    // try to send data we have failed to send in a previous call to send
+    //    
+    NSUserDefaults *dataToSendLater = [NSUserDefaults standardUserDefaults];
+    NSInteger queueSize = [dataToSendLater integerForKey:PLAYTOMIC_QUEUE_SIZE];
+    
+    //NSLog(@"messages in queue %d", queueSize);
+    
+    if (queueSize > 0)
+    {
+        // we send only one message by call
+        //
+        BOOL ready = [dataToSendLater boolForKey:PLAYTOMIC_QUEUE_READY];
+        if (ready)
+        {
+            [dataToSendLater setBool:NO forKey:PLAYTOMIC_QUEUE_READY];
+            
+            // this is managed as filo list
+            //
+            NSString *key = [NSString stringWithFormat:PLAYTOMIC_QUEUE_ITEM, queueSize];
+            NSString *savedData = [dataToSendLater objectForKey:key];
+            queueSize--;
+            [dataToSendLater setInteger:queueSize forKey:PLAYTOMIC_QUEUE_SIZE];   
+            [dataToSendLater removeObjectForKey:key];
+            
+            PlaytomicLogRequest* request = [[PlaytomicLogRequest alloc] initWithTrackUrl:trackUrl];
+            [request queueEvent:savedData];
+            request.mustReleaseOnRequestFinished = YES;
+            [request send];
+            
+            //NSLog(@"message re-send: %@", trackUrl);
+        }
+        else
+        {
+            [dataToSendLater setBool:YES forKey:PLAYTOMIC_QUEUE_READY];        
+        }
+    }   
+    if (self.mustReleaseOnRequestFinished)
+    {
+        [self release];
+    }
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     NSLog(@"request failed %@", [request error]);
+    
+    // save data to send later
+    //
+    // this is managed as filo list
+    //    
+    NSUserDefaults *dataToSendLater = [NSUserDefaults standardUserDefaults];
+    NSInteger queueSize = [dataToSendLater integerForKey:PLAYTOMIC_QUEUE_SIZE];
+    if (queueSize < PLAYTOMIC_QUEUE_MAX_SIZE)
+    {
+        queueSize++;
+        [dataToSendLater setInteger:queueSize forKey:PLAYTOMIC_QUEUE_SIZE];
+        NSString *key = [NSString stringWithFormat:PLAYTOMIC_QUEUE_ITEM, queueSize];
+        NSString *dataToSave = self.data;
+        NSRange foundRange = [dataToSave rangeOfString:@"&date="];
+        if (foundRange.location == NSNotFound) 
+        {
+            long seconds = (long)[[NSDate date] timeIntervalSince1970];
+            dataToSave = [NSString stringWithFormat:@"%@&date=%ld", dataToSave, seconds];
+        }
+        [dataToSendLater setObject:dataToSave forKey:key];
+        [dataToSendLater setBool:YES forKey:PLAYTOMIC_QUEUE_READY];
+    }
+
+    if (self.mustReleaseOnRequestFinished)
+    {
+        [self release];
+    }
+}
+
+- (void)dealloc {
+    self.data = nil;
+    self.trackUrl = nil;
+    [super dealloc];
 }
 
 @end

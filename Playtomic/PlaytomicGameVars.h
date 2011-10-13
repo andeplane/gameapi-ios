@@ -39,9 +39,12 @@
 #import "PlaytomicResponse.h"
 
 @interface PlaytomicGameVars : NSObject {
+    
+    id<PlaytomicDelegate> delegate;
+    
 }
 
 - (PlaytomicResponse*) load;
-
+- (void) loadAsync: (id<PlaytomicDelegate>)delegate;
 
 @end

@@ -1,0 +1,1062 @@
+TObjectiveCTest
+v7
+r0
+t339599548.851349
+cCheck dependencies
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk
+c000000004E8CC1580000000000000110
+t1317847384
+s272
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/CFNetwork.framework/CFNetwork
+c000000004BD1CD580000000000125540
+t1272040792
+s1201472
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/CFNetwork.framework/Headers/CFNetwork.h
+c000000004BD1CD3500000000000004CF
+t1272040757
+s1231
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/CoreFoundation.framework/Headers/CoreFoundation.h
+c000000004BD1FECD0000000000000A99
+t1272053453
+s2713
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c000000004BD1CD90000000000026F020
+t1272040848
+s2551840
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004BD1FFC200000000002A96A0
+t1272053698
+s2791072
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004BD1FF9E0000000000001355
+t1272053662
+s4949
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/MobileCoreServices.framework/Headers/MobileCoreServices.h
+c000000004BD2007300000000000000EB
+t1272053875
+s235
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/MobileCoreServices.framework/MobileCoreServices
+c000000004BD20075000000000005A8B0
+t1272053877
+s370864
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/QuartzCore.framework/Headers/QuartzCore.h
+c000000004BD1D01E000000000000007D
+t1272041502
+s125
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/SystemConfiguration.framework/Headers/SystemConfiguration.h
+c000000004BD1CD110000000000001A78
+t1272040721
+s6776
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/SystemConfiguration.framework/SystemConfiguration
+c000000004BD1CD190000000000055570
+t1272040729
+s349552
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004BD20412000000000000098F
+t1272054802
+s2447
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004BD20471000000000222E640
+t1272054897
+s35841600
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h
+c000000004BD1CFC10000000000001A1A
+t1272041409
+s6682
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/CommonCrypto/CommonDigest.h
+c000000004748A1090000000000002500
+t1195942153
+s9472
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/CommonCrypto/CommonHMAC.h
+c000000004748A1090000000000000DE2
+t1195942153
+s3554
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/arpa/inet.h
+c00000000464386D70000000000001533
+t1178830551
+s5427
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/ifaddrs.h
+c00000000464386E00000000000000782
+t1178830560
+s1922
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/netdb.h
+c00000000464386E20000000000002F2B
+t1178830562
+s12075
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/netinet/in.h
+c00000000476344B700000000000052AA
+t1197687991
+s21162
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/netinet6/in6.h
+c00000000476344BA0000000000004970
+t1197687994
+s18800
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/stdio.h
+c000000004748A1330000000000003D1D
+t1195942195
+s15645
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/sys/socket.h
+c00000000476344C000000000000055F1
+t1197688000
+s22001
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/zlib.h
+c000000004748ECC900000000000102A5
+t1195961545
+s66213
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/lib/libz.1.2.3.dylib
+c00000000476CCCD10000000000006EE8
+t1198312657
+s28392
+
+N/Users/javier/work/gameapi-ios/MyClass.h
+c000000004E8B5F760000000000000702
+t1317756790
+s1794
+i<UIKit/UIKit.h>
+i"Playtomic/Playtomic.h"
+i"Playtomic/PlaytomicScore.h"
+i"Playtomic/PlaytomicLevel.h"
+
+N/Users/javier/work/gameapi-ios/MyClass.m
+c000000004E8CBE1C0000000000009A43
+t1317846556
+s39491
+i"MyClass.h"
+
+N/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch
+c000000004E84A930000000000000014E
+t1317316912
+s334
+i<Availability.h>
+i<UIKit/UIKit.h>
+i<Foundation/Foundation.h>
+
+N/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTestAppDelegate.h
+c000000004E8B23DB0000000000000710
+t1317741531
+s1808
+i<UIKit/UIKit.h>
+i"MyClass.h"
+i"Playtomic.h"
+
+N/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTestAppDelegate.m
+c000000004E8B2AB70000000000000F92
+t1317743287
+s3986
+i"ObjectiveCTestAppDelegate.h"
+
+N/Users/javier/work/gameapi-ios/ObjectiveCTest/en.lproj/InfoPlist.strings
+c000000004E84A930000000000000002D
+t1317316912
+s45
+
+N/Users/javier/work/gameapi-ios/ObjectiveCTest/iPad/ObjectiveCTestAppDelegate_iPad.h
+c000000004E84A93000000000000006C6
+t1317316912
+s1734
+i<UIKit/UIKit.h>
+i"ObjectiveCTestAppDelegate.h"
+
+N/Users/javier/work/gameapi-ios/ObjectiveCTest/iPad/ObjectiveCTestAppDelegate_iPad.m
+c000000004E84A93000000000000006BA
+t1317316912
+s1722
+i"ObjectiveCTestAppDelegate_iPad.h"
+
+N/Users/javier/work/gameapi-ios/ObjectiveCTest/iPad/en.lproj/MainWindow_iPad.xib
+c000000004E84A9300000000000003F3C
+t1317316912
+s16188
+
+N/Users/javier/work/gameapi-ios/ObjectiveCTest/iPhone/ObjectiveCTestAppDelegate_iPhone.h
+c000000004E84A93000000000000006CA
+t1317316912
+s1738
+i<UIKit/UIKit.h>
+i"ObjectiveCTestAppDelegate.h"
+
+N/Users/javier/work/gameapi-ios/ObjectiveCTest/iPhone/ObjectiveCTestAppDelegate_iPhone.m
+c000000004E84A93000000000000006C0
+t1317316912
+s1728
+i"ObjectiveCTestAppDelegate_iPhone.h"
+
+N/Users/javier/work/gameapi-ios/ObjectiveCTest/iPhone/en.lproj/MainWindow_iPhone.xib
+c000000004E84A93000000000000028DE
+t1317316912
+s10462
+
+N/Users/javier/work/gameapi-ios/ObjectiveCTest/main.m
+c000000004E84A93000000000000006F7
+t1317316912
+s1783
+i<UIKit/UIKit.h>
+
+N/Users/javier/work/gameapi-ios/Playtomic/ASI/ASI LICENSE
+c000000004E84A930000000000000070A
+t1317316912
+s1802
+
+N/Users/javier/work/gameapi-ios/Playtomic/ASI/ASIAuthenticationDialog.h
+c000000004E84A9300000000000000453
+t1317316912
+s1107
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+
+N/Users/javier/work/gameapi-ios/Playtomic/ASI/ASIAuthenticationDialog.m
+c000000004E84A9300000000000003DED
+t1317316912
+s15853
+i"ASIAuthenticationDialog.h"
+i"ASIHTTPRequest.h"
+i<QuartzCore/QuartzCore.h>
+
+N/Users/javier/work/gameapi-ios/Playtomic/ASI/ASICacheDelegate.h
+c000000004E84A9300000000000001228
+t1317316912
+s4648
+i<Foundation/Foundation.h>
+
+N/Users/javier/work/gameapi-ios/Playtomic/ASI/ASIDataCompressor.h
+c000000004E84A930000000000000072C
+t1317316912
+s1836
+i<Foundation/Foundation.h>
+i<zlib.h>
+
+N/Users/javier/work/gameapi-ios/Playtomic/ASI/ASIDataCompressor.m
+c000000004E84A9300000000000001A49
+t1317316912
+s6729
+i"ASIDataCompressor.h"
+i"ASIHTTPRequest.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/ASI/ASIDataDecompressor.h
+c000000004E84A93000000000000006A3
+t1317316912
+s1699
+i<Foundation/Foundation.h>
+i<zlib.h>
+
+N/Users/javier/work/gameapi-ios/Playtomic/ASI/ASIDataDecompressor.m
+c000000004E84A9300000000000001906
+t1317316912
+s6406
+i"ASIDataDecompressor.h"
+i"ASIHTTPRequest.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/ASI/ASIDownloadCache.h
+c000000004E84A93000000000000006CD
+t1317316912
+s1741
+i<Foundation/Foundation.h>
+i"ASICacheDelegate.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/ASI/ASIDownloadCache.m
+c000000004E84A9300000000000003C2F
+t1317316912
+s15407
+i"ASIDownloadCache.h"
+i"ASIHTTPRequest.h"
+i<CommonCrypto/CommonHMAC.h>
+
+N/Users/javier/work/gameapi-ios/Playtomic/ASI/ASIFormDataRequest.h
+c000000004E84A9300000000000000A6D
+t1317316912
+s2669
+i<Foundation/Foundation.h>
+i"ASIHTTPRequest.h"
+i"ASIHTTPRequestConfig.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/ASI/ASIFormDataRequest.m
+c000000004E84A9300000000000002B6A
+t1317316912
+s11114
+i"ASIFormDataRequest.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/ASI/ASIHTTPRequest.h
+c000000004E84A930000000000000AD05
+t1317316912
+s44293
+i<Foundation/Foundation.h>
+i<CFNetwork/CFNetwork.h>
+i<UIKit/UIKit.h>
+i<stdio.h>
+i"ASIHTTPRequestConfig.h"
+i"ASIHTTPRequestDelegate.h"
+i"ASIProgressDelegate.h"
+i"ASICacheDelegate.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/ASI/ASIHTTPRequest.m
+c000000004E8CB6CD000000000002AE54
+t1317844685
+s175700
+i"ASIHTTPRequest.h"
+i"Reachability.h"
+i"ASIAuthenticationDialog.h"
+i<MobileCoreServices/MobileCoreServices.h>
+i<SystemConfiguration/SystemConfiguration.h>
+i"ASIInputStream.h"
+i"ASIDataDecompressor.h"
+i"ASIDataCompressor.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/ASI/ASIHTTPRequestConfig.h
+c000000004E84A93000000000000003B0
+t1317316912
+s944
+
+N/Users/javier/work/gameapi-ios/Playtomic/ASI/ASIHTTPRequestDelegate.h
+c000000004E84A930000000000000063E
+t1317316912
+s1598
+
+N/Users/javier/work/gameapi-ios/Playtomic/ASI/ASIInputStream.h
+c000000004E84A93000000000000003C9
+t1317316912
+s969
+i<Foundation/Foundation.h>
+
+N/Users/javier/work/gameapi-ios/Playtomic/ASI/ASIInputStream.m
+c000000004E84A9300000000000000C14
+t1317316912
+s3092
+i"ASIInputStream.h"
+i"ASIHTTPRequest.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/ASI/ASINetworkQueue.h
+c000000004E84A930000000000000120D
+t1317316912
+s4621
+i<Foundation/Foundation.h>
+i"ASIHTTPRequestDelegate.h"
+i"ASIProgressDelegate.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/ASI/ASINetworkQueue.m
+c000000004E84A9300000000000002C8D
+t1317316912
+s11405
+i"ASINetworkQueue.h"
+i"ASIHTTPRequest.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/ASI/ASIProgressDelegate.h
+c000000004E84A9300000000000000678
+t1317316912
+s1656
+
+N/Users/javier/work/gameapi-ios/Playtomic/JSON/JSON.h
+c000000004E84A9300000000000000AC5
+t1317316912
+s2757
+i"SBJsonParser.h"
+i"SBJsonWriter.h"
+i"NSObject+SBJSON.h"
+i"NSString+SBJSON.h"
+i<JSON/SBJsonParser.h>
+i<JSON/SBJsonWriter.h>
+i<JSON/NSObject+SBJSON.h>
+i<JSON/NSString+SBJSON.h>
+
+N/Users/javier/work/gameapi-ios/Playtomic/JSON/NSObject+SBJSON.h
+c000000004E84A930000000000000085F
+t1317316912
+s2143
+i<Foundation/Foundation.h>
+
+N/Users/javier/work/gameapi-ios/Playtomic/JSON/NSObject+SBJSON.m
+c000000004E84A930000000000000077D
+t1317316912
+s1917
+i"NSObject+SBJSON.h"
+i"SBJsonWriter.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/JSON/NSString+SBJSON.h
+c000000004E84A93000000000000007F0
+t1317316912
+s2032
+i<Foundation/Foundation.h>
+
+N/Users/javier/work/gameapi-ios/Playtomic/JSON/NSString+SBJSON.m
+c000000004E84A930000000000000075D
+t1317316912
+s1885
+i"NSString+SBJSON.h"
+i"SBJsonParser.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/JSON/SBJsonBase.h
+c000000004E84A9300000000000000B82
+t1317316912
+s2946
+i<Foundation/Foundation.h>
+
+N/Users/javier/work/gameapi-ios/Playtomic/JSON/SBJsonBase.m
+c000000004E84A9300000000000000AC1
+t1317316912
+s2753
+i"SBJsonBase.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/JSON/SBJsonParser.h
+c000000004E84A9300000000000000C8F
+t1317316912
+s3215
+i<Foundation/Foundation.h>
+i"SBJsonBase.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/JSON/SBJsonParser.m
+c000000004E84A9300000000000003B7A
+t1317316912
+s15226
+i"SBJsonParser.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/JSON/SBJsonWriter.h
+c000000004E84A93000000000000011D9
+t1317316912
+s4569
+i<Foundation/Foundation.h>
+i"SBJsonBase.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/JSON/SBJsonWriter.m
+c000000004E84A930000000000000206D
+t1317316912
+s8301
+i"SBJsonWriter.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/Playtomic.h
+c000000004E84A93000000000000009F2
+t1317316912
+s2546
+i<Foundation/Foundation.h>
+i"PlaytomicLog.h"
+i"PlaytomicGameVars.h"
+i"PlaytomicGeoIP.h"
+i"PlaytomicLeaderboards.h"
+i"PlaytomicPlayerLevels.h"
+i"PlaytomicLink.h"
+i"PlaytomicData.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/Playtomic.m
+c000000004E85C25B00000000000012DD
+t1317388891
+s4829
+i"Playtomic.h"
+i"PlaytomicLog.h"
+i"PlaytomicGameVars.h"
+i"PlaytomicGeoIP.h"
+i"PlaytomicLeaderboards.h"
+i"PlaytomicLink.h"
+i"PlaytomicData.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/PlaytomicData.h
+c000000004E8CA6DC00000000000028A8
+t1317840604
+s10408
+i<Foundation/Foundation.h>
+i"PlaytomicResponse.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/PlaytomicData.m
+c000000004E8CB7810000000000005C5D
+t1317844865
+s23645
+i"PlaytomicData.h"
+i"PlaytomicResponse.h"
+i"Playtomic.h"
+i"JSON/JSON.h"
+i"ASI/ASIHTTPRequest.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/PlaytomicEncrypt.h
+c000000004E84A93000000000000006A6
+t1317316912
+s1702
+i<Foundation/Foundation.h>
+
+N/Users/javier/work/gameapi-ios/Playtomic/PlaytomicEncrypt.m
+c000000004E84A93000000000000008F4
+t1317316912
+s2292
+i"PlaytomicEncrypt.h"
+i<CommonCrypto/CommonDigest.h>
+
+N/Users/javier/work/gameapi-ios/Playtomic/PlaytomicGameVars.h
+c000000004E8C71F00000000000000713
+t1317827056
+s1811
+i<Foundation/Foundation.h>
+i"PlaytomicResponse.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/PlaytomicGameVars.m
+c000000004E8C72350000000000001616
+t1317827125
+s5654
+i"Playtomic.h"
+i"PlaytomicGameVars.h"
+i"PlaytomicResponse.h"
+i"JSON/JSON.h"
+i"ASI/ASIHTTPRequest.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/PlaytomicGeoIP.h
+c000000004E8C6A790000000000000703
+t1317825145
+s1795
+i<Foundation/Foundation.h>
+i"PlaytomicResponse.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/PlaytomicGeoIP.m
+c000000004E8C6B9D0000000000001572
+t1317825437
+s5490
+i"Playtomic.h"
+i"PlaytomicGeoIP.h"
+i"PlaytomicResponse.h"
+i"JSON/JSON.h"
+i"ASI/ASIHTTPRequest.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/PlaytomicLeaderboards.h
+c000000004E8C71F10000000000000C5B
+t1317827057
+s3163
+i<Foundation/Foundation.h>
+i"PlaytomicResponse.h"
+i"PlaytomicScore.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/PlaytomicLeaderboards.m
+c000000004E8C7B3C0000000000006D0A
+t1317829436
+s27914
+i"PlaytomicLeaderboards.h"
+i"PlaytomicResponse.h"
+i"Playtomic.h"
+i"PlaytomicScore.h"
+i"PlaytomicEncrypt.h"
+i"JSON/JSON.h"
+i"ASI/ASIFormDataRequest.h"
+i"ASI/ASIHTTPRequest.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/PlaytomicLevel.h
+c000000004E84A9300000000000000C3C
+t1317316912
+s3132
+i<Foundation/Foundation.h>
+
+N/Users/javier/work/gameapi-ios/Playtomic/PlaytomicLevel.m
+c000000004E85D7EB0000000000001CE9
+t1317394411
+s7401
+i"PlaytomicLevel.h"
+i"Playtomic.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/PlaytomicLink.h
+c000000004E84A93000000000000006EA
+t1317316912
+s1770
+i<Foundation/Foundation.h>
+
+N/Users/javier/work/gameapi-ios/Playtomic/PlaytomicLink.m
+c000000004E84D5140000000000000D53
+t1317328148
+s3411
+i"PlaytomicLink.h"
+i"Playtomic.h"
+i"PlaytomicLog.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/PlaytomicLog.h
+c000000004E8B1FB10000000000000F3F
+t1317740465
+s3903
+i<Foundation/Foundation.h>
+i"PlaytomicLogRequest.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/PlaytomicLog.m
+c000000004E8CB5FD0000000000003215
+t1317844477
+s12821
+i"PlaytomicLog.h"
+i"Playtomic.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/PlaytomicLogRequest.h
+c000000004E8C552500000000000007E8
+t1317819685
+s2024
+i<Foundation/Foundation.h>
+
+N/Users/javier/work/gameapi-ios/Playtomic/PlaytomicLogRequest.m
+c000000004E8C557C00000000000018AC
+t1317819772
+s6316
+i"PlaytomicLogRequest.h"
+i"Playtomic.h"
+i"PlaytomicLog.h"
+i"ASI/ASIHTTPRequest.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/PlaytomicPlayerLevels.h
+c000000004E8C80D00000000000000DE9
+t1317830864
+s3561
+i<Foundation/Foundation.h>
+i"PlaytomicLevel.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/PlaytomicPlayerLevels.m
+c000000004E8C98AC0000000000007E61
+t1317836972
+s32353
+i"PlaytomicLevel.h"
+i"PlaytomicResponse.h"
+i"Playtomic.h"
+i"JSON/JSON.h"
+i"ASI/ASIFormDataRequest.h"
+i"ASI/ASIHTTPRequest.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/PlaytomicResponse.h
+c000000004E8CAD110000000000000EA8
+t1317842193
+s3752
+i<Foundation/Foundation.h>
+
+N/Users/javier/work/gameapi-ios/Playtomic/PlaytomicResponse.m
+c000000004E8C97260000000000000EE2
+t1317836582
+s3810
+i"PlaytomicResponse.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/PlaytomicScore.h
+c000000004E84A9300000000000000922
+t1317316912
+s2338
+i<Foundation/Foundation.h>
+
+N/Users/javier/work/gameapi-ios/Playtomic/PlaytomicScore.m
+c000000004E85E7F20000000000000D61
+t1317398514
+s3425
+i"PlaytomicScore.h"
+
+N/Users/javier/work/gameapi-ios/Playtomic/Reachability/Reachability.h
+c000000004E84A9300000000000001D0E
+t1317316912
+s7438
+i<Foundation/Foundation.h>
+i<SystemConfiguration/SystemConfiguration.h>
+
+N/Users/javier/work/gameapi-ios/Playtomic/Reachability/Reachability.m
+c000000004E84A9300000000000005E0C
+t1317316912
+s24076
+i<sys/socket.h>
+i<netinet/in.h>
+i<netinet6/in6.h>
+i<arpa/inet.h>
+i<ifaddrs.h>
+i<netdb.h>
+i<CoreFoundation/CoreFoundation.h>
+i"Reachability.h"
+
+N/Users/javier/work/gameapi-ios/build/Debug-iphonesimulator/ObjectiveCTest.app
+t1317906685
+s204
+
+N/Users/javier/work/gameapi-ios/build/Debug-iphonesimulator/ObjectiveCTest.app.dSYM
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/Debug-iphonesimulator/ObjectiveCTest.app/ASI LICENSE
+t1317906685
+s1802
+
+N/Users/javier/work/gameapi-ios/build/Debug-iphonesimulator/ObjectiveCTest.app/Info.plist
+t1317906685
+s957
+
+N/Users/javier/work/gameapi-ios/build/Debug-iphonesimulator/ObjectiveCTest.app/ObjectiveCTest
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/Debug-iphonesimulator/ObjectiveCTest.app/PkgInfo
+t1317906685
+s8
+
+N/Users/javier/work/gameapi-ios/build/Debug-iphonesimulator/ObjectiveCTest.app/en.lproj/InfoPlist.strings
+t1317906685
+s42
+
+N/Users/javier/work/gameapi-ios/build/Debug-iphonesimulator/ObjectiveCTest.app/en.lproj/MainWindow_iPad.nib
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/Debug-iphonesimulator/ObjectiveCTest.app/en.lproj/MainWindow_iPhone.nib
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/ASIAuthenticationDialog.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/ASIDataCompressor.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/ASIDataDecompressor.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/ASIDownloadCache.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/ASIFormDataRequest.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/ASIHTTPRequest.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/ASIInputStream.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/ASINetworkQueue.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/MyClass.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/NSObject+SBJSON.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/NSString+SBJSON.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/ObjectiveCTest.LinkFileList
+c000000004E8DA8FD000000000000117E
+t1317906685
+s4478
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/ObjectiveCTestAppDelegate.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/ObjectiveCTestAppDelegate_iPad.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/ObjectiveCTestAppDelegate_iPhone.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/Playtomic.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/PlaytomicData.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/PlaytomicEncrypt.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/PlaytomicGameVars.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/PlaytomicGeoIP.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/PlaytomicLeaderboards.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/PlaytomicLevel.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/PlaytomicLink.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/PlaytomicLog.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/PlaytomicLogRequest.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/PlaytomicPlayerLevels.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/PlaytomicResponse.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/PlaytomicScore.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/Reachability.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/SBJsonBase.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/SBJsonParser.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/SBJsonWriter.o
+t2
+s0
+
+N/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/main.o
+t2
+s0
+
+N/var/folders/89/m594snn17lgby0b1mpf9mzp00000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/ObjectiveCTest-Prefix-gugbmlocslrdsabtdxvcmjfkafsq/ObjectiveCTest-Prefix.pch.gch
+t2
+s0
+
+NObjectiveCTest/ObjectiveCTest-Info.plist
+c000000004E84A930000000000000060A
+t1317316912
+s1546
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies339599554#339599554#0(73"[BEROR]error: There is no SDK with the name or path 'iphonesimulator4.2'1(4@65"error: There is no SDK with the name or path 'iphonesimulator4.2'339599554#18446744073709551615#0#0(1@0"0(0#1#0"2#0"0#
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/ASIAuthenticationDialog.o /Users/javier/work/gameapi-ios/Playtomic/ASI/ASIAuthenticationDialog.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/ASIDataCompressor.o /Users/javier/work/gameapi-ios/Playtomic/ASI/ASIDataCompressor.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/ASIDataDecompressor.o /Users/javier/work/gameapi-ios/Playtomic/ASI/ASIDataDecompressor.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/ASIDownloadCache.o /Users/javier/work/gameapi-ios/Playtomic/ASI/ASIDownloadCache.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/ASIFormDataRequest.o /Users/javier/work/gameapi-ios/Playtomic/ASI/ASIFormDataRequest.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/ASIHTTPRequest.o /Users/javier/work/gameapi-ios/Playtomic/ASI/ASIHTTPRequest.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/ASIInputStream.o /Users/javier/work/gameapi-ios/Playtomic/ASI/ASIInputStream.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/ASINetworkQueue.o /Users/javier/work/gameapi-ios/Playtomic/ASI/ASINetworkQueue.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/MyClass.o /Users/javier/work/gameapi-ios/MyClass.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/NSObject+SBJSON.o /Users/javier/work/gameapi-ios/Playtomic/JSON/NSObject+SBJSON.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/NSString+SBJSON.o /Users/javier/work/gameapi-ios/Playtomic/JSON/NSString+SBJSON.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/ObjectiveCTestAppDelegate.o /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTestAppDelegate.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/ObjectiveCTestAppDelegate_iPad.o /Users/javier/work/gameapi-ios/ObjectiveCTest/iPad/ObjectiveCTestAppDelegate_iPad.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/ObjectiveCTestAppDelegate_iPhone.o /Users/javier/work/gameapi-ios/ObjectiveCTest/iPhone/ObjectiveCTestAppDelegate_iPhone.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/Playtomic.o /Users/javier/work/gameapi-ios/Playtomic/Playtomic.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/PlaytomicData.o /Users/javier/work/gameapi-ios/Playtomic/PlaytomicData.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/PlaytomicEncrypt.o /Users/javier/work/gameapi-ios/Playtomic/PlaytomicEncrypt.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/PlaytomicGameVars.o /Users/javier/work/gameapi-ios/Playtomic/PlaytomicGameVars.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/PlaytomicGeoIP.o /Users/javier/work/gameapi-ios/Playtomic/PlaytomicGeoIP.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/PlaytomicLeaderboards.o /Users/javier/work/gameapi-ios/Playtomic/PlaytomicLeaderboards.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/PlaytomicLevel.o /Users/javier/work/gameapi-ios/Playtomic/PlaytomicLevel.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/PlaytomicLink.o /Users/javier/work/gameapi-ios/Playtomic/PlaytomicLink.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/PlaytomicLog.o /Users/javier/work/gameapi-ios/Playtomic/PlaytomicLog.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/PlaytomicLogRequest.o /Users/javier/work/gameapi-ios/Playtomic/PlaytomicLogRequest.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/PlaytomicPlayerLevels.o /Users/javier/work/gameapi-ios/Playtomic/PlaytomicPlayerLevels.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/PlaytomicResponse.o /Users/javier/work/gameapi-ios/Playtomic/PlaytomicResponse.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/PlaytomicScore.o /Users/javier/work/gameapi-ios/Playtomic/PlaytomicScore.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/Reachability.o /Users/javier/work/gameapi-ios/Playtomic/Reachability/Reachability.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/SBJsonBase.o /Users/javier/work/gameapi-ios/Playtomic/JSON/SBJsonBase.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/SBJsonParser.o /Users/javier/work/gameapi-ios/Playtomic/JSON/SBJsonParser.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/SBJsonWriter.o /Users/javier/work/gameapi-ios/Playtomic/JSON/SBJsonWriter.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/Objects-normal/i386/main.o /Users/javier/work/gameapi-ios/ObjectiveCTest/main.m normal i386 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileXIB /Users/javier/work/gameapi-ios/ObjectiveCTest/iPad/en.lproj/MainWindow_iPad.xib
+s339599547.748650
+e339599548.851227
+r0
+xCompileXIB
+x/Users/javier/work/gameapi-ios/ObjectiveCTest/iPad/en.lproj/MainWindow_iPad.xib
+odyld: lazy symbol binding failed: Symbol not found: _dispatch_get_concurrent_queue
+o  Referenced from: /Developer/usr/bin/../../Library/Frameworks//InterfaceBuilderKit.framework/Versions/A/InterfaceBuilderKit
+o  Expected in: /usr/lib/libSystem.B.dylib
+o
+odyld: Symbol not found: _dispatch_get_concurrent_queue
+o  Referenced from: /Developer/usr/bin/../../Library/Frameworks//InterfaceBuilderKit.framework/Versions/A/InterfaceBuilderKit
+o  Expected in: /usr/lib/libSystem.B.dylib
+o
+lSLF07#2@59"CompileXIB ObjectiveCTest/iPad/en.lproj/MainWindow_iPad.xib339599547#339599548#0(532"dyld: lazy symbol binding failed: Symbol not found: _dispatch_get_concurrent_queue  Referenced from: /Developer/usr/bin/../../Library/Frameworks//InterfaceBuilderKit.framework/Versions/A/InterfaceBuilderKit  Expected in: /usr/lib/libSystem.B.dylibdyld: Symbol not found: _dispatch_get_concurrent_queue  Referenced from: /Developer/usr/bin/../../Library/Frameworks//InterfaceBuilderKit.framework/Versions/A/InterfaceBuilderKit  Expected in: /usr/lib/libSystem.B.dylibCommand /Developer/usr/bin/ibtool failed with exit code 51(4@57"Command /Developer/usr/bin/ibtool failed with exit code 5339599548#18446744073709551615#0#0(1@0"0(0#0#79"/Users/javier/work/gameapi-ios/ObjectiveCTest/iPad/en.lproj/MainWindow_iPad.xib2#511"    cd /Users/javier/work/gameapi-ios    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.3    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/javier/work/gameapi-ios/build/Debug-iphonesimulator/ObjectiveCTest.app/en.lproj/MainWindow_iPad.nib /Users/javier/work/gameapi-ios/ObjectiveCTest/iPad/en.lproj/MainWindow_iPad.xib5#
+
+CCompileXIB /Users/javier/work/gameapi-ios/ObjectiveCTest/iPhone/en.lproj/MainWindow_iPhone.xib
+s339599547.748166
+e339599548.637571
+r0
+xCompileXIB
+x/Users/javier/work/gameapi-ios/ObjectiveCTest/iPhone/en.lproj/MainWindow_iPhone.xib
+odyld: lazy symbol binding failed: Symbol not found: _dispatch_get_concurrent_queue
+o  Referenced from: /Developer/usr/bin/../../Library/Frameworks//InterfaceBuilderKit.framework/Versions/A/InterfaceBuilderKit
+o  Expected in: /usr/lib/libSystem.B.dylib
+o
+odyld: Symbol not found: _dispatch_get_concurrent_queue
+o  Referenced from: /Developer/usr/bin/../../Library/Frameworks//InterfaceBuilderKit.framework/Versions/A/InterfaceBuilderKit
+o  Expected in: /usr/lib/libSystem.B.dylib
+o
+lSLF07#2@63"CompileXIB ObjectiveCTest/iPhone/en.lproj/MainWindow_iPhone.xib339599547#339599548#0(532"dyld: lazy symbol binding failed: Symbol not found: _dispatch_get_concurrent_queue  Referenced from: /Developer/usr/bin/../../Library/Frameworks//InterfaceBuilderKit.framework/Versions/A/InterfaceBuilderKit  Expected in: /usr/lib/libSystem.B.dylibdyld: Symbol not found: _dispatch_get_concurrent_queue  Referenced from: /Developer/usr/bin/../../Library/Frameworks//InterfaceBuilderKit.framework/Versions/A/InterfaceBuilderKit  Expected in: /usr/lib/libSystem.B.dylibCommand /Developer/usr/bin/ibtool failed with exit code 51(4@57"Command /Developer/usr/bin/ibtool failed with exit code 5339599548#18446744073709551615#0#0(1@0"0(0#0#83"/Users/javier/work/gameapi-ios/ObjectiveCTest/iPhone/en.lproj/MainWindow_iPhone.xib2#517"    cd /Users/javier/work/gameapi-ios    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.3    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/javier/work/gameapi-ios/build/Debug-iphonesimulator/ObjectiveCTest.app/en.lproj/MainWindow_iPhone.nib /Users/javier/work/gameapi-ios/ObjectiveCTest/iPhone/en.lproj/MainWindow_iPhone.xib5#
+
+CCopyStringsFile /Users/javier/work/gameapi-ios/build/Debug-iphonesimulator/ObjectiveCTest.app/en.lproj/InfoPlist.strings ObjectiveCTest/en.lproj/InfoPlist.strings
+s339599485.893573
+e339599485.929190
+r1
+xCopyStringsFile
+x/Users/javier/work/gameapi-ios/build/Debug-iphonesimulator/ObjectiveCTest.app/en.lproj/InfoPlist.strings
+xObjectiveCTest/en.lproj/InfoPlist.strings
+lSLF07#2@46"Copy ObjectiveCTest/en.lproj/InfoPlist.strings339599485#339599485#0(0"0(0#0#72"/Users/javier/work/gameapi-ios/ObjectiveCTest/en.lproj/InfoPlist.strings2#489"    cd /Users/javier/work/gameapi-ios    setenv ICONV /usr/bin/iconv    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/Xcode/Plug-ins/CoreBuildTasks.xcplugin/Contents/Resources/copystrings --validate --inputencoding utf-8 --outputencoding binary ObjectiveCTest/en.lproj/InfoPlist.strings --outdir /Users/javier/work/gameapi-ios/build/Debug-iphonesimulator/ObjectiveCTest.app/en.lproj0#
+
+CCpResource "build/Debug-iphonesimulator/ObjectiveCTest.app/ASI LICENSE" "Playtomic/ASI/ASI LICENSE"
+s339599485.898936
+e339599485.907889
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/ObjectiveCTest.app/ASI LICENSE
+xPlaytomic/ASI/ASI LICENSE
+lSLF07#2@30"Copy Playtomic/ASI/ASI LICENSE339599485#339599485#0(0"0(0#0#56"/Users/javier/work/gameapi-ios/Playtomic/ASI/ASI LICENSE2#454"    cd /Users/javier/work/gameapi-ios    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks "/Users/javier/work/gameapi-ios/Playtomic/ASI/ASI LICENSE" /Users/javier/work/gameapi-ios/build/Debug-iphonesimulator/ObjectiveCTest.app0#
+
+CGenerateDSYMFile /Users/javier/work/gameapi-ios/build/Debug-iphonesimulator/ObjectiveCTest.app.dSYM /Users/javier/work/gameapi-ios/build/Debug-iphonesimulator/ObjectiveCTest.app/ObjectiveCTest
+r0
+
+CLd /Users/javier/work/gameapi-ios/build/Debug-iphonesimulator/ObjectiveCTest.app/ObjectiveCTest normal i386
+r0
+
+CProcessInfoPlistFile /Users/javier/work/gameapi-ios/build/Debug-iphonesimulator/ObjectiveCTest.app/Info.plist ObjectiveCTest/ObjectiveCTest-Info.plist
+s339599485.348031
+e339599485.353854
+r1
+xProcessInfoPlistFile
+x/Users/javier/work/gameapi-ios/build/Debug-iphonesimulator/ObjectiveCTest.app/Info.plist
+xObjectiveCTest/ObjectiveCTest-Info.plist
+lSLF07#2@48"Process ObjectiveCTest/ObjectiveCTest-Info.plist339599485#339599485#0(0"0(0#0#71"/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Info.plist17204832864#491"    cd /Users/javier/work/gameapi-ios    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-infoPlistUtility ObjectiveCTest/ObjectiveCTest-Info.plist -genpkginfo /Users/javier/work/gameapi-ios/build/Debug-iphonesimulator/ObjectiveCTest.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/javier/work/gameapi-ios/build/Debug-iphonesimulator/ObjectiveCTest.app/Info.plist0#
+
+CProcessPCH /var/folders/89/m594snn17lgby0b1mpf9mzp00000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/ObjectiveCTest-Prefix-gugbmlocslrdsabtdxvcmjfkafsq/ObjectiveCTest-Prefix.pch.gch ObjectiveCTest/ObjectiveCTest-Prefix.pch normal i386 objective-c com.apple.compilers.llvmgcc42
+s339599547.434756
+e339599547.747897
+r0
+xProcessPCH
+x/var/folders/89/m594snn17lgby0b1mpf9mzp00000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/ObjectiveCTest-Prefix-gugbmlocslrdsabtdxvcmjfkafsq/ObjectiveCTest-Prefix.pch.gch
+xObjectiveCTest/ObjectiveCTest-Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvmgcc42
+o<command-line>: warning: "__IPHONE_OS_VERSION_MIN_REQUIRED" redefined
+o<command-line>: warning: this is the location of the previous definition
+oIn file included from /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h:128,
+o                 from /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch:5:
+o/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:56:42: error: operator '<' has no left operand
+o/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:63:44: error: operator '<' has no left operand
+o/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:73:44: error: operator '<' has no left operand
+o/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:79:42: error: operator '<' has no left operand
+o/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:89:44: error: operator '<' has no left operand
+o/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:95:42: error: operator '<' has no left operand
+o/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:99:44: error: operator '<' has no left operand
+o/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:111:44: error: operator '<' has no left operand
+o/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:117:42: error: operator '<' has no left operand
+o/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:122:44: error: operator '<' has no left operand
+o/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:127:44: error: operator '<' has no left operand
+o/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:141:44: error: operator '<' has no left operand
+o/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:147:42: error: operator '<' has no left operand
+o/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:153:43: error: operator '<' has no left operand
+o/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:159:44: error: operator '<' has no left operand
+o/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:165:44: error: operator '<' has no left operand
+o/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:181:44: error: operator '<' has no left operand
+o/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:187:42: error: operator '<' has no left operand
+o/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:194:43: error: operator '<' has no left operand
+o/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:201:44: error: operator '<' has no left operand
+o/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:208:44: error: operator '<' has no left operand
+o/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:215:44: error: operator '<' has no left operand
+lSLF07#2@51"Precompile ObjectiveCTest/ObjectiveCTest-Prefix.pch339599547#339599547#0(4045"<command-line>: warning: "__IPHONE_OS_VERSION_MIN_REQUIRED" redefined<command-line>: warning: this is the location of the previous definitionIn file included from /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h:128,                 from /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch:5:/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:56:42: error: operator '<' has no left operand/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:63:44: error: operator '<' has no left operand/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:73:44: error: operator '<' has no left operand/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:79:42: error: operator '<' has no left operand/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:89:44: error: operator '<' has no left operand/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:95:42: error: operator '<' has no left operand/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:99:44: error: operator '<' has no left operand/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:111:44: error: operator '<' has no left operand/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:117:42: error: operator '<' has no left operand/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:122:44: error: operator '<' has no left operand/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:127:44: error: operator '<' has no left operand/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:141:44: error: operator '<' has no left operand/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:147:42: error: operator '<' has no left operand/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:153:43: error: operator '<' has no left operand/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:159:44: error: operator '<' has no left operand/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:165:44: error: operator '<' has no left operand/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:181:44: error: operator '<' has no left operand/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:187:42: error: operator '<' has no left operand/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:194:43: error: operator '<' has no left operand/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:201:44: error: operator '<' has no left operand/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:208:44: error: operator '<' has no left operand/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h:215:44: error: operator '<' has no left operand22(4@32"Operator '<' has no left operand339599547#378#166#3(7@93"In file included from /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339599547#18446744073709551615#0#0(6@71"/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339009712#5#0#5#0#0"0(7@132"In file included from /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h339599547#18446744073709551615#0#0(6@110"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h293734209#128#0#128#0#0"0(13@154"Operator '<' has no left operand in /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h339599547#18446744073709551615#0#0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#56#0#56#0#0"0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#56#0#56#0#0"0(4@32"Operator '<' has no left operand339599547#544#166#3(7@93"In file included from /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339599547#18446744073709551615#0#0(6@71"/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339009712#5#0#5#0#0"0(7@132"In file included from /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h339599547#18446744073709551615#0#0(6@110"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h293734209#128#0#128#0#0"0(13@154"Operator '<' has no left operand in /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h339599547#18446744073709551615#0#0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#63#0#63#0#0"0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#63#0#63#0#0"0(4@32"Operator '<' has no left operand339599547#710#166#3(7@93"In file included from /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339599547#18446744073709551615#0#0(6@71"/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339009712#5#0#5#0#0"0(7@132"In file included from /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h339599547#18446744073709551615#0#0(6@110"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h293734209#128#0#128#0#0"0(13@154"Operator '<' has no left operand in /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h339599547#18446744073709551615#0#0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#73#0#73#0#0"0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#73#0#73#0#0"0(4@32"Operator '<' has no left operand339599547#876#166#3(7@93"In file included from /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339599547#18446744073709551615#0#0(6@71"/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339009712#5#0#5#0#0"0(7@132"In file included from /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h339599547#18446744073709551615#0#0(6@110"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h293734209#128#0#128#0#0"0(13@154"Operator '<' has no left operand in /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h339599547#18446744073709551615#0#0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#79#0#79#0#0"0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#79#0#79#0#0"0(4@32"Operator '<' has no left operand339599547#1042#166#3(7@93"In file included from /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339599547#18446744073709551615#0#0(6@71"/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339009712#5#0#5#0#0"0(7@132"In file included from /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h339599547#18446744073709551615#0#0(6@110"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h293734209#128#0#128#0#0"0(13@154"Operator '<' has no left operand in /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h339599547#18446744073709551615#0#0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#89#0#89#0#0"0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#89#0#89#0#0"0(4@32"Operator '<' has no left operand339599547#1208#166#3(7@93"In file included from /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339599547#18446744073709551615#0#0(6@71"/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339009712#5#0#5#0#0"0(7@132"In file included from /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h339599547#18446744073709551615#0#0(6@110"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h293734209#128#0#128#0#0"0(13@154"Operator '<' has no left operand in /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h339599547#18446744073709551615#0#0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#95#0#95#0#0"0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#95#0#95#0#0"0(4@32"Operator '<' has no left operand339599547#1374#166#3(7@93"In file included from /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339599547#18446744073709551615#0#0(6@71"/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339009712#5#0#5#0#0"0(7@132"In file included from /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h339599547#18446744073709551615#0#0(6@110"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h293734209#128#0#128#0#0"0(13@154"Operator '<' has no left operand in /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h339599547#18446744073709551615#0#0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#99#0#99#0#0"0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#99#0#99#0#0"0(4@32"Operator '<' has no left operand339599547#1540#167#3(7@93"In file included from /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339599547#18446744073709551615#0#0(6@71"/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339009712#5#0#5#0#0"0(7@132"In file included from /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h339599547#18446744073709551615#0#0(6@110"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h293734209#128#0#128#0#0"0(13@154"Operator '<' has no left operand in /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h339599547#18446744073709551615#0#0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#111#0#111#0#0"0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#111#0#111#0#0"0(4@32"Operator '<' has no left operand339599547#1707#167#3(7@93"In file included from /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339599547#18446744073709551615#0#0(6@71"/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339009712#5#0#5#0#0"0(7@132"In file included from /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h339599547#18446744073709551615#0#0(6@110"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h293734209#128#0#128#0#0"0(13@154"Operator '<' has no left operand in /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h339599547#18446744073709551615#0#0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#117#0#117#0#0"0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#117#0#117#0#0"0(4@32"Operator '<' has no left operand339599547#1874#167#3(7@93"In file included from /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339599547#18446744073709551615#0#0(6@71"/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339009712#5#0#5#0#0"0(7@132"In file included from /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h339599547#18446744073709551615#0#0(6@110"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h293734209#128#0#128#0#0"0(13@154"Operator '<' has no left operand in /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h339599547#18446744073709551615#0#0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#122#0#122#0#0"0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#122#0#122#0#0"0(4@32"Operator '<' has no left operand339599547#2041#167#3(7@93"In file included from /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339599547#18446744073709551615#0#0(6@71"/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339009712#5#0#5#0#0"0(7@132"In file included from /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h339599547#18446744073709551615#0#0(6@110"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h293734209#128#0#128#0#0"0(13@154"Operator '<' has no left operand in /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h339599547#18446744073709551615#0#0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#127#0#127#0#0"0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#127#0#127#0#0"0(4@32"Operator '<' has no left operand339599547#2208#167#3(7@93"In file included from /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339599547#18446744073709551615#0#0(6@71"/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339009712#5#0#5#0#0"0(7@132"In file included from /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h339599547#18446744073709551615#0#0(6@110"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h293734209#128#0#128#0#0"0(13@154"Operator '<' has no left operand in /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h339599547#18446744073709551615#0#0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#141#0#141#0#0"0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#141#0#141#0#0"0(4@32"Operator '<' has no left operand339599547#2375#167#3(7@93"In file included from /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339599547#18446744073709551615#0#0(6@71"/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339009712#5#0#5#0#0"0(7@132"In file included from /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h339599547#18446744073709551615#0#0(6@110"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h293734209#128#0#128#0#0"0(13@154"Operator '<' has no left operand in /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h339599547#18446744073709551615#0#0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#147#0#147#0#0"0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#147#0#147#0#0"0(4@32"Operator '<' has no left operand339599547#2542#167#3(7@93"In file included from /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339599547#18446744073709551615#0#0(6@71"/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339009712#5#0#5#0#0"0(7@132"In file included from /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h339599547#18446744073709551615#0#0(6@110"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h293734209#128#0#128#0#0"0(13@154"Operator '<' has no left operand in /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h339599547#18446744073709551615#0#0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#153#0#153#0#0"0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#153#0#153#0#0"0(4@32"Operator '<' has no left operand339599547#2709#167#3(7@93"In file included from /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339599547#18446744073709551615#0#0(6@71"/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339009712#5#0#5#0#0"0(7@132"In file included from /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h339599547#18446744073709551615#0#0(6@110"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h293734209#128#0#128#0#0"0(13@154"Operator '<' has no left operand in /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h339599547#18446744073709551615#0#0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#159#0#159#0#0"0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#159#0#159#0#0"0(4@32"Operator '<' has no left operand339599547#2876#167#3(7@93"In file included from /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339599547#18446744073709551615#0#0(6@71"/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339009712#5#0#5#0#0"0(7@132"In file included from /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h339599547#18446744073709551615#0#0(6@110"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h293734209#128#0#128#0#0"0(13@154"Operator '<' has no left operand in /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h339599547#18446744073709551615#0#0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#165#0#165#0#0"0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#165#0#165#0#0"0(4@32"Operator '<' has no left operand339599547#3043#167#3(7@93"In file included from /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339599547#18446744073709551615#0#0(6@71"/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339009712#5#0#5#0#0"0(7@132"In file included from /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h339599547#18446744073709551615#0#0(6@110"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h293734209#128#0#128#0#0"0(13@154"Operator '<' has no left operand in /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h339599547#18446744073709551615#0#0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#181#0#181#0#0"0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#181#0#181#0#0"0(4@32"Operator '<' has no left operand339599547#3210#167#3(7@93"In file included from /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339599547#18446744073709551615#0#0(6@71"/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339009712#5#0#5#0#0"0(7@132"In file included from /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h339599547#18446744073709551615#0#0(6@110"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h293734209#128#0#128#0#0"0(13@154"Operator '<' has no left operand in /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h339599547#18446744073709551615#0#0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#187#0#187#0#0"0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#187#0#187#0#0"0(4@32"Operator '<' has no left operand339599547#3377#167#3(7@93"In file included from /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339599547#18446744073709551615#0#0(6@71"/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339009712#5#0#5#0#0"0(7@132"In file included from /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h339599547#18446744073709551615#0#0(6@110"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h293734209#128#0#128#0#0"0(13@154"Operator '<' has no left operand in /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h339599547#18446744073709551615#0#0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#194#0#194#0#0"0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#194#0#194#0#0"0(4@32"Operator '<' has no left operand339599547#3544#167#3(7@93"In file included from /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339599547#18446744073709551615#0#0(6@71"/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339009712#5#0#5#0#0"0(7@132"In file included from /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h339599547#18446744073709551615#0#0(6@110"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h293734209#128#0#128#0#0"0(13@154"Operator '<' has no left operand in /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h339599547#18446744073709551615#0#0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#201#0#201#0#0"0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#201#0#201#0#0"0(4@32"Operator '<' has no left operand339599547#3711#167#3(7@93"In file included from /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339599547#18446744073709551615#0#0(6@71"/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339009712#5#0#5#0#0"0(7@132"In file included from /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h339599547#18446744073709551615#0#0(6@110"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h293734209#128#0#128#0#0"0(13@154"Operator '<' has no left operand in /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h339599547#18446744073709551615#0#0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#208#0#208#0#0"0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#208#0#208#0#0"0(4@32"Operator '<' has no left operand339599547#3878#167#3(7@93"In file included from /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339599547#18446744073709551615#0#0(6@71"/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch339009712#5#0#5#0#0"0(7@132"In file included from /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h339599547#18446744073709551615#0#0(6@110"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h293734209#128#0#128#0#0"0(13@154"Operator '<' has no left operand in /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h339599547#18446744073709551615#0#0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#215#0#215#0#0"0(6@118"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h293734209#215#0#215#0#0"0(0#0#71"/Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch2#1951"    cd /Users/javier/work/gameapi-ios    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/llvm-gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -DDEBUG -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk -mmacosx-version-min=10.5 -gdwarf-2 -fexceptions -D__IPHONE_OS_VERSION_MIN_REQUIRED= -iquote /Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/ObjectiveCTest-generated-files.hmap -I/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/ObjectiveCTest-own-target-headers.hmap -I/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/ObjectiveCTest-all-target-headers.hmap -iquote /Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/ObjectiveCTest-project-headers.hmap -F/Users/javier/work/gameapi-ios/build/Debug-iphonesimulator -I/Users/javier/work/gameapi-ios/build/Debug-iphonesimulator/include -I/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/DerivedSources/i386 -I/Users/javier/work/gameapi-ios/build/ObjectiveCTest.build/Debug-iphonesimulator/ObjectiveCTest.build/DerivedSources -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk -c /Users/javier/work/gameapi-ios/ObjectiveCTest/ObjectiveCTest-Prefix.pch -o /var/folders/89/m594snn17lgby0b1mpf9mzp00000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/ObjectiveCTest-Prefix-gugbmlocslrdsabtdxvcmjfkafsq/ObjectiveCTest-Prefix.pch.gch1#
+
+CTouch /Users/javier/work/gameapi-ios/build/Debug-iphonesimulator/ObjectiveCTest.app
+r0
+

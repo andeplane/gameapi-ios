@@ -47,7 +47,7 @@
 @property (nonatomic,copy) NSString *thumb;
 @property (nonatomic,readwrite) NSInteger votes;
 @property (nonatomic,readwrite) NSInteger plays;
-@property (nonatomic,copy) NSDecimalNumber* rating;
+@property (nonatomic,copy) NSDecimalNumber *rating;
 @property (nonatomic,readwrite) NSInteger score;
 @property (nonatomic,copy) NSDate *date;
 @property (nonatomic,copy) NSString *relativeDate;
@@ -71,7 +71,10 @@
 @synthesize relativeDate;
 @synthesize customData;
 
--(id) initWithName: (NSString*) pname andPlayerName: (NSString*) pplayername andPlayerId: (NSString*) pplayerid andData: (NSString*) pdata;
+- (id)initWithName:(NSString*)pname 
+     andPlayerName:(NSString*)pplayername 
+       andPlayerId:(NSString*)pplayerid 
+           andData:(NSString*)pdata;
 {
     self.name = pname;
     self.playerName = pplayername;
@@ -80,7 +83,20 @@
     return self;
 }
 
--(id)initWithName: (NSString*) pname andPlayerName: (NSString*) pplayername andPlayerId: (NSString*) pplayerid andPlayerSource: (NSString*) playersource andData: (NSString*) pdata andThumb: (NSString*) pthumb andVotes: (NSInteger) pvotes andPlays: (NSInteger) pplays andRating: (NSDecimalNumber*) prating andScore: (NSInteger) pscore andDate: (NSDate*) pdate andRelativeDate: (NSString*) prelativedate andCustomData: (NSMutableDictionary*) pcustomdata andLevelId:(NSString*) levelid
+- (id)initWithName:(NSString*)pname 
+     andPlayerName:(NSString*)pplayername 
+       andPlayerId:(NSString*)pplayerid 
+   andPlayerSource:(NSString*)playersource 
+           andData:(NSString*)pdata 
+          andThumb:(NSString*)pthumb 
+          andVotes:(NSInteger)pvotes 
+          andPlays:(NSInteger)pplays 
+         andRating:(NSDecimalNumber*)prating 
+          andScore:(NSInteger)pscore 
+           andDate:(NSDate*)pdate 
+   andRelativeDate:(NSString*)prelativedate 
+     andCustomData:(NSMutableDictionary*)pcustomdata 
+        andLevelId:(NSString*)levelid
 {
     self.name = pname;
     self.playerName = pplayername;
@@ -99,82 +115,85 @@
     return self;
 }
 
--(NSString*) getLevelId
+- (NSString*)getLevelId
 {
     return self.levelId;
 }
 
--(NSString*) getPlayerId
+- (NSString*)getPlayerId
 {
     return self.playerId;
 }
 
--(NSString*) getPlayerName
+- (NSString*)getPlayerName
 {
     return self.playerName;
 }
 
--(NSString*) getPlayerSource
+- (NSString*)getPlayerSource
 {
     return self.playerSource;
 }
 
--(NSString*) getName
+- (NSString*)getName
 {
     return self.name;
 }
 
--(NSString*) getData
+- (NSString*)getData
 {
     return self.data;
 }
 
--(NSInteger) getVotes
+- (NSInteger)getVotes
 {
     return self.votes;
 }
 
--(NSInteger) getPlays
+- (NSInteger)getPlays
 {
     return self.plays;
 }
 
--(NSDecimalNumber*) getRating
+- (NSDecimalNumber*)getRating
 {
     return self.rating;
 }
 
--(NSInteger) getScore
+- (NSInteger)getScore
 {
     return self.score;
 }
 
--(NSDate*) getDate
+- (NSDate*)getDate
 {
     return self.date;
 }
 
--(NSString*) getRelativeDate
+- (NSString*)getRelativeDate
 {
     return self.relativeDate;
 }
 
--(NSMutableDictionary*) getCustomData
+- (NSMutableDictionary*)getCustomData
 {
     return self.customData;
 }
 
--(NSString*) getThumbnailURL
+- (NSString*)getThumbnailURL
 {
-    return [NSString stringWithFormat: @"http://g%@.api.playtomic.com/playerlevels/load.aspx?swfid=%d&levelid=%@", [Playtomic getGameGuid], [Playtomic getGameId], self.levelId];
+    return [NSString stringWithFormat:@"http://g%@.api.playtomic.com/playerlevels/load.aspx?swfid=%d&levelid=%@"
+                                        , [Playtomic getGameGuid]
+                                        , [Playtomic getGameId]
+                                        , self.levelId];
 }
 
--(NSMutableData*) getThumbnail
+- (NSMutableData*)getThumbnail
 {
     unsigned long ixtext = 0;
     unsigned long lentext = [self.thumb length];
     const char *temporary = [self.thumb UTF8String];
-    NSMutableData *result = [NSMutableData dataWithCapacity: lentext];
+    NSMutableData *result = [NSMutableData dataWithCapacity:lentext];
     short ixinput = 0;
     short i;
     unsigned char ch, input[4], output[3];
@@ -232,7 +251,7 @@
                 output[2] = ((input[2] & 0x03) << 6) | (input[3] & 0x3F);
                 
                 for (i = 0; i < ctcharsinput; i++)
-                    [result appendBytes: &output[i] length: 1];
+                    [result appendBytes:&output[i] length:1];
             }
             
             if (flbreak)
@@ -243,14 +262,30 @@
     return result;
 }
 
--(NSString*) getCustomValue: (NSString*) key
+- (NSString*)getCustomValue:(NSString*)key
 {
-    return [self.customData valueForKey: key];
+    return [self.customData valueForKey:key];
 }
 
--(void) addCustomValue: (NSString*) key andValue: (NSString*) value
+-(void) addCustomValue:(NSString*)key 
+              andValue:(NSString*)value
 {
-    [self.customData setObject: value forKey: key];
+    [self.customData setObject:value forKey:key];
+}
+
+- (void)dealloc {
+    self.levelId = nil;
+    self.playerId = nil;
+    self.playerName = nil;
+    self.playerSource = nil;
+    self.name = nil;
+    self.data = nil;
+    self.thumb = nil;
+    self.rating = nil;
+    self.date = nil;
+    self.relativeDate = nil;
+    self.customData = nil;
+    [super dealloc];
 }
 
 @end

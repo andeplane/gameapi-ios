@@ -40,6 +40,7 @@
 #import "Playtomic.h"
 
 @interface PlaytomicLog ()
+
 @property (nonatomic,copy) NSString *trackUrl;
 @property (nonatomic,copy) NSString *sourceUrl;
 @property (nonatomic,copy) NSString *baseUrl;
@@ -55,9 +56,12 @@
 @property (nonatomic,retain) NSMutableArray *levelCounters;
 @property (nonatomic,retain) NSMutableArray *levelAverages;
 @property (nonatomic,retain) NSMutableArray *levelRangeds;
+@property (nonatomic,retain) NSDate *lastEventOccurence;
+
 @end
 
 @implementation PlaytomicLog
+
 @synthesize trackUrl;
 @synthesize sourceUrl;
 @synthesize baseUrl;
@@ -73,15 +77,21 @@
 @synthesize levelCounters;
 @synthesize levelAverages;
 @synthesize levelRangeds;
+@synthesize lastEventOccurence;
 
-- (id)initWithGameId: (NSInteger) gameid andGUID:(NSString*) gameguid 
+- (id)initWithGameId:(NSInteger)gameid 
+             andGUID:(NSString*)gameguid 
 {
+    self.lastEventOccurence = [NSDate date];
     self.sourceUrl = [Playtomic getSourceUrl];
     self.baseUrl = [Playtomic getBaseUrl];
-    self.trackUrl = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/tracker/q.aspx?swfid=%d&url=%@&q=", gameguid, gameid, sourceUrl];
+    self.trackUrl = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/tracker/q.aspx?swfid=%d&url=%@&q="
+                                                , gameguid
+                                                , gameid
+                                                , sourceUrl];
     self.enabled = YES;
-    self.views = [self getCookie: @"views"];
-    self.plays = [self getCookie: @"plays"];
+    self.views = [self getCookie:@"views"];
+    self.plays = [self getCookie:@"plays"];
     self.pings = 0;
     self.frozen = NO;    
     self.queue = [NSMutableArray array];
@@ -89,7 +99,11 @@
     self.levelCounters = [NSMutableArray array];
     self.levelAverages = [NSMutableArray array];
     self.levelRangeds = [NSMutableArray array];
-    self.firstPing = [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(pingServer) userInfo:nil repeats:NO];
+    self.firstPing = [NSTimer scheduledTimerWithTimeInterval:60.0 
+                                                      target:self 
+                                                    selector:@selector(pingServer)
+                                                    userInfo:nil 
+                                                     repeats:NO];
     
     //NSLog(@"Initialised PlaytomicLog with\nsource url: %@\nbase url: %@\ntrackurl: %@", self.sourceUrl, self.baseUrl, self.trackUrl);
     return self;
@@ -97,56 +111,83 @@
 
 - (void) view 
 {
-    [self send: [NSString stringWithFormat: @"v/%d", self.views + 1] andCommit: YES];
+    [self sendEvent:[NSString stringWithFormat:@"v/%d", self.views + 1] 
+          andCommit:YES];
 }
 
 - (void) play 
 {
     //NSLog(@"[PlaytomicLog play]");
-    [self send: [NSString stringWithFormat: @"p/%d", self.plays + 1] andCommit: YES];
+    [self sendEvent:[NSString stringWithFormat:@"p/%d", self.plays + 1] 
+          andCommit:YES];
 }
 
 - (void) pingServer
-{
+{   
     self.pings++;
-    [self send: [NSString stringWithFormat: @"t/%@/%d", (self.pings == 1 ? @"y" : @"n"), self.pings] andCommit: YES];
+    [self sendEvent:[NSString stringWithFormat:@"t/%@/%d", (self.pings == 1 ? @"y" : @"n"), self.pings] 
+          andCommit:YES];
     
     if(self.pings == 1)
     {
+        [self.firstPing invalidate];
         self.firstPing = nil;
-        [self.firstPing dealloc];
-        self.playTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(pingServer) userInfo:nil repeats:YES];
+        self.playTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 
+                                                          target:self 
+                                                        selector:@selector(pingServer) 
+                                                        userInfo:nil 
+                                                         repeats:YES];
     }
 }
 
 // custom metrics
-- (void) customMetric: (NSString*) name andGroup:(NSString*) group andUnique:(Boolean)unique
+- (void)customMetricName:(NSString*)name 
+                andGroup:(NSString*)group 
+               andUnique:(Boolean)unique
 {
     if(group == nil)
         group = @"";
     
     if(unique == YES)
     {
-        if([self.customMetrics containsObject: name])
+        if([self.customMetrics containsObject:name])
         {
             return;
         }
         
-        [self.customMetrics addObject: name];
+        [self.customMetrics addObject:name];
     }
     
-    [self send: [NSString stringWithFormat: @"c/%@/%@", [self clean: name], [self clean: group]] andCommit: NO];
+    [self sendEvent:[NSString stringWithFormat:@"c/%@/%@", [self clean:name], [self clean:group]] 
+          andCommit:NO];
 }
 
 // links
-- (void) link: (NSString*) url andName: (NSString*) name andGroup: (NSString*) group andUnique: (NSInteger) unique andTotal: (NSInteger) total andFail: (NSInteger) fail
+- (void)linkUrl:(NSString*)url 
+        andName:(NSString*)name 
+       andGroup:(NSString*)group 
+      andUnique:(NSInteger)unique 
+       andTotal:(NSInteger)total 
+        andFail:(NSInteger)fail
 { 
-    [self send: [NSString stringWithFormat: @"l/%@/%@/%@/%d/%d/%d", [self clean: name], [self clean: group], [self clean: url], unique, total, fail] andCommit: NO];
+    [self sendEvent:[NSString stringWithFormat:@"l/%@/%@/%@/%d/%d/%d"
+                                                , [self clean:name]
+                                                , [self clean:group]
+                                                , [self clean:url]
+                                                , unique, total, fail] 
+          andCommit:NO];
 }
 
-- (void) heatmap: (NSString*) name andGroup: (NSString*) group andX: (NSInteger) x andY: (NSInteger) y;
+- (void)heatmapName:(NSString*)name 
+           andGroup:(NSString*)group 
+               andX:(NSInteger)x 
+               andY:(NSInteger)y;
 {
-    [self send: [NSString stringWithFormat: @"h/%@/%@/%d/%d", [self clean: name], [self clean: group], x, y] andCommit: NO];
+    [self sendEvent:[NSString stringWithFormat:@"h/%@/%@/%d/%d"
+                                                , [self clean: name]
+                                                , [self clean: group]
+                                                , x, y] 
+          andCommit: NO];
 }
 
 - (void) funnel 
@@ -154,132 +195,206 @@
 }
 
 // level metrics
-- (void) levelCounterMetric:(NSString*) name andLevelNumber:(NSInteger) levelnumber andUnique:(Boolean)unique
+- (void)levelCounterMetricName:(NSString*)name 
+                andLevelNumber:(NSInteger)levelnumber 
+                     andUnique:(Boolean)unique
 {
-    [self levelCounterMetric: name andLevel: [NSString stringWithFormat:@"%d",levelnumber] andUnique: unique];
+    [self levelCounterMetricName:name 
+                        andLevel:[NSString stringWithFormat:@"%d",levelnumber] 
+                       andUnique:unique];
 }
 
-- (void) levelCounterMetric:(NSString*) name andLevel:(NSString*) level andUnique:(Boolean)unique
+- (void)levelCounterMetricName:(NSString*)name 
+                      andLevel:(NSString*)level 
+                     andUnique:(Boolean)unique
 {
-    NSString *nameclean = [self clean: name];
-    NSString *levelclean = [self clean: level];
+    NSString *nameclean = [self clean:name];
+    NSString *levelclean = [self clean:level];
     
     if(unique == YES)
     {
-        NSString *key = [NSString stringWithFormat: @"%@.%@", nameclean, levelclean];
+        NSString *key = [NSString stringWithFormat:@"%@.%@", nameclean, levelclean];
                          
-        if([self.levelCounters containsObject: key])
+        if([self.levelCounters containsObject:key])
         {
             return;
         }
         
-        [self.levelCounters addObject: key];
+        [self.levelCounters addObject:key];
     }
     
-    [self send: [NSString stringWithFormat: @"lc/%@/%@", nameclean, levelclean] andCommit: NO];
+    [self sendEvent:[NSString stringWithFormat:@"lc/%@/%@", nameclean, levelclean] 
+          andCommit:NO];
 }
 
-- (void) levelRangedMetric:(NSString*) name andLevelNumber:(NSInteger) levelnumber andTrackValue:(NSUInteger) trackvalue andUnique:(Boolean)unique
+- (void)levelRangedMetricName:(NSString*)name 
+               andLevelNumber:(NSInteger)levelnumber 
+                andTrackValue:(NSUInteger)trackvalue 
+                    andUnique:(Boolean)unique
 {
-    [self levelRangedMetric: name andLevel: [NSString stringWithFormat:@"%d",levelnumber] andTrackValue: trackvalue andUnique: unique];
+    [self levelRangedMetricName:name 
+                       andLevel:[NSString stringWithFormat:@"%d", levelnumber] 
+                  andTrackValue:trackvalue 
+                      andUnique:unique];
 }
 
-- (void) levelRangedMetric:(NSString*) name andLevel:(NSString*) level andTrackValue:(NSUInteger) trackvalue andUnique:(Boolean)unique
+- (void)levelRangedMetricName:(NSString*)name 
+                     andLevel:(NSString*)level 
+                andTrackValue:(NSUInteger)trackvalue 
+                    andUnique:(Boolean)unique
 {
-    NSString *nameclean = [self clean: name];
-    NSString *levelclean = [self clean: level];
+    NSString *nameclean = [self clean:name];
+    NSString *levelclean = [self clean:level];
     
     if(unique == YES)
     {
-        NSString *key = [NSString stringWithFormat: @"%@.%@.%d", nameclean, levelclean, trackvalue];
+        NSString *key = [NSString stringWithFormat:@"%@.%@.%d", nameclean, levelclean, trackvalue];
         
-        if([self.levelRangeds containsObject: key])
+        if([self.levelRangeds containsObject:key])
         {
             return;
         }
         
-        [self.levelRangeds addObject: key];
+        [self.levelRangeds addObject:key];
     }
     
-    [self send: [NSString stringWithFormat: @"lr/%@/%@/%d", nameclean, levelclean, trackvalue] andCommit: NO];
+    [self sendEvent:[NSString stringWithFormat:@"lr/%@/%@/%d", nameclean, levelclean, trackvalue] 
+          andCommit:NO];
 }
 
-- (void) levelAverageMetric:(NSString*) name andLevelNumber:(NSInteger) levelnumber andValue:(NSUInteger) value andUnique:(Boolean)unique
+- (void)levelAverageMetricName:(NSString*)name 
+                andLevelNumber:(NSInteger)levelnumber 
+                      andValue:(NSUInteger)value 
+                     andUnique:(Boolean)unique
 {
-    [self levelAverageMetric: name andLevel: [NSString stringWithFormat:@"%d",levelnumber] andValue: value andUnique: unique];
+    [self levelAverageMetricName:name 
+                        andLevel:[NSString stringWithFormat:@"%d",levelnumber] 
+                        andValue:value 
+                       andUnique:unique];
 }
 
-- (void) levelAverageMetric:(NSString*) name andLevel:(NSString*) level andValue:(NSUInteger) value andUnique:(Boolean)unique
+- (void)levelAverageMetricName:(NSString*)name 
+                      andLevel:(NSString*)level 
+                      andValue:(NSUInteger)value 
+                     andUnique:(Boolean)unique
 {
-    NSString *nameclean = [self clean: name];
-    NSString *levelclean = [self clean: level];
+    NSString *nameclean = [self clean:name];
+    NSString *levelclean = [self clean:level];
     
     if(unique == YES)
     {
-        NSString *key = [NSString stringWithFormat: @"%@.%@", nameclean, levelclean];
+        NSString *key = [NSString stringWithFormat:@"%@.%@", nameclean, levelclean];
         
-        if([self.levelAverages containsObject: key])
+        if([self.levelAverages containsObject:key])
         {
             return;
         }
         
-        [self.levelAverages addObject: key];
+        [self.levelAverages addObject:key];
     }
     
-    [self send: [NSString stringWithFormat: @"la/%@/%@/%d", nameclean, levelclean, value] andCommit: NO]; 
+    [self sendEvent:[NSString stringWithFormat:@"la/%@/%@/%d", nameclean, levelclean, value] 
+          andCommit:NO]; 
 }
 
 
 
 // player levels
-- (void) playerLevelStart: (NSString*) levelid
+- (void)playerLevelStartLevelid:(NSString*)levelid
 {
-    [self send: [NSString stringWithFormat: @"pls/%@", [self clean: levelid]] andCommit: NO];
+    [self sendEvent:[NSString stringWithFormat:@"pls/%@", [self clean:levelid]] 
+          andCommit:NO];
 }
 
-- (void) playerLevelWin: (NSString*) levelid
+- (void)playerLevelWinLevelid:(NSString*)levelid
 {
-   [self send: [NSString stringWithFormat: @"plw/%@", [self clean: levelid]] andCommit: NO]; 
+   [self sendEvent:[NSString stringWithFormat:@"plw/%@", [self clean:levelid]] 
+         andCommit: NO]; 
 }
 
-- (void) playerLevelRetry: (NSString*) levelid
+- (void)playerLevelRetryLevelid:(NSString*)levelid
 {
-    [self send: [NSString stringWithFormat: @"plr/%@", [self clean: levelid]] andCommit: NO]; 
+    [self sendEvent:[NSString stringWithFormat:@"plr/%@", [self clean:levelid]] 
+          andCommit: NO]; 
 }
 
-- (void) playerLevelQuit: (NSString*) levelid
+- (void)playerLevelQuitLevelid:(NSString*)levelid
 {
-    [self send: [NSString stringWithFormat: @"plq/%@", [self clean: levelid]] andCommit: NO];
+    [self sendEvent:[NSString stringWithFormat:@"plq/%@", [self clean:levelid]] 
+          andCommit: NO];
 }
 
-- (void) playerLevelFlag: (NSString*) levelid
+- (void)playerLevelFlagLevelid:(NSString*)levelid
 {
-    [self send: [NSString stringWithFormat: @"plf/%@", [self clean: levelid]] andCommit: NO];
+    [self sendEvent:[NSString stringWithFormat:@"plf/%@", [self clean:levelid]] 
+          andCommit: NO];
 }
 
 // misc
-- (void) freeze 
+- (void)freeze 
 {
-    self.frozen = YES;
+    if (!self.frozen)
+    {
+        self.frozen = YES;
+        if (firstPing)
+        {
+            [firstPing invalidate];
+            self.firstPing = nil;
+        }
+        if (playTimer) 
+        {
+            [playTimer invalidate];
+            self.playTimer = nil;
+        }    
+    }
 }
 
-- (void) unfreeze 
+- (void)unfreeze 
 {
-    self.frozen = NO;
-    [self forceSend];
+    if (self.frozen)
+    {
+        self.frozen = NO;
+        
+        if ([self.lastEventOccurence timeIntervalSinceNow] < -1200)
+        {
+            [self view];
+        }
+        else
+        {
+            [self forceSend];
+        }
+        if (self.pings == 0)
+        {
+            self.firstPing = [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(pingServer) userInfo:nil repeats:NO];    
+        }
+        else 
+        {
+            if(self.pings == 1) {
+                if (firstPing)
+                {
+                    [self.firstPing invalidate];
+                    self.firstPing = nil;
+                }
+            }
+            self.playTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(pingServer) userInfo:nil repeats:YES];
+        }
+    }
 }
 
-- (void) forceSend 
+- (void)forceSend 
 {
     if([self.queue count] > 0)
     {
-        PlaytomicLogRequest *request = [[PlaytomicLogRequest alloc] initWithTrackUrl: self.trackUrl];
-        [request massQueue: self.queue];
+        PlaytomicLogRequest *request = [[PlaytomicLogRequest alloc] initWithTrackUrl:self.trackUrl];
+        [request massQueue:self.queue];
     }
 }
      
-- (void) send: (NSString*) event andCommit:(Boolean) commit
+- (void)sendEvent:(NSString*)event 
+        andCommit:(Boolean)commit
 {
+    self.lastEventOccurence = [NSDate date];
+    
     [self.queue addObject: event];
     
     if(self.frozen == YES || commit == NO)
@@ -287,12 +402,12 @@
         return;
     }
     
-    PlaytomicLogRequest *request = [[PlaytomicLogRequest alloc] initWithTrackUrl: self.trackUrl];
-    [request massQueue: self.queue];
+    PlaytomicLogRequest *request = [[PlaytomicLogRequest alloc] initWithTrackUrl:self.trackUrl];
+    [request massQueue:self.queue];
     [self.queue removeAllObjects];
 }
 
-- (NSString*) clean: (NSString*) string
+- (NSString*)clean:(NSString*)string
 {    
     string = [string stringByReplacingOccurrencesOfString:@"/" withString:@"\\"];
     string = [string stringByReplacingOccurrencesOfString:@"~" withString:@"-"];
@@ -300,7 +415,7 @@
     return string;
 }
 
-- (NSInteger) getCookie: (NSString*) name
+- (NSInteger)getCookie:(NSString*)name
 {
     return 0;
 }
@@ -311,8 +426,7 @@
 
 - (void) increaseViews
 {
-    views++;
-    
+    views++;    
 }
 
 - (void) increasePlays
@@ -320,5 +434,34 @@
     plays++;
 }
 
+- (void)dealloc {
+    
+    // change all of this for  self.xxx = nil;
+    self.trackUrl = nil;
+    self.sourceUrl = nil;
+    self.baseUrl = nil;
+    if (firstPing)
+    {
+        [firstPing invalidate];
+        self.firstPing = nil;
+    }
+    if (playTimer) 
+    {
+        [playTimer invalidate];
+        self.playTimer = nil;
+    }
+    self.queue = nil;
+    self.customMetrics = nil;
+    self.levelCounters = nil;
+    self.levelAverages = nil;
+    self.levelRangeds = nil;    
+    self.queue = nil;
+    self.customMetrics = nil;
+    self.levelCounters = nil;
+    self.levelAverages = nil;
+    self.levelRangeds = nil;
+    self.lastEventOccurence = nil;
+    [super dealloc];
+}
 
 @end

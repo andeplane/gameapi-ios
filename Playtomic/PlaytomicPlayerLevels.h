@@ -40,16 +40,73 @@
 
 @interface PlaytomicPlayerLevels : NSObject {
     
+    id<PlaytomicDelegate> delegate;
+    NSString *levelid_;    
 }
 
--(PlaytomicResponse*) load:(NSString*) levelid;
--(PlaytomicResponse*) rate:(NSString*) levelid andRating: (NSInteger) rating;
--(PlaytomicResponse*) list:(NSString*) mode andPage:(NSInteger) page andPerPage:(NSInteger) perpage andIncludeData: (Boolean) includedata andIncludeThumbs: (Boolean) includethumbs andCustomFilter: (NSDictionary*) customfilter;
--(PlaytomicResponse*) listWithDateRange:(NSString*) mode andPage:(NSInteger) page andPerPage:(NSInteger) perpage andIncludeData: (Boolean) data andIncludeThumbs: (Boolean) includethumbs andCustomFilter: (NSDictionary*) customfilter andDateMin: (NSDate*) datemin andDateMax: (NSDate*) datemax;
--(PlaytomicResponse*) save:(PlaytomicLevel*) level;
--(void) start: (NSString*) levelid;
--(void) retry: (NSString*) levelid;
--(void) win: (NSString*) levelid;
--(void) quit: (NSString*) levelid;
--(void) flag: (NSString*) levelid;
+// synchronous calls
+//
+- (PlaytomicResponse*)loadLevelid:(NSString*)levelid;
+
+- (PlaytomicResponse*)rateLevelid:(NSString*)levelid 
+                        andRating:(NSInteger)rating;
+
+- (PlaytomicResponse*)listMode:(NSString*)mode 
+                       andPage:(NSInteger)page 
+                    andPerPage:(NSInteger)perpage 
+                andIncludeData:(Boolean)includedata
+              andIncludeThumbs:(Boolean)includethumbs
+               andCustomFilter:(NSDictionary*)customfilter;
+
+- (PlaytomicResponse*)listWithDateRangeMode:(NSString*)mode 
+                                    andPage:(NSInteger)page 
+                                 andPerPage:(NSInteger)perpage 
+                             andIncludeData:(Boolean)data 
+                           andIncludeThumbs:(Boolean)includethumbs 
+                            andCustomFilter:(NSDictionary*)customfilter 
+                                 andDateMin:(NSDate*)datemin 
+                                 andDateMax:(NSDate*)datemax;
+
+- (PlaytomicResponse*)saveLevel:(PlaytomicLevel*)level;
+
+// asynchronous calls
+//
+- (void)loadAsyncLevelid:(NSString*)levelid 
+             andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void)rateAsyncLevelid:(NSString*)levelid 
+               andRating:(NSInteger)rating 
+             andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void)listAsyncMode:(NSString*)mode 
+              andPage:(NSInteger)page 
+           andPerPage:(NSInteger)perpage 
+       andIncludeData:(Boolean)includedata 
+     andIncludeThumbs:(Boolean)includethumbs 
+      andCustomFilter:(NSDictionary*)customfilter 
+          andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void)listWithDateRangeAsyncMode:(NSString*)mode
+                           andPage:(NSInteger)page
+                        andPerPage:(NSInteger)perpage
+                    andIncludeData:(Boolean)data
+                  andIncludeThumbs:(Boolean)includethumbs
+                   andCustomFilter:(NSDictionary*)customfilter
+                        andDateMin:(NSDate*)datemin
+                        andDateMax:(NSDate*)datemax
+                       andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void)saveAsyncLevel:(PlaytomicLevel*)level 
+           andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void)startLevel:(NSString*)levelid;
+
+- (void)retryLevel:(NSString*)levelid;
+
+- (void)winLevel:(NSString*)levelid;
+
+- (void)quitLevel:(NSString*)levelid;
+
+- (void)flagLevel:(NSString*)levelid;
+
 @end

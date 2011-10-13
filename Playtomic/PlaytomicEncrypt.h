@@ -41,6 +41,6 @@
     
 }
 
-+ (NSString*) md5: (NSString*) string;
++ (NSString*) md5:(NSString*)string;
 
 @end

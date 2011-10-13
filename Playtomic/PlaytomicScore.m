@@ -55,15 +55,23 @@
 @synthesize customData;
 @synthesize rank;
 
--(id) initNewScoreWithName:(NSString *)pname andPoints:(NSInteger)ppoints
+- (id)initNewScoreWithName:(NSString *)pname 
+                 andPoints:(NSInteger)ppoints
 {
     self.name = pname;
     self.points = ppoints;
-    self.customData = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+    self.customData = data;
+    [data release];
     return self; 
 }
 
--(id) initWithName:(NSString*) pname andPoints: (NSInteger) ppoints andDate: (NSDate*) pdate andRelativeDate:(NSString*)relativedate andCustomData: (NSMutableDictionary*) customdata andRank: (long) prank
+- (id)initWithName:(NSString*)pname 
+         andPoints:(NSInteger)ppoints 
+           andDate:(NSDate*)pdate 
+   andRelativeDate:(NSString*)relativedate 
+     andCustomData:(NSMutableDictionary*)customdata 
+           andRank:(long)prank
 {
     self.name = pname;
     self.points = ppoints;
@@ -74,44 +82,54 @@
     return self;
 }
 
--(NSString*) getName
+- (NSString*)getName
 {
     return self.name;
 }
 
--(NSInteger) getPoints
+- (NSInteger)getPoints
 {
     return self.points;
 }
 
--(NSDate*) getDate
+- (NSDate*)getDate
 {
     return self.date;
 }
 
--(NSString*) getRelativeDate
+- (NSString*)getRelativeDate
 {
     return self.relativeDate;
 }
 
--(long) getRank
+- (long)getRank
 {
     return self.rank;
 }
 
--(NSMutableDictionary*) getCustomData
+- (NSMutableDictionary*)getCustomData
 {
     return self.customData;
 }
 
--(NSString*) getCustomValue: (NSString*) key
+- (NSString*)getCustomValue:(NSString*)key
 {
-    return [self.customData valueForKey: key];
+    return [self.customData valueForKey:key];
 }
 
--(void) addCustomValue: (NSString*) key andValue: (NSString*) value
+- (void)addCustomValue:(NSString*)key 
+              andValue:(NSString*)value
 {
-    [self.customData setObject: value forKey: key];
+    [self.customData setObject:value 
+                        forKey:key];
+}
+
+- (void)dealloc {
+    self.name = nil;
+    self.date = nil;
+    self.relativeDate = nil;
+    self.customData = nil;
+    [super dealloc];
 }
 
 @end

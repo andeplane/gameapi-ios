@@ -236,7 +236,7 @@ static void logNetworkStatus_(const char *name, int line, NetworkStatus status) 
 	
 	SCNetworkReachabilityGetFlags(reachabilityRef, &flags);
 	
-	return [NSString stringWithFormat: @"%@\n\t%@", self.key, reachabilityFlags_(flags)];
+	return [NSString stringWithFormat:@"%@\n\t%@", self.key, reachabilityFlags_(flags)];
 	
 } // description
 #endif
@@ -336,7 +336,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 	
 	addr = ntohl(addr);
 	
-	return [NSString stringWithFormat: @"%d.%d.%d.%d", 
+	return [NSString stringWithFormat:@"%d.%d.%d.%d", 
 			(addr >> highShift)    & mask, 
 			(addr >> highMidShift) & mask, 
 			(addr >> lowMidShift)  & mask, 

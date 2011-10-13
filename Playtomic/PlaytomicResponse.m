@@ -53,21 +53,25 @@
 @synthesize responseDictionary;
 @synthesize numResults;
 
--(id) initWithError: (NSInteger) errorcode
+- (id)initWithError:(NSInteger)errorcode
 {
     self.responseSucceeded = NO;
     self.responseError = errorcode;
     return self;
 }
 
--(id) initWithSuccess:(Boolean)success andErrorCode:(NSInteger)errorcode
+- (id)initWithSuccess:(Boolean)success 
+         andErrorCode:(NSInteger)errorcode
 {
     self.responseSucceeded = success;
     self.responseError = errorcode;
     return self;
 }
 
--(id) initWithSuccess: (Boolean) success andErrorCode: (NSInteger) errorcode andData: (NSArray*) data andNumResults: (NSInteger) numresults
+- (id)initWithSuccess:(Boolean)success 
+         andErrorCode:(NSInteger)errorcode 
+              andData:(NSArray*)data 
+        andNumResults:(NSInteger)numresults
 {
     self.responseSucceeded = success;
     self.responseError = errorcode;
@@ -76,7 +80,9 @@
     return self;
 }
 
--(id) initWithSuccess: (Boolean) success andErrorCode: (NSInteger) errorcode andDict: (NSDictionary*) dict
+- (id)initWithSuccess:(Boolean)success 
+         andErrorCode:(NSInteger)errorcode 
+              andDict:(NSDictionary*)dict
 {
     //NSLog(@"Creating PlaytomicResponse with success %d and error %d", success, errorcode);
     self.responseSucceeded = success;
@@ -85,38 +91,48 @@
     return self;
 }
 
--(Boolean) success
+- (Boolean)success
 {
     return self.responseSucceeded;
 }
 
--(NSInteger) errorCode
+- (NSInteger)errorCode
 {
     return self.responseError;
 }
 
-- (NSArray*) data
+- (NSArray*)data
 {
     return self.responseData;
 }
 
-- (NSString*) getValue: (NSString*) name
+- (NSString*)getValueForName:(NSString*)name
 {
     return [self.responseDictionary valueForKey:name];
 }
 
-- (void) setValue: (NSString*) name andValue: (NSString*) value
+- (void)setValueForName:(NSString*)name 
+               andValue:(NSString*)value
 {
     if(self.responseDictionary == nil)
     {
-        self.responseDictionary = [[NSMutableDictionary alloc] init];
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+        self.responseDictionary = dict;
+        [dict release];
     }
     
-    [self.responseDictionary setValue: value forKey: name];
+    [self.responseDictionary setValue:value forKey:name];
 }
 
-- (NSInteger) getNumResults
+- (NSInteger)getNumResults
 {
     return self.numResults;
 }
+
+- (void)dealloc {
+    self.responseData = nil;
+    self.responseDictionary = nil;    
+    [super dealloc];
+}
+
 @end

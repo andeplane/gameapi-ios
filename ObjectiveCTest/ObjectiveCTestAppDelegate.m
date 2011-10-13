@@ -35,8 +35,6 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "ObjectiveCTestAppDelegate.h"
-#import "MyClass.h"
-#import "Playtomic.h"
 
 @implementation ObjectiveCTestAppDelegate
 
@@ -46,10 +44,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    MyClass *view = [[MyClass alloc] initWithFrame:[self.window frame]];
+    view = [[MyClass alloc] initWithFrame:[self.window frame]];
     [self.window addSubview:view];
-    [view release];
-
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -60,6 +56,10 @@
      Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
      Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
      */
+    
+    // we must freeze Playtomic before get suspended
+    //
+    [[Playtomic Log] freeze];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -82,6 +82,11 @@
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
+
+    // we must unfreeze Playtomic after became active 
+    //
+    [[Playtomic Log] unfreeze];
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -95,6 +100,7 @@
 
 - (void)dealloc
 {
+    [view release];
     [_window release];
     [super dealloc];
 }

@@ -42,7 +42,7 @@
 
 // via http://stackoverflow.com/questions/1524604/md5-algorithm-in-objective-c
 
-+ (NSString*) md5: (NSString*) string
++ (NSString*) md5:(NSString*)string
 {
     const char *cStr = [string UTF8String];
     unsigned char result[16];

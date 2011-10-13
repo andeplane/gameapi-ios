@@ -35,10 +35,18 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import <UIKit/UIKit.h>
+#import "Playtomic/Playtomic.h"
+#import "Playtomic/PlaytomicScore.h"
+#import "Playtomic/PlaytomicLevel.h"
 
-
-@interface MyClass : UIView {
-    
+@interface MyClass : UIView <PlaytomicDelegate> {
+    NSString *levelId;
 }
+
+@property (nonatomic, copy) NSString *levelid;
+
+- (void) freeze;
+- (void) unfreeze;
+
 
 @end

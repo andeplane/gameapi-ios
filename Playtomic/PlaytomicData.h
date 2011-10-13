@@ -39,41 +39,314 @@
 
 @interface PlaytomicData : NSObject {
     
+    id<PlaytomicDelegate> delegate;
+    SEL requestFinished;
+    
 }
 
+// synchronous
+//
 - (PlaytomicResponse*) views;
-- (PlaytomicResponse*) views: (NSInteger) month andYear: (NSInteger) year;
-- (PlaytomicResponse*) views: (NSInteger) day andMonth: (NSInteger) month andYear: (NSInteger) year;
+
+- (PlaytomicResponse*) viewsMonth:(NSInteger)month 
+                          andYear:(NSInteger)year;
+
+- (PlaytomicResponse*) viewsDay:(NSInteger)day 
+                       andMonth:(NSInteger)month andYear:(NSInteger)year;
+
 - (PlaytomicResponse*) plays;
-- (PlaytomicResponse*) plays: (NSInteger) month andYear: (NSInteger) year;
-- (PlaytomicResponse*) plays: (NSInteger) day andMonth: (NSInteger) month andYear: (NSInteger) year;
+
+- (PlaytomicResponse*) playsMonth:(NSInteger)month 
+                          andYear:(NSInteger)year;
+
+- (PlaytomicResponse*) playsDay:(NSInteger)day 
+                       andMonth:(NSInteger)month andYear:(NSInteger)year;
+
 - (PlaytomicResponse*) playtime;
-- (PlaytomicResponse*) playtime: (NSInteger) month andYear: (NSInteger) year;
-- (PlaytomicResponse*) playtime: (NSInteger) day andMonth: (NSInteger) month andYear: (NSInteger) year;
-- (PlaytomicResponse*) general: (NSString*) mode andDay: (NSInteger) day andMonth: (NSInteger) month andYear: (NSInteger) year;
-- (PlaytomicResponse*) customMetric: (NSString*) name;
-- (PlaytomicResponse*) customMetric: (NSString*) name andMonth: (NSInteger) month andYear: (NSInteger) year;
-- (PlaytomicResponse*) customMetric: (NSString*) name andDay: (NSInteger) day andMonth: (NSInteger) month andYear: (NSInteger) year;
-- (PlaytomicResponse*) levelCounterMetric: (NSString*) name andLevel: (NSString*) level;
-- (PlaytomicResponse*) levelCounterMetric: (NSString*) name andLevel: (NSString*) level andMonth: (NSInteger) month andYear: (NSInteger) year;
-- (PlaytomicResponse*) levelCounterMetric: (NSString*) name andLevel: (NSString*) level andDay: (NSInteger) day andMonth: (NSInteger) month andYear: (NSInteger) year;
-- (PlaytomicResponse*) levelCounterMetric: (NSString*) name andLevelNumber: (NSInteger) level;
-- (PlaytomicResponse*) levelCounterMetric: (NSString*) name andLevelNumber: (NSInteger) level andMonth: (NSInteger) month andYear: (NSInteger) year;
-- (PlaytomicResponse*) levelCounterMetric: (NSString*) name andLevelNumber: (NSInteger) level andDay: (NSInteger) day andMonth: (NSInteger) month andYear: (NSInteger) year;
-- (PlaytomicResponse*) levelAverageMetric: (NSString*) name andLevel: (NSString*) level;
-- (PlaytomicResponse*) levelAverageMetric: (NSString*) name andLevel: (NSString*) level andMonth: (NSInteger) month andYear: (NSInteger) year;
-- (PlaytomicResponse*) levelAverageMetric: (NSString*) name andLevel: (NSString*) level andDay: (NSInteger) day andMonth: (NSInteger) month andYear: (NSInteger) year;
-- (PlaytomicResponse*) levelAverageMetric: (NSString*) name andLevelNumber: (NSInteger) level;
-- (PlaytomicResponse*) levelAverageMetric: (NSString*) name andLevelNumber: (NSInteger) level andMonth: (NSInteger) month andYear: (NSInteger) year;
-- (PlaytomicResponse*) levelAverageMetric: (NSString*) name andLevelNumber: (NSInteger) level andDay: (NSInteger) day andMonth: (NSInteger) month andYear: (NSInteger) year;
-- (PlaytomicResponse*) levelRangedMetric: (NSString*) name andLevel: (NSString*) level;
-- (PlaytomicResponse*) levelRangedMetric: (NSString*) name andLevel: (NSString*) level andMonth: (NSInteger) month andYear: (NSInteger) year;
-- (PlaytomicResponse*) levelRangedMetric: (NSString*) name andLevel: (NSString*) level andDay: (NSInteger) day andMonth: (NSInteger) month andYear: (NSInteger) year;
-- (PlaytomicResponse*) levelRangedMetric: (NSString*) name andLevelNumber: (NSInteger) level;
-- (PlaytomicResponse*) levelRangedMetric: (NSString*) name andLevelNumber: (NSInteger) level andMonth: (NSInteger) month andYear: (NSInteger) year;
-- (PlaytomicResponse*) levelRangedMetric: (NSString*) name andLevelNumber: (NSInteger) level andDay: (NSInteger) day andMonth: (NSInteger) month andYear: (NSInteger) year;
-- (PlaytomicResponse*) levelMetric: (NSString*) type andName: (NSString*) name andLevel: (NSString*) level andDay: (NSInteger) day andMonth: (NSInteger) month andYear: (NSInteger) year;
-- (PlaytomicResponse*) getData: (NSString*) url;
-- (NSString*) clean: (NSString*) string;
+
+- (PlaytomicResponse*) playtimeMonth:(NSInteger)month 
+                             andYear:(NSInteger)year;
+
+- (PlaytomicResponse*) playtimeDay:(NSInteger)day 
+                          andMonth:(NSInteger)month 
+                           andYear:(NSInteger)year;
+
+- (PlaytomicResponse*) generalMode:(NSString*)mode 
+                            andDay:(NSInteger)day 
+                          andMonth:(NSInteger)month 
+                           andYear:(NSInteger)year;
+
+- (PlaytomicResponse*) customMetricName:(NSString*)name;
+
+- (PlaytomicResponse*) customMetricName:(NSString*)name 
+                               andMonth:(NSInteger)month 
+                                andYear:(NSInteger)year;
+
+- (PlaytomicResponse*) customMetricName:(NSString*)name 
+                                 andDay:(NSInteger)day 
+                               andMonth:(NSInteger)month 
+                                andYear:(NSInteger)year;
+
+- (PlaytomicResponse*) levelCounterMetricName:(NSString*)name 
+                                     andLevel:(NSString*)level;
+
+- (PlaytomicResponse*) levelCounterMetricName:(NSString*)name 
+                                     andLevel:(NSString*)level 
+                                     andMonth:(NSInteger)month 
+                                      andYear:(NSInteger)year;
+
+- (PlaytomicResponse*) levelCounterMetricName:(NSString*)name 
+                                     andLevel:(NSString*)level 
+                                       andDay:(NSInteger)day 
+                                     andMonth:(NSInteger)month 
+                                      andYear:(NSInteger)year;
+
+- (PlaytomicResponse*) levelCounterMetricName:(NSString*)name 
+                               andLevelNumber:(NSInteger)level;
+
+- (PlaytomicResponse*) levelCounterMetricName:(NSString*)name 
+                               andLevelNumber:(NSInteger)level 
+                                     andMonth:(NSInteger)month 
+                                      andYear:(NSInteger)year;
+
+- (PlaytomicResponse*) levelCounterMetricName:(NSString*)name 
+                               andLevelNumber:(NSInteger)level 
+                                       andDay:(NSInteger)day 
+                                     andMonth:(NSInteger)month 
+                                      andYear:(NSInteger)year;
+
+- (PlaytomicResponse*) levelAverageMetricName:(NSString*)name 
+                                     andLevel:(NSString*)level;
+
+- (PlaytomicResponse*) levelAverageMetricName:(NSString*)name 
+                                     andLevel:(NSString*)level 
+                                     andMonth:(NSInteger)month 
+                                      andYear:(NSInteger)year;
+
+- (PlaytomicResponse*) levelAverageMetricName:(NSString*)name 
+                                     andLevel:(NSString*)level 
+                                       andDay:(NSInteger)day 
+                                     andMonth:(NSInteger)month 
+                                      andYear:(NSInteger)year;
+
+- (PlaytomicResponse*) levelAverageMetricName:(NSString*)name 
+                               andLevelNumber:(NSInteger)level;
+
+- (PlaytomicResponse*) levelAverageMetricName:(NSString*)name 
+                               andLevelNumber:(NSInteger)level 
+                                     andMonth:(NSInteger)month 
+                                      andYear:(NSInteger)year;
+
+- (PlaytomicResponse*) levelAverageMetricName:(NSString*)name 
+                               andLevelNumber:(NSInteger)level 
+                                       andDay:(NSInteger)day 
+                                     andMonth:(NSInteger)month 
+                                      andYear:(NSInteger)year;
+
+- (PlaytomicResponse*) levelRangedMetricName:(NSString*)name 
+                                    andLevel:(NSString*)level;
+
+- (PlaytomicResponse*) levelRangedMetricName:(NSString*)name 
+                                    andLevel:(NSString*)level 
+                                    andMonth:(NSInteger)month 
+                                     andYear:(NSInteger)year;
+
+- (PlaytomicResponse*) levelRangedMetricName:(NSString*)name 
+                                    andLevel:(NSString*)level 
+                                      andDay:(NSInteger)day 
+                                    andMonth:(NSInteger)month 
+                                     andYear:(NSInteger)year;
+
+- (PlaytomicResponse*) levelRangedMetricName:(NSString*)name 
+                              andLevelNumber:(NSInteger)level;
+
+- (PlaytomicResponse*) levelRangedMetricName:(NSString*)name 
+                              andLevelNumber:(NSInteger)level 
+                                    andMonth:(NSInteger)month 
+                                     andYear:(NSInteger)year;
+
+- (PlaytomicResponse*) levelRangedMetricName:(NSString*)name 
+                              andLevelNumber:(NSInteger)level 
+                                      andDay:(NSInteger)day 
+                                    andMonth:(NSInteger)month 
+                                     andYear:(NSInteger)year;
+
+- (PlaytomicResponse*) levelMetricType:(NSString*)type 
+                               andName:(NSString*)name 
+                              andLevel:(NSString*)level 
+                                andDay:(NSInteger)day 
+                              andMonth:(NSInteger)month 
+                               andYear:(NSInteger)year;
+
+- (PlaytomicResponse*) getDataUrl:(NSString*)url;
+
+- (NSString*) clean:(NSString*)string;
+
+// asynchronous
+//
+- (void) viewsAsync:(id<PlaytomicDelegate>)delegate;
+
+- (void) viewsAsyncMonth:(NSInteger)month 
+                 andYear:(NSInteger)year 
+             andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) viewsAsyncDay:(NSInteger)day 
+              andMonth:(NSInteger)month 
+               andYear:(NSInteger)year 
+           andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) playsAsync:(id<PlaytomicDelegate>)delegate;
+
+- (void) playsAsyncMonth:(NSInteger)month 
+                 andYear:(NSInteger)year 
+             andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) playsAsyncDay:(NSInteger)day 
+              andMonth:(NSInteger)month 
+               andYear:(NSInteger)year 
+           andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) playtimeAsync:(id<PlaytomicDelegate>)delegate;
+
+- (void) playtimeAsyncMonth:(NSInteger)month 
+                    andYear:(NSInteger)year 
+                andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) playtimeAsyncDay:(NSInteger)day 
+                 andMonth:(NSInteger)month 
+                  andYear:(NSInteger)year 
+              andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) generalAsyncMode:(NSString*)mode 
+                   andDay:(NSInteger)day andMonth:(NSInteger)month 
+                  andYear:(NSInteger)year 
+              andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) customMetricAsyncName:(NSString*)name 
+                   andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) customMetricAsyncName:(NSString*)name 
+                      andMonth:(NSInteger)month 
+                       andYear:(NSInteger)year 
+                   andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) customMetricAsyncName:(NSString*)name 
+                        andDay:(NSInteger)day 
+                      andMonth:(NSInteger)month 
+                       andYear:(NSInteger)year 
+                   andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) levelCounterMetricAsyncName:(NSString*)name 
+                            andLevel:(NSString*)level 
+                         andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) levelCounterMetricAsyncName:(NSString*)name 
+                            andLevel:(NSString*)level 
+                            andMonth:(NSInteger)month 
+                             andYear:(NSInteger)year 
+                         andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) levelCounterMetricAsyncName:(NSString*)name 
+                            andLevel:(NSString*)level 
+                              andDay:(NSInteger)day 
+                            andMonth:(NSInteger)month 
+                             andYear:(NSInteger)year 
+                         andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) levelCounterMetricAsyncName:(NSString*)name 
+                      andLevelNumber:(NSInteger)level 
+                         andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) levelCounterMetricAsyncName:(NSString*)name 
+                      andLevelNumber:(NSInteger)level 
+                            andMonth:(NSInteger)month 
+                             andYear:(NSInteger)year 
+                         andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) levelCounterMetricAsyncName:(NSString*)name 
+                      andLevelNumber:(NSInteger)level 
+                              andDay:(NSInteger)day 
+                            andMonth:(NSInteger)month 
+                             andYear:(NSInteger)year 
+                         andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) levelAverageMetricAsyncName:(NSString*)name 
+                            andLevel:(NSString*)level 
+                         andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) levelAverageMetricAsyncName:(NSString*)name 
+                            andLevel:(NSString*)level 
+                            andMonth:(NSInteger)month 
+                             andYear:(NSInteger)year 
+                         andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) levelAverageMetricAsyncName:(NSString*)name 
+                            andLevel:(NSString*)level 
+                              andDay:(NSInteger)day 
+                            andMonth:(NSInteger)month 
+                             andYear:(NSInteger)year 
+                         andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) levelAverageMetricAsyncName:(NSString*)name 
+                      andLevelNumber:(NSInteger)level 
+                         andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) levelAverageMetricAsyncName:(NSString*)name 
+                      andLevelNumber:(NSInteger)level 
+                            andMonth: (NSInteger)month 
+                             andYear:(NSInteger)year 
+                         andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) levelAverageMetricAsyncName:(NSString*)name 
+                      andLevelNumber:(NSInteger)level 
+                              andDay:(NSInteger)day 
+                            andMonth:(NSInteger)month 
+                             andYear:(NSInteger)year 
+                         andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) levelRangedMetricAsyncName:(NSString*)name 
+                           andLevel:(NSString*)level 
+                        andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) levelRangedMetricAsyncName:(NSString*)name 
+                           andLevel:(NSString*)level 
+                           andMonth:(NSInteger)month 
+                            andYear:(NSInteger)year 
+                        andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) levelRangedMetricAsyncName:(NSString*)name 
+                           andLevel:(NSString*)level 
+                             andDay:(NSInteger)day 
+                           andMonth:(NSInteger)month 
+                            andYear:(NSInteger)year 
+                        andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) levelRangedMetricAsyncName:(NSString*)name 
+                     andLevelNumber:(NSInteger)level 
+                        andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) levelRangedMetricAsyncName:(NSString*)name 
+                     andLevelNumber:(NSInteger)level 
+                           andMonth:(NSInteger)month 
+                            andYear:(NSInteger)year 
+                        andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) levelRangedMetricAsyncName:(NSString*)name 
+                     andLevelNumber:(NSInteger)level 
+                             andDay:(NSInteger)day 
+                           andMonth:(NSInteger)month 
+                            andYear:(NSInteger)year 
+                        andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) levelMetricAsyncType:(NSString*)type 
+                      andName:(NSString*)name 
+                     andLevel:(NSString*)level 
+                       andDay:(NSInteger)day 
+                     andMonth:(NSInteger)month 
+                      andYear:(NSInteger)year 
+                  andDelegate:(id<PlaytomicDelegate>)delegate;
+
+- (void) getDataAsyncUrl:(NSString*)url 
+             andDelegate:(id<PlaytomicDelegate>)delegate;
 
 @end

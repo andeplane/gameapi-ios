@@ -135,22 +135,23 @@ static Playtomic *instance = nil;
     return instance.baseUrl;
 }
 
-- (id)initWithGameId: (NSInteger) gameid andGUID:(NSString*) gameguid
+- (id)initWithGameId:(NSInteger)gameid 
+             andGUID:(NSString*)gameguid
 {
-    NSString* model = [[UIDevice currentDevice] model];
-    NSString* system = [[UIDevice currentDevice] systemName];
-    NSString* version = [[UIDevice currentDevice] systemVersion];
+    NSString *model = [[UIDevice currentDevice] model];
+    NSString *system = [[UIDevice currentDevice] systemName];
+    NSString *version = [[UIDevice currentDevice] systemVersion];
     
-    model = [model stringByReplacingOccurrencesOfString:@" " withString: @"+"];
-    system = [system stringByReplacingOccurrencesOfString:@" " withString: @"+"];
-    version = [version stringByReplacingOccurrencesOfString:@" " withString: @"+"];
+    model = [model stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    system = [system stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    version = [version stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     
     instance.gameId = gameid;
     instance.gameGuid = gameguid;
     instance.sourceUrl = [NSString stringWithFormat:@"http://ios.com/%@/%@/%@", model, system, version];
     instance.baseUrl = @"ios.com";
 
-    instance.log = [[PlaytomicLog alloc] initWithGameId : gameid andGUID:  gameguid];
+    instance.log = [[PlaytomicLog alloc] initWithGameId:gameid andGUID:gameguid];
     instance.gameVars = [[PlaytomicGameVars alloc] init];
     instance.geoIP = [[PlaytomicGeoIP alloc] init];
     instance.leaderboards = [[PlaytomicLeaderboards alloc] init];
@@ -159,5 +160,20 @@ static Playtomic *instance = nil;
     instance.data = [[PlaytomicData alloc] init];
     return instance;    
 }
+
+- (void)dealloc {
+    self.gameGuid = nil;
+    self.sourceUrl = nil;
+    self.baseUrl = nil;
+    self.log = nil;
+    self.gameVars = nil;
+    self.geoIP = nil;
+    self.leaderboards = nil;
+    self.playerLevels = nil;
+    self.link = nil;
+    self.data = nil;    
+    [super dealloc];
+}
+
 
 @end

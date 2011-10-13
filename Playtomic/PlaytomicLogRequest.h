@@ -36,15 +36,20 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const PLAYTOMIC_QUEUE_SIZE;
+extern NSString * const PLAYTOMIC_QUEUE_ITEM;
+extern NSString * const PLAYTOMIC_QUEUE_READY;
+extern int const PLAYTOMIC_QUEUE_MAX_SIZE;
 
 @interface PlaytomicLogRequest : NSObject {
     NSString *data;
     NSString *trackUrl;
+    BOOL mustReleaseOnRequestFinished;
 }
 
-- (id) initWithTrackUrl: (NSString*) url;
-- (void) send;
-- (void) queue: (NSString*) event;
-- (void) massQueue: (NSMutableArray*) eventqueue;
+- (id)initWithTrackUrl:(NSString*)url;
+- (void)send;
+- (void)queueEvent:(NSString*)event;
+- (void)massQueue:(NSMutableArray*)eventqueue;
 
 @end

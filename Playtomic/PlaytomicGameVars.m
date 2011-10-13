@@ -41,13 +41,21 @@
 #import "JSON/JSON.h"
 #import "ASI/ASIHTTPRequest.h"
 
+@interface PlaytomicGameVars() 
+
+- (void)requestLoadFinished:(ASIHTTPRequest*)request;
+
+@end
+
 @implementation PlaytomicGameVars
 
-- (PlaytomicResponse*) load
+- (PlaytomicResponse*)load
 {
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/gamevars/load.aspx?swfid=%d&js=y", [Playtomic getGameGuid], [Playtomic getGameId]];
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/gamevars/load.aspx?swfid=%d&js=y"
+                                                , [Playtomic getGameGuid]
+                                                , [Playtomic getGameId]];
     
-    ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL: [NSURL URLWithString: url]];
+    ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:url]];
     [request startSynchronous];
     
     NSError *error = [request error];
@@ -55,35 +63,117 @@
     // failed on the client / connectivty side
     if(error)
     {
-        return [[PlaytomicResponse alloc] initWithError: 1];
+        return [[[PlaytomicResponse alloc] initWithError:1] autorelease];
     }
     
     // we got a response of some kind
     NSString *response = [request responseString];
-    NSString *json = [[NSString alloc] initWithString: response];
+    NSString *json = [[NSString alloc] initWithString:response];
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     NSArray *data = [parser objectWithString:json error:nil];
-    NSInteger status = [[data valueForKey: @"Status"] integerValue];
+    
+    [request release];
+    [json release];
+    [parser release];
+    
+    NSInteger status = [[data valueForKey:@"Status"] integerValue];
     
     // failed on the server side
     if(status != 1)
     {
-        NSInteger errorcode = [[data valueForKey: @"ErrorCode"] integerValue];
-        return [[PlaytomicResponse alloc] initWithError: errorcode];
+        NSInteger errorcode = [[data valueForKey:@"ErrorCode"] integerValue];
+        return [[[PlaytomicResponse alloc] initWithError:errorcode] autorelease];
     }
     
-    NSDictionary* dvars = [data valueForKey: @"Data"];
-    NSMutableDictionary * md = [[NSMutableDictionary alloc] init];
+    NSDictionary *dvars = [data valueForKey:@"Data"];
+    NSMutableDictionary *md = [[NSMutableDictionary alloc] init];
     
     for(id key in dvars)
     {
         for(id name in key)
         {
-            [md setObject: [key valueForKey: name] forKey: name];
+            [md setObject:[key valueForKey:name] forKey:name];
         }
     }
 
-    return [[PlaytomicResponse alloc] initWithSuccess: true andErrorCode: 0 andDict: md];
+    PlaytomicResponse *playtomicReponse = [[PlaytomicResponse alloc] initWithSuccess:YES 
+                                                                        andErrorCode:0 
+                                                                             andDict:md];
+    [playtomicReponse autorelease];
+    [md release];
+    
+    return playtomicReponse;
 }
+
+- (void)loadAsync:(id<PlaytomicDelegate>)aDelegate
+{
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/gamevars/load.aspx?swfid=%d&js=y"
+                                                , [Playtomic getGameGuid]
+                                                , [Playtomic getGameId]];
+    
+    ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:url]];
+
+    delegate = aDelegate;
+    
+    [request setDelegate:self];
+    request.didFinishSelector = @selector(requestLoadFinished:);
+    [request startAsynchronous];
+}
+
+- (void)requestLoadFinished:(ASIHTTPRequest*)request
+{    
+    if (!(delegate && [delegate respondsToSelector:@selector(requestLoadGameVarsFinished:)])) {
+        return;
+    }
+    
+    NSError *error = [request error];
+    
+    // failed on the client / connectivty side
+    if(error)
+    {
+        [delegate requestLoadGameVarsFinished:[[[PlaytomicResponse alloc] initWithError:1] autorelease]];
+        return;
+    }
+    
+    // we got a response of some kind
+    NSString *response = [request responseString];
+    NSString *json = [[NSString alloc] initWithString:response];
+    SBJsonParser *parser = [[SBJsonParser alloc] init];
+    NSArray *data = [parser objectWithString:json error:nil];
+    
+    [request release];
+    [json release];
+    [parser release];
+    
+    NSInteger status = [[data valueForKey:@"Status"] integerValue];
+    
+    // failed on the server side
+    if(status != 1)
+    {
+        NSInteger errorcode = [[data valueForKey:@"ErrorCode"] integerValue];
+        [delegate requestLoadGameVarsFinished:[[[PlaytomicResponse alloc] initWithError:errorcode] autorelease]];
+        return;
+    }
+    
+    NSDictionary *dvars = [data valueForKey:@"Data"];
+    NSMutableDictionary *md = [[NSMutableDictionary alloc] init];
+    
+    for(id key in dvars)
+    {
+        for(id name in key)
+        {
+            [md setObject:[key valueForKey:name] forKey:name];
+        }
+    }
+    
+    PlaytomicResponse *playtomicReponse = [[PlaytomicResponse alloc] initWithSuccess:YES 
+                                                                        andErrorCode:0 
+                                                                             andDict:md];
+    [playtomicReponse autorelease];
+    [md release];
+    
+    [delegate requestLoadGameVarsFinished:playtomicReponse];
+}
+
 
 @end
