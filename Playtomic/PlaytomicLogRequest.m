@@ -40,10 +40,11 @@
 #import "ASI/ASIHTTPRequest.h"
 
 NSString * const PLAYTOMIC_QUEUE_SIZE = @"playtomic.queue.size";
+NSString * const PLAYTOMIC_QUEUE_BYTES = @"playtomic.queue.bytes";
 NSString * const PLAYTOMIC_QUEUE_ITEM = @"playtomic.queue.item_%d";
 NSString * const PLAYTOMIC_QUEUE_READY = @"playtomic.queue.ready";
-int const PLAYTOMIC_QUEUE_MAX_SIZE = 101; // actually the max size is 100.
-                                          // the 101 value allow us to do
+int const PLAYTOMIC_QUEUE_MAX_BYTES = 1048577; // actually the max size is 1048576.
+                                          // the 1048577 value allow us to do
                                           // if (queueSize < PLAYTOMIC_QUEUE_MAX_SIZE) {...}
 
 
@@ -52,6 +53,9 @@ int const PLAYTOMIC_QUEUE_MAX_SIZE = 101; // actually the max size is 100.
 @property (nonatomic,copy) NSString *data;
 @property (nonatomic,copy) NSString *trackUrl;
 @property (assign) BOOL mustReleaseOnRequestFinished;
+
+
+- (void)requestFailed:(ASIHTTPRequest *)request;
 
 @end
 
@@ -110,7 +114,6 @@ int const PLAYTOMIC_QUEUE_MAX_SIZE = 101; // actually the max size is 100.
     [self send];
 }
 
-
 - (void)send
 {
 	NSString *fullurl = self.trackUrl;
@@ -118,11 +121,22 @@ int const PLAYTOMIC_QUEUE_MAX_SIZE = 101; // actually the max size is 100.
     
     //NSLog(@"%@", fullurl);
     
-    ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:fullurl]];
-    [request HEADRequest];
-    [request setDelegate:self];
-    [request startAsynchronous];
-    [request release];
+    if ([Playtomic getInternetActive])
+    {    
+        //NSLog(@"Internet is active");
+        
+        ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:fullurl]];
+        [request HEADRequest];
+        [request setDelegate:self];
+        [request startAsynchronous];
+        [request release];
+    }
+    else
+    {
+        //NSLog(@"Internet is not active");     
+        
+        [self requestFailed:nil];
+    }
 }
 
 - (void)requestFinished:(ASIHTTPRequest*)request
@@ -173,7 +187,7 @@ int const PLAYTOMIC_QUEUE_MAX_SIZE = 101; // actually the max size is 100.
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
-    NSLog(@"request failed %@", [request error]);
+    //NSLog(@"request failed %@", [request error]);
     
     // save data to send later
     //
@@ -181,8 +195,9 @@ int const PLAYTOMIC_QUEUE_MAX_SIZE = 101; // actually the max size is 100.
     //    
     NSUserDefaults *dataToSendLater = [NSUserDefaults standardUserDefaults];
     NSInteger queueSize = [dataToSendLater integerForKey:PLAYTOMIC_QUEUE_SIZE];
-    if (queueSize < PLAYTOMIC_QUEUE_MAX_SIZE)
-    {
+    NSInteger queueBytes = [dataToSendLater integerForKey:PLAYTOMIC_QUEUE_BYTES];
+    if (queueBytes < [Playtomic getOfflineQueueMaxSize])
+    {        
         queueSize++;
         [dataToSendLater setInteger:queueSize forKey:PLAYTOMIC_QUEUE_SIZE];
         NSString *key = [NSString stringWithFormat:PLAYTOMIC_QUEUE_ITEM, queueSize];
@@ -194,6 +209,8 @@ int const PLAYTOMIC_QUEUE_MAX_SIZE = 101; // actually the max size is 100.
             dataToSave = [NSString stringWithFormat:@"%@&date=%ld", dataToSave, seconds];
         }
         [dataToSendLater setObject:dataToSave forKey:key];
+        queueBytes += [dataToSave length] * 2;
+        [dataToSendLater setInteger:queueBytes forKey:PLAYTOMIC_QUEUE_BYTES];
         [dataToSendLater setBool:YES forKey:PLAYTOMIC_QUEUE_READY];
     }
 

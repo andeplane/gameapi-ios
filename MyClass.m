@@ -49,7 +49,7 @@
         // (add or select game then go to API page)
         //
         [[Playtomic alloc] initWithGameId:0 andGUID:@""]; 
-
+        
         [[Playtomic Log] view];
     }
     

@@ -121,7 +121,7 @@
     }
     else
     {
-        NSLog(@"failed here %@", response);
+        //NSLog(@"failed here %@", response);
         NSInteger errorcode = [[data valueForKey:@"ErrorCode"] integerValue];
         return [[[PlaytomicResponse alloc] initWithError:errorcode] autorelease];
     }
@@ -456,7 +456,7 @@
     }
     else
     {
-        NSLog(@"failed here %@", response);
+        //NSLog(@"failed here %@", response);
         NSInteger errorcode = [[data valueForKey:@"ErrorCode"] integerValue];
         [delegate requestSaveLeaderboardFinished:[[[PlaytomicResponse alloc] initWithError:errorcode] autorelease]];
     }

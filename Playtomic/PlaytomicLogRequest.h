@@ -39,7 +39,7 @@
 extern NSString * const PLAYTOMIC_QUEUE_SIZE;
 extern NSString * const PLAYTOMIC_QUEUE_ITEM;
 extern NSString * const PLAYTOMIC_QUEUE_READY;
-extern int const PLAYTOMIC_QUEUE_MAX_SIZE;
+extern int const PLAYTOMIC_QUEUE_MAX_BYTES;
 
 @interface PlaytomicLogRequest : NSObject {
     NSString *data;

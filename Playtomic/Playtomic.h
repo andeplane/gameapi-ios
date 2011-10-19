@@ -43,6 +43,10 @@
 #import "PlaytomicLink.h"
 #import "PlaytomicData.h"
 
+@class Reachability;
+
+extern int const PLAYTOMIC_QUEUE_MAX_BYTES;
+
 @interface Playtomic : NSObject {
     
     NSInteger gameId;
@@ -56,10 +60,19 @@
     PlaytomicPlayerLevels *playerLevels;
     PlaytomicLink *link;
     PlaytomicData *data;
+    
+    Reachability *internetReachable;
+    Reachability *hostReachable;
+    
+    BOOL hostActive;
+    BOOL internetActive;
+    NSInteger offlineQueueMaxSize;
 }
 
 - (id)initWithGameId:(NSInteger)gameid 
              andGUID:(NSString*)gameguid;
+
+- (void) checkNetworkStatus:(NSNotification *)notice;
 
 + (PlaytomicLog*)Log;
 
@@ -82,5 +95,11 @@
 + (NSString*)getSourceUrl;
 
 + (NSString*)getBaseUrl;
+
++ (BOOL)getInternetActive;
+
++ (NSInteger)getOfflineQueueMaxSize;
+
++ (void)setOfflineQueueMaxSizeInKbytes:(NSInteger)size;
 
 @end

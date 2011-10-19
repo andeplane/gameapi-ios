@@ -35,12 +35,7 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "Playtomic.h"
-#import "PlaytomicLog.h"
-#import "PlaytomicGameVars.h"
-#import "PlaytomicGeoIP.h"
-#import "PlaytomicLeaderboards.h"
-#import "PlaytomicLink.h"
-#import "PlaytomicData.h"
+#import "Reachability.h"
 
 @interface Playtomic ()
 @property (nonatomic,readwrite) NSInteger gameId;
@@ -54,6 +49,9 @@
 @property (assign) PlaytomicPlayerLevels *playerLevels;
 @property (assign) PlaytomicLink *link;
 @property (assign) PlaytomicData *data;
+@property (assign) BOOL hostActive;
+@property (assign) BOOL internetActive;
+@property (assign) NSInteger offlineQueueMaxSize;
 @end
 
 @implementation Playtomic
@@ -69,6 +67,9 @@
 @synthesize playerLevels;
 @synthesize link;
 @synthesize data;
+@synthesize hostActive;
+@synthesize internetActive;
+@synthesize offlineQueueMaxSize;
 
 static Playtomic *instance = nil;
 
@@ -105,34 +106,73 @@ static Playtomic *instance = nil;
     return instance.playerLevels;
 }
 
-+ (PlaytomicLink*) Link
++ (PlaytomicLink*)Link
 {
     return instance.link;
 }
 
-+ (PlaytomicData*) Data
++ (PlaytomicData*)Data
 {
     return instance.data;
 }
 
-+ (NSInteger) getGameId
++ (NSInteger)getGameId
 {
     return instance.gameId;
 }
 
-+ (NSString*) getGameGuid
++ (NSString*)getGameGuid
 {
     return instance.gameGuid;
 }
 
-+ (NSString*) getSourceUrl
++ (NSString*)getSourceUrl
 {
     return instance.sourceUrl;
 }
 
-+ (NSString*) getBaseUrl
++ (NSString*)getBaseUrl
 {
     return instance.baseUrl;
+}
+
++ (BOOL)getInternetActive
+{
+    // When the status is not connected we recheck
+    // because after some testing with a device
+    // (not in simulator) we have noticed that
+    // NSNotificationCenter is not calling
+    // every time wifi and internet get reachable
+    //
+    if (instance.internetActive == NO || instance.hostActive == NO)
+    {
+        [instance checkNetworkStatus:nil];
+    }
+    return instance.internetActive && instance.hostActive;
+}
+
++ (NSInteger)getOfflineQueueMaxSize
+{
+    return instance.offlineQueueMaxSize;
+}
+
++ (void)setOfflineQueueMaxSizeInKbytes:(NSInteger)size
+{
+    // we save the size in bytes
+    //
+    if (size < 0)
+    {
+        size = 0;
+    }
+    size = size * 1024;
+    if (size > PLAYTOMIC_QUEUE_MAX_BYTES)
+    {
+        instance.offlineQueueMaxSize = PLAYTOMIC_QUEUE_MAX_BYTES;
+    }
+    else
+    {
+        instance.offlineQueueMaxSize = size;
+    }
 }
 
 - (id)initWithGameId:(NSInteger)gameid 
@@ -158,7 +198,90 @@ static Playtomic *instance = nil;
     instance.playerLevels = [[PlaytomicPlayerLevels alloc] init];
     instance.link = [[PlaytomicLink alloc] init];
     instance.data = [[PlaytomicData alloc] init];
+   
+    // check for internet connection
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
+    
+    internetReachable = [[Reachability reachabilityForInternetConnection] retain];
+    [internetReachable startNotifier];
+    
+    // check if a pathway to a random host exists
+    hostReachable = [[Reachability reachabilityWithHostName:@"www.playtomic.com"] retain];
+    [hostReachable startNotifier];
+    
+    instance.hostActive = YES;
+    instance.internetActive = YES;
+    instance.offlineQueueMaxSize = PLAYTOMIC_QUEUE_MAX_BYTES; // 1 MB 
+  
     return instance;    
+}
+
+- (void) checkNetworkStatus:(NSNotification *)notice
+{
+    // called after network status changes
+    
+    //NSLog(@"checkNetworkStatus was called.");
+    
+    NetworkStatus internetStatus = [internetReachable currentReachabilityStatus];
+    switch (internetStatus)
+    
+    {
+        case NotReachable:
+        {
+            //NSLog(@"The internet is down.");
+            instance.internetActive = NO;
+            
+            break;
+            
+        }
+        case ReachableViaWiFi:
+        {
+            //NSLog(@"The internet is working via WIFI.");
+            instance.internetActive = YES;
+            
+            break;
+            
+        }
+        case ReachableViaWWAN:
+        {
+            //NSLog(@"The internet is working via WWAN.");
+            instance.internetActive = YES;
+            
+            break;
+            
+        }
+    }
+    
+    NetworkStatus hostStatus = [hostReachable currentReachabilityStatus];
+    switch (hostStatus)
+    
+    {
+        case NotReachable:
+        {
+            //NSLog(@"A gateway to the host server is down.");
+            instance.hostActive = NO;
+            
+            break;
+            
+        }
+        case ReachableViaWiFi:
+        {
+            //NSLog(@"A gateway to the host server is working via WIFI.");
+            instance.hostActive = YES;
+            
+            break;
+            
+        }
+        case ReachableViaWWAN:
+        {
+            //NSLog(@"A gateway to the host server is working via WWAN.");
+            instance.hostActive = YES;
+            
+            break;
+            
+        }
+    }
+    
 }
 
 - (void)dealloc {
@@ -172,6 +295,19 @@ static Playtomic *instance = nil;
     self.playerLevels = nil;
     self.link = nil;
     self.data = nil;    
+    
+    if (hostReachable)
+    {
+        [hostReachable release];
+        hostReachable = nil;
+    }
+
+    if (internetReachable)
+    {
+        [internetReachable release];
+        internetReachable = nil;
+    }
+    
     [super dealloc];
 }
 
