@@ -396,7 +396,7 @@
 {
     self.lastEventOccurence = [NSDate date];
     
-    [self.queue addObject: event];
+    [self.queue addObject:event];
     
     if(self.frozen == YES || commit == NO)
     {
@@ -456,11 +456,6 @@
     self.levelCounters = nil;
     self.levelAverages = nil;
     self.levelRangeds = nil;    
-    self.queue = nil;
-    self.customMetrics = nil;
-    self.levelCounters = nil;
-    self.levelAverages = nil;
-    self.levelRangeds = nil;
     self.lastEventOccurence = nil;
     [super dealloc];
 }
