@@ -80,8 +80,8 @@
     
     NSDictionary* customdata = [score getCustomData];
     [request setPostValue:[NSString stringWithFormat:@"%d", [customdata count]] 
-                   forKey:@"numfields"];
-    
+                   forKey:@"customfields"];
+   
     NSInteger fieldnumber = 0;
     
     for(id customfield in customdata)

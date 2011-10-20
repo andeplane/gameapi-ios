@@ -387,6 +387,7 @@
     {
         PlaytomicLogRequest *request = [[PlaytomicLogRequest alloc] initWithTrackUrl:self.trackUrl];
         [request massQueue:self.queue];
+        [self.queue removeAllObjects];
     }
 }
      

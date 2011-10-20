@@ -106,7 +106,7 @@ int const PLAYTOMIC_QUEUE_MAX_BYTES = 1048577; // actually the max size is 10485
                 [self send];                
                 PlaytomicLogRequest* request = [[PlaytomicLogRequest alloc] initWithTrackUrl:trackUrl];
                 [request massQueue:eventqueue];
-                break;
+                return;
             }
         } 
     }
