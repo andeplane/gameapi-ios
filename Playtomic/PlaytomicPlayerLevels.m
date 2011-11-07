@@ -433,8 +433,8 @@
     {
         if (aDelegate && [aDelegate respondsToSelector:@selector(requestRatePlayerLevelsFinished:)]) {
             [aDelegate requestRatePlayerLevelsFinished:[[[PlaytomicResponse alloc] initWithError:401] autorelease]];            
-            return;
         }
+        return;
     }
     
     NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/playerlevels/rate.aspx?swfid=%d&js=m&levelid=%@&rating=%d"
