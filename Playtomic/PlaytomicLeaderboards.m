@@ -39,9 +39,11 @@
 #import "Playtomic.h"
 #import "PlaytomicScore.h"
 #import "PlaytomicEncrypt.h"
+#import "PlaytomicRequest.h"
 #import "JSON/JSON.h"
 #import "ASI/ASIFormDataRequest.h"
 #import "ASI/ASIHTTPRequest.h"
+
 
 @interface PlaytomicLeaderboards() 
 
@@ -61,27 +63,31 @@
                      andHighest:(Boolean)highest 
              andAllowDuplicates:(Boolean)allowduplicates
 {        
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v2/leaderboards/save.aspx?swfid=%d&js=y"
-                                                , [Playtomic getGameGuid]
-                                                , [Playtomic getGameId]];
 
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=y"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
     
-    [request setPostValue:[Playtomic getSourceUrl] forKey:@"url"];
-    [request setPostValue:table forKey:@"table"];
-    [request setPostValue:(highest ? @"y" :@"n") forKey:@"highest"];
-    [request setPostValue:[score getName] forKey:@"name"];
-    [request setPostValue:[NSString stringWithFormat:@"%d", [score getPoints]] forKey:@"points"];
-    [request setPostValue:(allowduplicates ? @"y" :@"n") forKey:@"allowduplicates"];
-    [request setPostValue:[PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%d"
-                                                                            , [Playtomic getSourceUrl]
-                                                                            , [score getPoints]]] 
-                   forKey:@"auth"];
+    
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
+    // common fields
+    [postData setObject:table forKey:@"table"];
+    [postData setObject:(highest ? @"y" : @"n") forKey:@"highest"];
+    
+    // save fields
+    [postData setObject:[Playtomic getSourceUrl] forKey:@"url"];
+    [postData setObject:[score getName] forKey:@"name"];
+    [postData setObject:@"n" forKey:@"fb"];
+    [postData setObject:@" " forKey:@"fbuserid"];
+    [postData setObject:[NSString stringWithFormat:@"%d", [score getPoints]] forKey:@"points"];
+    [postData setObject:(allowduplicates ? @"y" : @"n") forKey:@"allowduplicates"];
+    [postData setObject:[PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%d",[Playtomic getBaseUrl], [score getPoints]]] forKey:@"auth"];
+    
+    
+    
     
     NSDictionary* customdata = [score getCustomData];
-    [request setPostValue:[NSString stringWithFormat:@"%d", [customdata count]] 
-                   forKey:@"customfields"];
-   
+    [postData setObject:[NSString stringWithFormat:@"%d", [customdata count]]  forKey:@"customfields"]; 
     NSInteger fieldnumber = 0;
     
     for(id customfield in customdata)
@@ -90,42 +96,25 @@
         NSString *cdata = [NSString stringWithFormat:@"cdata%d", fieldnumber];
         NSString *value = [customdata objectForKey:customfield];
         fieldnumber++;
- 
-        [request setPostValue:customfield forKey:ckey];
-        [request setPostValue:value forKey:cdata];
+        
+        [postData setObject:customfield  forKey:ckey]; 
+        [postData setObject:value  forKey:cdata]; 
     }
+
+
+      
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"leaderboards-", [Playtomic getApiKey]]];
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"leaderboards-save-", [Playtomic getApiKey]]];
     
-    [request startSynchronous];
     
-    NSError *error = [request error];
+    PlaytomicResponse* response = [PlaytomicRequest sendRequestUrl:url andSection:section andAction:action andPostData:postData];
     
-    if(error)
-    {
-        return [[[PlaytomicResponse alloc] initWithError:1] autorelease];
-    }
+    return response;
     
-    NSString *response = [request responseString];       
-    NSString *json = [[NSString alloc] initWithString:response];
-    SBJsonParser *parser = [[SBJsonParser alloc] init];
-    NSArray *data = [parser objectWithString:json error:nil];
-    NSInteger status = [[data valueForKey:@"Status"] integerValue];
-    
-    [json release];
-    [parser release];
-    
-    if(status == 1)
-    {
-        NSInteger errorcode = [[data valueForKey:@"ErrorCode"] integerValue];
-        return [[[PlaytomicResponse alloc] initWithSuccess:YES 
-                                              andErrorCode:errorcode] autorelease]; 
-    }
-    else
-    {
-        //NSLog(@"failed here %@", response);
-        NSInteger errorcode = [[data valueForKey:@"ErrorCode"] integerValue];
-        return [[[PlaytomicResponse alloc] initWithError:errorcode] autorelease];
-    }
 }
+    
+
+
 
 - (PlaytomicResponse*)listTable:(NSString*)table 
                      andHighest:(Boolean)highest 
@@ -135,65 +124,59 @@
                 andCustomFilter:(NSDictionary*)customfilter
 {
     NSInteger numfilters = customfilter == nil ? 0 : [customfilter count];
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v2/leaderboards/list.aspx?swfid=%d&js=y"
-                                                , [Playtomic getGameGuid]
-                                                , [Playtomic getGameId]];
-
-    ASIFormDataRequest *request = [[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:url]];
-    [request setPostValue:[Playtomic getSourceUrl] forKey:@"url"];
-    [request setPostValue:table forKey:@"table"];
-    [request setPostValue:(highest ? @"y" : @"n") forKey:@"highest"];
-    [request setPostValue:mode forKey:@"mode"];
-    [request setPostValue:[NSString stringWithFormat:@"%d", page] forKey:@"page"];
-    [request setPostValue:[NSString stringWithFormat:@"%d", perpage] forKey:@"perpage"];
-    [request setPostValue:[NSString stringWithFormat:@"%d", numfilters] forKey:@"numfilters"];
-
+        
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=y"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
+    
+    
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
+    
+    // common fields
+    [postData setObject:table forKey:@"table"];
+    [postData setObject:(highest ? @"y" : @"n") forKey:@"highest"];
+    
+   
+    [postData setObject:[Playtomic getSourceUrl] forKey:@"url"];
+    [postData setObject:mode  forKey:@"mode"]; 
+    [postData setObject:@"y"  forKey:@"global"]; 
+    [postData setObject:[NSString stringWithFormat:@"%d", perpage]  forKey:@"perpage"]; 
+    [postData setObject:[NSString stringWithFormat:@"%d", numfilters]  forKey:@"filters"];
+    [postData setObject:[NSString stringWithFormat:@"%d" , page]  forKey:@"page"]; 
+    
     if(numfilters > 0)
     {
         NSInteger fieldnumber = 0;
         
         for(id customfield in customfilter)
         {
-            NSString *ckey = [NSString stringWithFormat:@"ckey%d", fieldnumber];
-            NSString *cdata = [NSString stringWithFormat:@"cdata%d", fieldnumber];
+            NSString *ckey = [NSString stringWithFormat:@"lkey%d", fieldnumber];
+            NSString *cdata = [NSString stringWithFormat:@"ldata%d", fieldnumber];
             NSString *value = [customfilter objectForKey:customfield];
             fieldnumber++;
             
-            [request setPostValue:customfield forKey:ckey];
-            [request setPostValue:value forKey:cdata];
+            [postData setObject:customfield  forKey:ckey]; 
+            [postData setObject:value  forKey:cdata]; 
         }
     }
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"leaderboards-", [Playtomic getApiKey]]];
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"leaderboards-list-", [Playtomic getApiKey]]];
+
     
-    [request startSynchronous];
+    PlaytomicResponse* response = [PlaytomicRequest sendRequestUrl:url andSection:section andAction:action andPostData:postData];
     
-    NSError *error = [request error];
+    
     
     // failed on the client / connectivty side
-    if(error)
+    if(![response success])
     {
-        return [[PlaytomicResponse alloc] initWithError:1];
+        return response;
     }
-
+    
     // we got a response of some kind
-    NSString *response = [request responseString];
-    NSString *json = [[NSString alloc] initWithString:response];
-    SBJsonParser *parser = [[SBJsonParser alloc] init];
-    NSArray *data = [parser objectWithString:json error:nil];
-    NSInteger status = [[data valueForKey:@"Status"] integerValue];
-    
-    [request release];
-    [json release];
-    [parser release];
-    
-    // failed on the server side
-    if(status != 1)
-    {
-        NSInteger errorcode = [[data valueForKey:@"ErrorCode"] integerValue];
-        return [[[PlaytomicResponse alloc] initWithError:errorcode] autorelease];
-    }
-    
+      
     // score list completed
-    NSDictionary *dvars = [data valueForKey:@"Data"];
+    NSDictionary *dvars = [response dictionary];
     NSArray *scores = [dvars valueForKey:@"Scores"];
     NSInteger numscores = [[dvars valueForKey:@"NumScores"] integerValue];  
     NSMutableArray *md = [[NSMutableArray alloc] init];
@@ -220,11 +203,11 @@
         }
         
         [md addObject:[[PlaytomicScore alloc] initWithName:username 
-                                                  andPoints:points 
-                                                    andDate:date 
-                                            andRelativeDate:relativedate 
-                                              andCustomData:customdata 
-                                                    andRank:rank]];
+                                                 andPoints:points 
+                                                   andDate:date 
+                                           andRelativeDate:relativedate 
+                                             andCustomData:customdata 
+                                                   andRank:rank]];
     }
     
     PlaytomicResponse *playtomicResponse = [[PlaytomicResponse alloc] initWithSuccess:YES 
@@ -246,30 +229,31 @@
                             andPerPage:(NSInteger)perpage 
                        andCustomFilter:(NSDictionary*) customfilter
 {
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v2/leaderboards/saveandlist.aspx?swfid=%d&js=y"
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=y"
                                                 , [Playtomic getGameGuid]
                                                 , [Playtomic getGameId]];
     
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+      
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
+    
+
     
     // common fields
-    [request setPostValue:table forKey:@"table"];
-    [request setPostValue:(highest ? @"y" : @"n") forKey:@"highest"];
+    [postData setObject:table forKey:@"table"];
+    [postData setObject:(highest ? @"y" : @"n") forKey:@"highest"];
     
     // save fields
-    [request setPostValue:[Playtomic getSourceUrl] forKey:@"url"];
-    [request setPostValue:[score getName] forKey:@"name"];
-    [request setPostValue:[NSString stringWithFormat:@"%d", [score getPoints]] forKey:@"points"];
-    [request setPostValue:(allowduplicates ? @"y" : @"n") forKey:@"allowduplicates"];
-    [request setPostValue:[PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%d"
-                                                        , [Playtomic getSourceUrl]
-                                                        , [score getPoints]]] 
-                   forKey:@"auth"];
+    [postData setObject:[Playtomic getSourceUrl] forKey:@"url"];
+    [postData setObject:[score getName] forKey:@"name"];
+    [postData setObject:[NSString stringWithFormat:@"%d", [score getPoints]] forKey:@"points"];
+    [postData setObject:(allowduplicates ? @"y" : @"n") forKey:@"allowduplicates"];
+    [postData setObject:[PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%d",[Playtomic getBaseUrl], [score getPoints]]] forKey:@"auth"];
+
+   
+   
     
     NSDictionary* customdata = [score getCustomData];
-    [request setPostValue: [NSString stringWithFormat:@"%d", [customdata count]] 
-                   forKey:@"numfields"];
-    
+    [postData setObject:[NSString stringWithFormat:@"%d", [customdata count]]  forKey:@"numfields"]; 
     NSInteger fieldnumber = 0;
     
     for(id customfield in customdata)
@@ -279,15 +263,19 @@
         NSString *value = [customdata objectForKey:customfield];
         fieldnumber++;
         
-        [request setPostValue:customfield forKey:ckey];
-        [request setPostValue:value forKey:cdata];
+        [postData setObject:customfield  forKey:ckey]; 
+        [postData setObject:value  forKey:cdata]; 
     }
     
     // list fields
     NSInteger numfilters = customfilter == nil ? 0 : [customfilter count];
-    [request setPostValue:mode forKey:@"mode"];
-    [request setPostValue:[NSString stringWithFormat:@"%d", perpage] forKey:@"perpage"];
-    [request setPostValue:[NSString stringWithFormat:@"%d", numfilters] forKey:@"numfilters"];
+    
+    
+    [postData setObject:mode  forKey:@"mode"]; 
+    [postData setObject:@"y"  forKey:@"global"]; 
+    [postData setObject:[NSString stringWithFormat:@"%d", perpage]  forKey:@"perpage"]; 
+    [postData setObject:[NSString stringWithFormat:@"%d", numfilters]  forKey:@"numfilters"];
+    [postData setObject:@"1"  forKey:@"page"]; 
     
     if(numfilters > 0)
     {
@@ -300,38 +288,25 @@
             NSString *value = [customfilter objectForKey:customfield];
             fieldnumber++;
             
-            [request setPostValue:customfield forKey:ckey];
-            [request setPostValue:value forKey:cdata];
+            [postData setObject:customfield  forKey:ckey]; 
+            [postData setObject:value  forKey:cdata]; 
         }
     }
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"leaderboards-", [Playtomic getApiKey]]];
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"leaderboards-saveandlist-", [Playtomic getApiKey]]];
     
-    [request startSynchronous];
     
-    NSError *error = [request error];
+       
+    PlaytomicResponse* response = [PlaytomicRequest sendRequestUrl:url andSection:section andAction:action andPostData:postData];
+    /////////////////////////////////////////
     
-    if(error)
+    if(![response success])
     {
-        return [[[PlaytomicResponse alloc] initWithError:1] autorelease];
+        return response;
     }
-    
-    NSString *response = [request responseString];       
-    NSString *json = [[NSString alloc] initWithString:response];
-    SBJsonParser *parser = [[SBJsonParser alloc] init];
-    NSArray *data = [parser objectWithString:json error:nil];
-    NSInteger status = [[data valueForKey:@"Status"] integerValue];
-    
-    [json release];
-    [parser release];
-    
-    // failed on the server side
-    if(status != 1)
-    {
-        NSInteger errorcode = [[data valueForKey:@"ErrorCode"] integerValue];
-        return [[[PlaytomicResponse alloc] initWithError:errorcode] autorelease];
-    }
-    
+        
     // score list completed
-    NSDictionary *dvars = [data valueForKey:@"Data"];
+    NSDictionary *dvars = [response dictionary];
     NSArray *scores = [dvars valueForKey:@"Scores"];
     NSInteger numscores = [[dvars valueForKey:@"NumScores"] integerValue];  
     NSMutableArray *md = [[NSMutableArray alloc] init];
@@ -384,27 +359,31 @@
             andHighest:(Boolean)highest 
     andAllowDuplicates:(Boolean)allowduplicates 
            andDelegate:(id<PlaytomicDelegate>)aDelegate;
-{        
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v2/leaderboards/save.aspx?swfid=%d&js=y"
-                                                , [Playtomic getGameGuid]
-                                                , [Playtomic getGameId]];
+{     
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=y"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
     
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
-    [request setPostValue:[Playtomic getSourceUrl] forKey:@"url"];
-    [request setPostValue:table forKey:@"table"];
-    [request setPostValue:(highest ? @"y" : @"n") forKey:@"highest"];
-    [request setPostValue:[score getName] forKey:@"name"];
-    [request setPostValue:[NSString stringWithFormat:@"%d", [score getPoints]] forKey:@"points"];
-    [request setPostValue:(allowduplicates ? @"y" : @"n") forKey:@"allowduplicates"];
-    [request setPostValue:[PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%d"
-                                                            , [Playtomic getSourceUrl]
-                                                            , [score getPoints]]] 
-                   forKey:@"auth"];
+    
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
+    // common fields
+    [postData setObject:table forKey:@"table"];
+    [postData setObject:(highest ? @"y" : @"n") forKey:@"highest"];
+    
+    // save fields
+    [postData setObject:[Playtomic getSourceUrl] forKey:@"url"];
+    [postData setObject:[score getName] forKey:@"name"];
+    [postData setObject:@"n" forKey:@"fb"];
+    [postData setObject:@" " forKey:@"fbuserid"];
+    [postData setObject:[NSString stringWithFormat:@"%d", [score getPoints]] forKey:@"points"];
+    [postData setObject:(allowduplicates ? @"y" : @"n") forKey:@"allowduplicates"];
+    [postData setObject:[PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%d",[Playtomic getBaseUrl], [score getPoints]]] forKey:@"auth"];
+    
+    
+    
     
     NSDictionary* customdata = [score getCustomData];
-    [request setPostValue: [NSString stringWithFormat:@"%d", [customdata count]] 
-                   forKey:@"numfields"];
-    
+    [postData setObject:[NSString stringWithFormat:@"%d", [customdata count]]  forKey:@"customfields"]; 
     NSInteger fieldnumber = 0;
     
     for(id customfield in customdata)
@@ -414,15 +393,17 @@
         NSString *value = [customdata objectForKey:customfield];
         fieldnumber++;
         
-        [request setPostValue:customfield forKey:ckey];
-        [request setPostValue:value forKey:cdata];
+        [postData setObject:customfield  forKey:ckey]; 
+        [postData setObject:value  forKey:cdata]; 
     }
     
+    
+    
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"leaderboards-", [Playtomic getApiKey]]];
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"leaderboards-save-", [Playtomic getApiKey]]];
     delegate = aDelegate;
     
-    [request setDelegate:self];
-    request.didFinishSelector = @selector(requestSaveFinished:);
-    [request startAsynchronous];
+    [PlaytomicRequest sendRequestUrl:url andSection:section andAction:action andCompleteDelegate:self andCompleteSelector:@selector(requestSaveFinished:) andPostData:postData];    
 }
 
 - (void)requestSaveFinished:(ASIHTTPRequest*)request
@@ -471,19 +452,25 @@
            andDelegate:(id<PlaytomicDelegate>)aDelegate
 {
     NSInteger numfilters = customfilter == nil ? 0 : [customfilter count];
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v2/leaderboards/list.aspx?swfid=%d&js=y"
-                                                , [Playtomic getGameGuid]
-                                                , [Playtomic getGameId]];
     
-    ASIFormDataRequest *request = [[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:url]];
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=y"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
     
-    [request setPostValue:[Playtomic getSourceUrl] forKey:@"url"];
-    [request setPostValue:table forKey:@"table"];
-    [request setPostValue:(highest ? @"y" : @"n") forKey:@"highest"];
-    [request setPostValue:mode forKey:@"mode"];
-    [request setPostValue:[NSString stringWithFormat:@"%d", page] forKey:@"page"];
-    [request setPostValue:[NSString stringWithFormat:@"%d", perpage] forKey:@"perpage"];
-    [request setPostValue:[NSString stringWithFormat:@"%d", numfilters] forKey:@"numfilters"];
+    
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
+    
+    // common fields
+    [postData setObject:table forKey:@"table"];
+    [postData setObject:(highest ? @"y" : @"n") forKey:@"highest"];
+    
+    
+    [postData setObject:[Playtomic getSourceUrl] forKey:@"url"];
+    [postData setObject:mode  forKey:@"mode"]; 
+    [postData setObject:@"y"  forKey:@"global"]; 
+    [postData setObject:[NSString stringWithFormat:@"%d", perpage]  forKey:@"perpage"]; 
+    [postData setObject:[NSString stringWithFormat:@"%d", numfilters]  forKey:@"filters"];
+    [postData setObject:[NSString stringWithFormat:@"%d" , page]  forKey:@"page"]; 
     
     if(numfilters > 0)
     {
@@ -491,21 +478,22 @@
         
         for(id customfield in customfilter)
         {
-            NSString *ckey = [NSString stringWithFormat:@"ckey%d", fieldnumber];
-            NSString *cdata = [NSString stringWithFormat:@"cdata%d", fieldnumber];
+            NSString *ckey = [NSString stringWithFormat:@"lkey%d", fieldnumber];
+            NSString *cdata = [NSString stringWithFormat:@"ldata%d", fieldnumber];
             NSString *value = [customfilter objectForKey:customfield];
             fieldnumber++;
             
-            [request setPostValue:customfield forKey:ckey];
-            [request setPostValue:value forKey:cdata];
+            [postData setObject:customfield  forKey:ckey]; 
+            [postData setObject:value  forKey:cdata]; 
         }
     }
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"leaderboards-", [Playtomic getApiKey]]];
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"leaderboards-list-", [Playtomic getApiKey]]];
     
-    delegate = aDelegate;
     
-    [request setDelegate:self];
-    request.didFinishSelector = @selector(requestListFinished:);
-    [request startAsynchronous];    
+    [PlaytomicRequest sendRequestUrl:url andSection:section andAction:action andCompleteDelegate:self andCompleteSelector:@selector(requestListFinished:) andPostData:postData];
+    
+    delegate = aDelegate;    
 }
 
 - (void)requestListFinished:(ASIHTTPRequest*)request
@@ -597,30 +585,31 @@
               andCustomFilter:(NSDictionary*)customfilter 
                   andDelegate:(id<PlaytomicDelegate>)aDelegate
 {
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v2/leaderboards/saveandlist.aspx?swfid=%d&js=y"
-                                                , [Playtomic getGameGuid]
-                                                , [Playtomic getGameId]];
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=y"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
     
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
+    
+    
     
     // common fields
-    [request setPostValue:table forKey:@"table"];
-    [request setPostValue:(highest ? @"y" : @"n") forKey:@"highest"];
+    [postData setObject:table forKey:@"table"];
+    [postData setObject:(highest ? @"y" : @"n") forKey:@"highest"];
     
     // save fields
-    [request setPostValue:[Playtomic getSourceUrl] forKey:@"url"];
-    [request setPostValue:[score getName] forKey:@"name"];
-    [request setPostValue:[NSString stringWithFormat:@"%d", [score getPoints]] forKey:@"points"];
-    [request setPostValue:(allowduplicates ? @"y" : @"n") forKey:@"allowduplicates"];
-    [request setPostValue:[PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%d"
-                                                            , [Playtomic getSourceUrl]
-                                                            , [score getPoints]]] 
-                   forKey:@"auth"];
+    [postData setObject:[Playtomic getSourceUrl] forKey:@"url"];
+    [postData setObject:[score getName] forKey:@"name"];
+    [postData setObject:[NSString stringWithFormat:@"%d", [score getPoints]] forKey:@"points"];
+    [postData setObject:(allowduplicates ? @"y" : @"n") forKey:@"allowduplicates"];
+    [postData setObject:[PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%d",[Playtomic getBaseUrl], [score getPoints]]] forKey:@"auth"];
     
-    NSDictionary *customdata = [score getCustomData];
-    [request setPostValue:[NSString stringWithFormat:@"%d", [customdata count]] 
-                   forKey:@"numfields"];
     
+    
+    
+    NSDictionary* customdata = [score getCustomData];
+    [postData setObject:[NSString stringWithFormat:@"%d", [customdata count]]  forKey:@"numfields"]; 
     NSInteger fieldnumber = 0;
     
     for(id customfield in customdata)
@@ -630,15 +619,19 @@
         NSString *value = [customdata objectForKey:customfield];
         fieldnumber++;
         
-        [request setPostValue:customfield forKey:ckey];
-        [request setPostValue:value forKey:cdata];
+        [postData setObject:customfield  forKey:ckey]; 
+        [postData setObject:value  forKey:cdata]; 
     }
     
     // list fields
     NSInteger numfilters = customfilter == nil ? 0 : [customfilter count];
-    [request setPostValue:mode forKey:@"mode"];
-    [request setPostValue:[NSString stringWithFormat:@"%d", perpage] forKey:@"perpage"];
-    [request setPostValue:[NSString stringWithFormat:@"%d", numfilters] forKey:@"numfilters"];
+    
+    
+    [postData setObject:mode  forKey:@"mode"]; 
+    [postData setObject:@"y"  forKey:@"global"]; 
+    [postData setObject:[NSString stringWithFormat:@"%d", perpage]  forKey:@"perpage"]; 
+    [postData setObject:[NSString stringWithFormat:@"%d", numfilters]  forKey:@"numfilters"];
+    [postData setObject:@"1"  forKey:@"page"]; 
     
     if(numfilters > 0)
     {
@@ -651,16 +644,17 @@
             NSString *value = [customfilter objectForKey:customfield];
             fieldnumber++;
             
-            [request setPostValue:customfield forKey:ckey];
-            [request setPostValue:value forKey:cdata];
+            [postData setObject:customfield  forKey:ckey]; 
+            [postData setObject:value  forKey:cdata]; 
         }
     }
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"leaderboards-", [Playtomic getApiKey]]];
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"leaderboards-saveandlist-", [Playtomic getApiKey]]];
     
+    
+    
+    [PlaytomicRequest sendRequestUrl:url andSection:section andAction:action andCompleteDelegate:self andCompleteSelector:@selector(requestSaveAndListFinished:) andPostData:postData];    
     delegate = aDelegate;
-    
-    [request setDelegate:self];
-    request.didFinishSelector = @selector(requestSaveAndListFinished:);
-    [request startAsynchronous];    
 }
 
 - (void)requestSaveAndListFinished:(ASIHTTPRequest*)request

@@ -52,6 +52,7 @@ extern int const PLAYTOMIC_QUEUE_MAX_BYTES;
     NSInteger gameId;
     NSString *gameGuid;
     NSString *sourceUrl;
+    NSString *apiKey;
     NSString *baseUrl;
     PlaytomicLog *log;
     PlaytomicGameVars *gameVars;
@@ -70,7 +71,8 @@ extern int const PLAYTOMIC_QUEUE_MAX_BYTES;
 }
 
 - (id)initWithGameId:(NSInteger)gameid 
-             andGUID:(NSString*)gameguid;
+             andGUID:(NSString*)gameguid 
+           andAPIKey:(NSString*)apikey;
 
 - (void) checkNetworkStatus:(NSNotification *)notice;
 
@@ -91,6 +93,8 @@ extern int const PLAYTOMIC_QUEUE_MAX_BYTES;
 + (NSInteger)getGameId;
 
 + (NSString*)getGameGuid;
+
++ (NSString*)getApiKey;
 
 + (NSString*)getSourceUrl;
 

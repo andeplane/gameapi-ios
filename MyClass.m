@@ -48,9 +48,10 @@
         // Get your credentials from the Playtomic dashboard 
         // (add or select game then go to API page)
         //
-        [[Playtomic alloc] initWithGameId:0 andGUID:@""]; 
+        [[Playtomic alloc] initWithGameId:4603 andGUID:@"9f3f3b43cb234025" andAPIKey:@"548435a4e71445b49f939fd33d5185"]; 
         
         [[Playtomic Log] view];
+        self.levelid = @"4e9ef2b94d81233f30921596";
     }
     
     return self;
@@ -917,7 +918,7 @@
 
 - (void)levelLoad
 {
-    NSLog(@"Level load asyncronous");
+    NSLog(@"Level load syncronous");
     
     PlaytomicResponse* response = [[Playtomic PlayerLevels] loadLevelid:self.levelid];
     

@@ -42,6 +42,7 @@
 @property (nonatomic,copy) NSString *gameGuid;
 @property (nonatomic,copy) NSString *sourceUrl;
 @property (nonatomic,copy) NSString *baseUrl;
+@property (nonatomic,copy) NSString *apiKey;
 @property (assign) PlaytomicLog *log;
 @property (assign) PlaytomicGameVars *gameVars;
 @property (assign) PlaytomicGeoIP *geoIP;
@@ -70,6 +71,7 @@
 @synthesize hostActive;
 @synthesize internetActive;
 @synthesize offlineQueueMaxSize;
+@synthesize apiKey;
 
 static Playtomic *instance = nil;
 
@@ -126,6 +128,11 @@ static Playtomic *instance = nil;
     return instance.gameGuid;
 }
 
++ (NSString*)getApiKey
+{
+    return instance.apiKey;
+}
+
 + (NSString*)getSourceUrl
 {
     return instance.sourceUrl;
@@ -176,7 +183,8 @@ static Playtomic *instance = nil;
 }
 
 - (id)initWithGameId:(NSInteger)gameid 
-             andGUID:(NSString*)gameguid
+             andGUID:(NSString*)gameguid 
+           andAPIKey:(NSString*)apikey
 {
     NSString *model = [[UIDevice currentDevice] model];
     NSString *system = [[UIDevice currentDevice] systemName];
@@ -190,6 +198,7 @@ static Playtomic *instance = nil;
     instance.gameGuid = gameguid;
     instance.sourceUrl = [NSString stringWithFormat:@"http://ios.com/%@/%@/%@", model, system, version];
     instance.baseUrl = @"ios.com";
+    instance.apiKey = apikey;
 
     instance.log = [[PlaytomicLog alloc] initWithGameId:gameid andGUID:gameguid];
     instance.gameVars = [[PlaytomicGameVars alloc] init];

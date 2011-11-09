@@ -40,6 +40,8 @@
 #import "JSON/JSON.h"
 #import "ASI/ASIFormDataRequest.h"
 #import "ASI/ASIHTTPRequest.h"
+#import "PlaytomicRequest.h"
+#include "PlaytomicEncrypt.h"
 
 @interface PlaytomicPlayerLevels() 
 
@@ -60,42 +62,27 @@
 //
 - (PlaytomicResponse*)loadLevelid:(NSString*)levelid
 {   
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/playerlevels/load.aspx?swfid=%d&js=m&levelid=%@"
-                                                , [Playtomic getGameGuid]
-                                                , [Playtomic getGameId]
-                                                , levelid];
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=y"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
+    
+    
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
+    
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"playerlevels-", [Playtomic getApiKey]]];
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"playerlevels-load-", [Playtomic getApiKey]]];
+    
+    [postData setObject:levelid forKey:@"levelid"];
+    
+    PlaytomicResponse* response = [PlaytomicRequest sendRequestUrl:url andSection:section andAction:action andPostData:postData];
 
-    ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:url]];
-    [request startSynchronous];
-    
-    NSError *error = [request error];
-    
-    // failed on the client / connectivty side
-    if(error)
+      
+    if(![response success])
     {
-        return [[[PlaytomicResponse alloc] initWithError:1] autorelease];
-    }
-    
-    // we got a response of some kind
-    NSString *response = [request responseString];
-    NSString *json = [[NSString alloc] initWithString:response];
-    SBJsonParser *parser = [[SBJsonParser alloc] init];
-    NSArray *data = [parser objectWithString:json error:nil];
-    NSInteger status = [[data valueForKey:@"Status"] integerValue];
-    
-    [request release];
-    [json release];
-    [parser release];
-    
-    // failed on the server side
-    if(status != 1)
-    {
-        NSInteger errorcode = [[data valueForKey:@"ErrorCode"] integerValue];
-        return [[[PlaytomicResponse alloc] initWithError:errorcode] autorelease];
-    }
-    
+        return response;
+    }    
     // level list completed
-    NSDictionary *level = [data valueForKey:@"Data"];
+    NSDictionary *level = [response dictionary];
     NSMutableArray *md = [[NSMutableArray alloc] init];
     
     [self addLevel:level 
@@ -120,42 +107,22 @@
         return [[[PlaytomicResponse alloc] initWithError:401] autorelease];
     }
     
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/playerlevels/rate.aspx?swfid=%d&js=m&levelid=%@&rating=%d"
-                                                , [Playtomic getGameGuid]
-                                                , [Playtomic getGameId]
-                                                , levelid
-                                                , rating];
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=y"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
     
-    ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:url]];
-    [request startSynchronous];
     
-    NSError *error = [request error];
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
     
-    // failed on the client / connectivty side
-    if(error)
-    {
-        return [[[PlaytomicResponse alloc] initWithError:1] autorelease];
-    }
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"playerlevels-", [Playtomic getApiKey]]];
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"playerlevels-rate-", [Playtomic getApiKey]]];
     
-    // we got a response of some kind
-    NSString *response = [request responseString];
-    NSString *json = [[NSString alloc] initWithString:response];
-    SBJsonParser *parser = [[SBJsonParser alloc] init];
-    NSArray *data = [parser objectWithString:json error:nil];
-    NSInteger status = [[data valueForKey:@"Status"] integerValue];
-    NSInteger errorcode = [[data valueForKey:@"ErrorCode"] integerValue];
-    
-    [request release];
-    [json release];
-    [parser release];
-    
-    // failed on the server side
-    if(status != 1)
-    {
-        return [[[PlaytomicResponse alloc] initWithError:errorcode] autorelease];
-    }
-    
-    return [[[PlaytomicResponse alloc] initWithSuccess:YES andErrorCode:errorcode] autorelease];
+    [postData setObject:levelid forKey:@"levelid"];
+    [postData setObject:[NSString stringWithFormat:@"%d", rating] forKey:@"rating"];
+
+    PlaytomicResponse* response = [PlaytomicRequest sendRequestUrl:url andSection:section andAction:action andPostData:postData];
+      
+    return response;
 }
 
 - (PlaytomicResponse*)listMode:(NSString*)mode 
@@ -195,20 +162,25 @@
     NSString *datemaxsafe = datemax == nil ? @"" : [df stringFromDate:datemax];
     NSInteger numfilters = customfilter == nil ? 0 : [customfilter count];
     
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/playerlevels/list.aspx?swfid=%d&js=m&mode=%@&page=%d&perpage=%d&data=%@&thumbs=%@&datemin=%@&datemax=%@&filters=%d"
-                                                , [Playtomic getGameGuid]
-                                                , [Playtomic getGameId]
-                                                , modesafe
-                                                , page
-                                                , perpage
-                                                , datasafe
-                                                , thumbsafe
-                                                , dateminsafe
-                                                , datemaxsafe
-                                                , numfilters];
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=y"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
     
-    ASIFormDataRequest *request = [[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:url]];
     
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
+    
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"playerlevels-", [Playtomic getApiKey]]];
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"playerlevels-list-", [Playtomic getApiKey]]];
+    
+    [postData setValue:modesafe forKey:@"mode"];
+    [postData setValue:[NSString stringWithFormat:@"%d", page] forKey:@"page"];
+    [postData setValue:[NSString stringWithFormat:@"%d", perpage] forKey:@"perpage"];
+    [postData setValue:datasafe forKey:@"data"];
+    [postData setValue:thumbsafe forKey:@"thumbs"];
+    [postData setValue:dateminsafe forKey:@"datemin"];
+    [postData setValue:datemaxsafe forKey:@"datemax"];
+    
+    [postData setValue:[NSString stringWithFormat:@"%d", numfilters] forKey:@"filters"];
     if(customfilter != nil)
     {
         NSInteger fieldnumber = 0;
@@ -220,41 +192,19 @@
             NSString *value = [customfilter objectForKey:customfield];
             fieldnumber++;
             
-            [request setPostValue:customfield forKey:ckey];
-            [request setPostValue:value forKey:cdata];
+            [postData setValue:customfield forKey:ckey];
+            [postData setValue:value forKey:cdata];
         }
     }
+        
+    PlaytomicResponse* response = [PlaytomicRequest sendRequestUrl:url andSection:section andAction:action andPostData:postData];    
     
-    [request startSynchronous];
-    
-    NSError *error = [request error];
-    
-    // failed on the client / connectivty side
-    if(error)
+    if(![response success])
     {
-        return [[[PlaytomicResponse alloc] initWithError:1] autorelease];
-    }
-    
-    // we got a response of some kind
-    NSString *response = [request responseString];
-    NSString *json = [[NSString alloc] initWithString:response];
-    SBJsonParser *parser = [[SBJsonParser alloc] init];
-    NSArray *data = [parser objectWithString:json error:nil];
-    NSInteger status = [[data valueForKey:@"Status"] integerValue];
-    
-    [request release];
-    [json release];
-    [parser release];
-    
-    // failed on the server side
-    if(status != 1)
-    {
-        NSInteger errorcode = [[data valueForKey:@"ErrorCode"] integerValue];
-        return [[[PlaytomicResponse alloc] initWithError:errorcode] autorelease];
-    }
-    
+        return response;
+    }    
     // level list completed
-    NSDictionary *dvars = [data valueForKey:@"Data"];
+    NSDictionary *dvars = [response dictionary]; 
     NSArray *levels = [dvars valueForKey:@"Levels"];
     NSInteger numlevels = [[dvars valueForKey:@"NumLevels"] integerValue];  
     NSMutableArray *md = [[NSMutableArray alloc] init];
@@ -284,23 +234,36 @@
 
 - (PlaytomicResponse*)saveLevel:(PlaytomicLevel*)level
 {
-     NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/playerlevels/save.aspx?swfid=%d&js=y&url=%@"
-                                                , [Playtomic getGameGuid]
-                                                , [Playtomic getGameId]
-                                                , [Playtomic getSourceUrl]];
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=y"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
     
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
-    [request setPostValue:[level getData] forKey:@"data"];
-    [request setPostValue:[level getPlayerId] forKey:@"playerid"];
-    [request setPostValue:[level getPlayerName] forKey:@"playername"];
-    [request setPostValue:[Playtomic getBaseUrl] forKey:@"playersource"];
-    [request setPostValue:[level getName] forKey:@"name"];
-    [request setPostValue:@"y" forKey:@"nothumb"];
+    
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
+    
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"playerlevels-", [Playtomic getApiKey]]];
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"playerlevels-save-", [Playtomic getApiKey]]];
+    
+    NSString *safeSource = [level getPlayerSource] != nil ?[level getPlayerSource] : @" ";
+    NSString *safePlayerId = [level getPlayerId] != nil ? [level getPlayerId] : @" ";
+    NSString *safePlayerName = [level getPlayerName] != nil ? [level getPlayerName] : @" ";
+    NSString *safeData = [level getData] != nil ? [level getData] : @" ";
+    NSString *safeName = [level getName] != nil ? [level getName] : @" ";
+  
+    
+    
+    
+    [postData setValue:safePlayerId forKey:@"playerid"];
+    [postData setValue:safeSource forKey:@"playersource"];
+    [postData setValue:safePlayerName forKey:@"playername"];
+    [postData setValue:safeData forKey:@"data"];
+    [postData setValue:safeName forKey:@"name"];
+    [postData setValue:@"y" forKey:@"nothumb"];
+       
     
     NSDictionary *customdata = [level getCustomData];
-    [request setPostValue:[NSString stringWithFormat:@"%d"
-                                                    , [customdata count]] forKey:@"customfields"];
-    
+    [postData setValue:[NSString stringWithFormat:@"%d"
+                        , [customdata count]] forKey:@"customfields"];
     NSInteger fieldnumber = 0;
     
     for(id customfield in customdata)
@@ -310,49 +273,32 @@
         NSString *value = [customdata objectForKey:customfield];
         fieldnumber++;
         
-        [request setPostValue:customfield forKey:ckey];
-        [request setPostValue:value forKey:cdata];
+        [postData setValue:customfield forKey:ckey];
+        [postData setValue:value forKey:cdata];
     }
     
-    [request startSynchronous];
+    PlaytomicResponse* response = [PlaytomicRequest sendRequestUrl:url andSection:section andAction:action andPostData:postData];    
     
-    NSError *error = [request error];
-    
-    if(error)
+    if(![response success])
     {
-        return [[[PlaytomicResponse alloc] initWithError:1] autorelease];
-    }
+        return response;
+    }    
     
-    NSString *response = [request responseString];       
-    NSString *json = [[NSString alloc] initWithString:response];
-    SBJsonParser *parser = [[SBJsonParser alloc] init];
-    NSArray *data = [parser objectWithString:json error:nil];
-    NSInteger status = [[data valueForKey:@"Status"] integerValue];
-    NSInteger errorcode = [[data valueForKey:@"ErrorCode"] integerValue];
-
-    [json release];
-    [parser release];
     
-    if(status == 1)
-    {
-        NSDictionary *dvars = [data valueForKey:@"Data"];
-        NSString *levelid = [dvars valueForKey:@"LevelId"];
+    NSDictionary *dvars = [response dictionary]; 
+    NSString *levelid = [dvars valueForKey:@"LevelId"];
+       
+    NSMutableDictionary *md = [[NSMutableDictionary alloc] init];
+    [md setValue:levelid forKey:@"LevelId"];
         
-        NSMutableDictionary *md = [[NSMutableDictionary alloc] init];
-        [md setValue:levelid forKey:@"LevelId"];
-        
-        PlaytomicResponse *playtomicResponse = [[PlaytomicResponse alloc] initWithSuccess:YES 
-                                                                             andErrorCode:errorcode 
+    PlaytomicResponse *playtomicResponse = [[PlaytomicResponse alloc] initWithSuccess:YES 
+                                                                             andErrorCode:[response errorCode] 
                                                                                   andDict:md];
-        [playtomicResponse autorelease];
-        [md release];
+    [playtomicResponse autorelease];
+    [md release];
                 
-        return playtomicResponse;
-    }
-    else
-    {
-        return [[[PlaytomicResponse alloc] initWithError:errorcode] autorelease];
-    }
+    return playtomicResponse;
+
 }
 
 // asynchronous calls
@@ -362,18 +308,23 @@
 {
     levelid_ = [levelid copy];
     
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/playerlevels/load.aspx?swfid=%d&js=m&levelid=%@"
-                                                , [Playtomic getGameGuid]
-                                                , [Playtomic getGameId]
-                                                , levelid];
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=y"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
     
-    ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:url]];
     
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
+    
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"playerlevels-", [Playtomic getApiKey]]];
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"playerlevels-load-", [Playtomic getApiKey]]];
+    
+    [postData setObject:levelid forKey:@"levelid"];
     delegate = aDelegate;
+    [PlaytomicRequest sendRequestUrl:url andSection:section
+                          andAction:action andCompleteDelegate:self
+                andCompleteSelector:@selector(requestLoadFinished:)
+                        andPostData:postData];
     
-    [request setDelegate:self];
-    request.didFinishSelector = @selector(requestLoadFinished:);
-    [request startAsynchronous];
 }
 
 - (void)requestLoadFinished:(ASIHTTPRequest*)request
@@ -437,19 +388,22 @@
         return;
     }
     
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/playerlevels/rate.aspx?swfid=%d&js=m&levelid=%@&rating=%d"
-                                                , [Playtomic getGameGuid]
-                                                , [Playtomic getGameId]
-                                                , levelid
-                                                , rating];
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=y"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
     
-    ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:url]];
     
-    delegate = aDelegate;
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
     
-    [request setDelegate:self];
-    request.didFinishSelector = @selector(requestRateFinished:);
-    [request startAsynchronous];
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"playerlevels-", [Playtomic getApiKey]]];
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"playerlevels-rate-", [Playtomic getApiKey]]];
+    
+    [postData setObject:levelid forKey:@"levelid"];
+    [postData setObject:[NSString stringWithFormat:@"%d", rating] forKey:@"rating"];
+    
+    delegate = aDelegate;    
+    [PlaytomicRequest sendRequestUrl:url andSection:section andAction:action andCompleteDelegate:self andCompleteSelector:@selector(requestRateFinished:) andPostData:postData];
+    
 }
 
 - (void)requestRateFinished:(ASIHTTPRequest*)request
@@ -529,20 +483,25 @@
     [df release];
     NSInteger numfilters = customfilter == nil ? 0 : [customfilter count];
     
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/playerlevels/list.aspx?swfid=%d&js=m&mode=%@&page=%d&perpage=%d&data=%@&thumbs=%@&datemin=%@&datemax=%@&filters=%d"
-                                                , [Playtomic getGameGuid]
-                                                , [Playtomic getGameId]
-                                                , modesafe
-                                                , page
-                                                , perpage
-                                                , datasafe
-                                                , thumbsafe
-                                                , dateminsafe
-                                                , datemaxsafe
-                                                , numfilters];
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=y"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
     
-    ASIFormDataRequest *request = [[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:url]];
     
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
+    
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"playerlevels-", [Playtomic getApiKey]]];
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"playerlevels-list-", [Playtomic getApiKey]]];
+    
+    [postData setValue:modesafe forKey:@"mode"];
+    [postData setValue:[NSString stringWithFormat:@"%d", page] forKey:@"page"];
+    [postData setValue:[NSString stringWithFormat:@"%d", perpage] forKey:@"perpage"];
+    [postData setValue:datasafe forKey:@"data"];
+    [postData setValue:thumbsafe forKey:@"thumbs"];
+    [postData setValue:dateminsafe forKey:@"datemin"];
+    [postData setValue:datemaxsafe forKey:@"datemax"];
+    
+    [postData setValue:[NSString stringWithFormat:@"%d", numfilters] forKey:@"filters"];
     if(customfilter != nil)
     {
         NSInteger fieldnumber = 0;
@@ -554,16 +513,18 @@
             NSString *value = [customfilter objectForKey:customfield];
             fieldnumber++;
             
-            [request setPostValue:customfield forKey:ckey];
-            [request setPostValue:value forKey:cdata];
+            [postData setValue:customfield forKey:ckey];
+            [postData setValue:value forKey:cdata];
         }
     }
     
+    [PlaytomicRequest sendRequestUrl:url 
+                          andSection:section 
+                           andAction:action
+                 andCompleteDelegate:self 
+                 andCompleteSelector:@selector(requestLoadFinished:)
+                         andPostData:postData];       
     delegate = aDelegate;
-    
-    [request setDelegate:self];
-    request.didFinishSelector = @selector(requestListFinished:);
-    [request startAsynchronous];
 }
 
 - (void)requestListFinished:(ASIHTTPRequest*)request
@@ -606,13 +567,6 @@
     NSInteger numlevels = [[dvars valueForKey:@"NumLevels"] integerValue];  
     NSMutableArray *md = [[NSMutableArray alloc] init];
     
-    //NSNumberFormatter* nf = [[NSNumberFormatter alloc] init];
-    //[nf setFormatterBehavior:NSNumberFormatterDecimalStyle];
-    
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setFormatterBehavior:NSDateFormatterBehavior10_4];
-    [df setDateFormat:@"MM/dd/yyyy"];
-
     for(id level in levels)
     {
         NSString* levelid = [level valueForKey:@"LevelId"];
@@ -627,7 +581,6 @@
                                                                               andData:md 
                                                                         andNumResults:numlevels];
     [playtomicResponse autorelease];
-    [df release];
     [md release];
     
     [delegate requestListPlayerLevelsFinished:playtomicResponse];
@@ -636,24 +589,37 @@
 - (void)saveAsyncLevel:(PlaytomicLevel*)level 
            andDelegate:(id<PlaytomicDelegate>)aDelegate
 {
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/playerlevels/save.aspx?swfid=%d&js=y&url=%@"
-                                                , [Playtomic getGameGuid]
-                                                , [Playtomic getGameId]
-                                                , [Playtomic getSourceUrl]];
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=y"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
     
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:url]];
     
-    [request setPostValue:[level getData] forKey:@"data"];
-    [request setPostValue:[level getPlayerId] forKey:@"playerid"];
-    [request setPostValue:[level getPlayerName] forKey:@"playername"];
-    [request setPostValue:[Playtomic getBaseUrl] forKey:@"playersource"];
-    [request setPostValue:[level getName] forKey:@"name"];
-    [request setPostValue:@"y" forKey:@"nothumb"];
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
+    
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"playerlevels-", [Playtomic getApiKey]]];
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"playerlevels-save-", [Playtomic getApiKey]]];
+    
+    
+    NSString *safeSource = [level getPlayerSource] != nil ?[level getPlayerSource] : @" ";
+    NSString *safePlayerId = [level getPlayerId] != nil ? [level getPlayerId] : @" ";
+    NSString *safePlayerName = [level getPlayerName] != nil ? [level getPlayerName] : @" ";
+    NSString *safeData = [level getData] != nil ? [level getData] : @" ";
+    NSString *safeName = [level getName] != nil ? [level getName] : @" ";
+    
+    
+    
+    
+    [postData setValue:safePlayerId forKey:@"playerid"];
+    [postData setValue:safeSource forKey:@"playersource"];
+    [postData setValue:safePlayerName forKey:@"playername"];
+    [postData setValue:safeData forKey:@"data"];
+    [postData setValue:safeName forKey:@"name"];
+    [postData setValue:@"y" forKey:@"nothumb"];
+    
     
     NSDictionary *customdata = [level getCustomData];
-    [request setPostValue: [NSString stringWithFormat:@"%d", [customdata count]] 
-                   forKey:@"customfields"];
-    
+    [postData setValue:[NSString stringWithFormat:@"%d"
+                        , [customdata count]] forKey:@"customfields"];
     NSInteger fieldnumber = 0;
     
     for(id customfield in customdata)
@@ -663,15 +629,17 @@
         NSString *value = [customdata objectForKey:customfield];
         fieldnumber++;
         
-        [request setPostValue:customfield forKey:ckey];
-        [request setPostValue:value forKey:cdata];
+        [postData setValue:customfield forKey:ckey];
+        [postData setValue:value forKey:cdata];
     }
-
     delegate = aDelegate;
+    [PlaytomicRequest sendRequestUrl:url
+                          andSection:section
+                           andAction:action
+                         andCompleteDelegate:self 
+                 andCompleteSelector:@selector(requestSaveFinished:) 
+                         andPostData:postData];    
     
-    [request setDelegate:self];
-    request.didFinishSelector = @selector(requestSaveFinished:);
-    [request startAsynchronous];
 }
 
 - (void)requestSaveFinished:(ASIHTTPRequest*)request

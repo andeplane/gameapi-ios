@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47E2781414684EE300F0EBBC /* PlaytomicRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E2781314684EE300F0EBBC /* PlaytomicRequest.m */; };
 		7835BEF3137A27B400CF0211 /* PlaytomicLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835BEF1137A27B300CF0211 /* PlaytomicLog.m */; };
 		7835BEF4137A27B400CF0211 /* PlaytomicLogRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835BEF2137A27B400CF0211 /* PlaytomicLogRequest.m */; };
 		7835BEFA137A400500CF0211 /* PlaytomicResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835BEF9137A400500CF0211 /* PlaytomicResponse.m */; };
@@ -54,6 +55,8 @@
 
 /* Begin PBXFileReference section */
 		3B71EBB3143A36E9001F583B /* PlaytomicLogRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PlaytomicLogRequest.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		47E2781214684EE300F0EBBC /* PlaytomicRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicRequest.h; sourceTree = "<group>"; };
+		47E2781314684EE300F0EBBC /* PlaytomicRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicRequest.m; sourceTree = "<group>"; };
 		7835BEF1137A27B300CF0211 /* PlaytomicLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PlaytomicLog.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7835BEF2137A27B400CF0211 /* PlaytomicLogRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicLogRequest.m; sourceTree = "<group>"; };
 		7835BEF8137A400500CF0211 /* PlaytomicResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PlaytomicResponse.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -284,6 +287,8 @@
 				78F04DC7137C7982000C9E8D /* PlaytomicPlayerLevels.m */,
 				78565DA2137DDC9D0062E5D5 /* PlaytomicData.h */,
 				78565DA3137DDC9D0062E5D5 /* PlaytomicData.m */,
+				47E2781214684EE300F0EBBC /* PlaytomicRequest.h */,
+				47E2781314684EE300F0EBBC /* PlaytomicRequest.m */,
 			);
 			path = Playtomic;
 			sourceTree = "<group>";
@@ -429,6 +434,7 @@
 				78F04DC8137C7983000C9E8D /* PlaytomicPlayerLevels.m in Sources */,
 				78565DA0137DDBC80062E5D5 /* PlaytomicLink.m in Sources */,
 				78565DA4137DDC9D0062E5D5 /* PlaytomicData.m in Sources */,
+				47E2781414684EE300F0EBBC /* PlaytomicRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +516,7 @@
 					"\"$(SRCROOT)/../../../../Downloads/Flurry iPhone SDK v2.8.4/FlurryLib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -528,6 +535,7 @@
 					"\"$(SRCROOT)/../../../../Downloads/Flurry iPhone SDK v2.8.4/FlurryLib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

@@ -106,6 +106,11 @@
     return self.responseData;
 }
 
+- (NSDictionary*) dictionary
+{
+    return self.responseDictionary;
+}
+
 - (NSString*)getValueForName:(NSString*)name
 {
     return [self.responseDictionary valueForKey:name];

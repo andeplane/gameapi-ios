@@ -65,6 +65,8 @@
 
 - (NSArray*)data;
 
+- (NSDictionary*) dictionary;
+
 - (NSString*)getValueForName:(NSString*)name;
 
 - (void)setValueForName:(NSString*)name 
