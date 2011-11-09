@@ -39,6 +39,8 @@
 #import "Playtomic.h"
 #import "JSON/JSON.h"
 #import "ASI/ASIHTTPRequest.h"
+#import "PlaytomicRequest.h"
+#import "PlaytomicEncrypt.h"
 
 @interface PlaytomicData()
 
@@ -54,8 +56,11 @@
 //
 - (PlaytomicResponse*)views
 {
-    return [self generalMode:@"views" 
-                      andDay:0 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-views-", [Playtomic getApiKey]]];
+    
+    return [self generalMode:action 
+                     andType:@"views" 
+                      andDay:0
                     andMonth:0 
                      andYear:0];
 }
@@ -63,7 +68,10 @@
 - (PlaytomicResponse*)viewsMonth:(NSInteger)month 
                          andYear:(NSInteger)year
 {
-    return [self generalMode:@"views" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-views-", [Playtomic getApiKey]]];
+    
+    return [self generalMode:action 
+                     andType:@"views" 
                       andDay:0 
                     andMonth:month 
                      andYear:year];
@@ -73,7 +81,10 @@
                       andMonth:(NSInteger)month 
                        andYear:(NSInteger)year
 {
-    return [self generalMode:@"views" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-views-", [Playtomic getApiKey]]];
+    
+    return [self generalMode:action 
+                     andType:@"views" 
                       andDay:day 
                     andMonth:month 
                      andYear:year];
@@ -81,8 +92,11 @@
 
 - (PlaytomicResponse*)plays
 {
-    return [self generalMode:@"plays" 
-                      andDay:0 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-plays-", [Playtomic getApiKey]]];
+    
+    return [self generalMode:action 
+                     andType:@"plays" 
+                      andDay:0
                     andMonth:0 
                      andYear:0];
 }
@@ -90,9 +104,12 @@
 - (PlaytomicResponse*)playsMonth:(NSInteger)month 
                          andYear:(NSInteger)year
 {
-    return [self generalMode:@"plays" 
-                      andDay:0 
-                    andMonth:month 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-plays-", [Playtomic getApiKey]]];
+    
+    return [self generalMode:action 
+                     andType:@"plays" 
+                      andDay:0
+                    andMonth:month
                      andYear:year];
 }
 
@@ -100,52 +117,72 @@
                       andMonth:(NSInteger)month 
                        andYear:(NSInteger)year
 {
-    return [self generalMode:@"plays" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-plays-", [Playtomic getApiKey]]];
+    
+    return [self generalMode:action 
+                     andType:@"plays" 
                       andDay:day 
                     andMonth:month 
                      andYear:year];
+
 }
 
 - (PlaytomicResponse*)playtime
 {
-    return [self generalMode:@"playtime" 
-                      andDay:0 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-playtime-", [Playtomic getApiKey]]];
+    
+    return [self generalMode:action 
+                     andType:@"playtime" 
+                      andDay:0
                     andMonth:0 
                      andYear:0];
+
 }
 
 - (PlaytomicResponse*)playtimeMonth:(NSInteger)month 
                             andYear:(NSInteger)year
 {
-    return [self generalMode:@"playtime" 
-                      andDay:0 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-playtime-", [Playtomic getApiKey]]];
+    
+    return [self generalMode:action 
+                     andType:@"playtime" 
+                      andDay:0
                     andMonth:month 
                      andYear:year];
+
 }
 
 - (PlaytomicResponse*)playtimeDay:(NSInteger)day 
                          andMonth:(NSInteger)month 
                           andYear:(NSInteger)year
 {
-    return [self generalMode:@"playtime" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-playtime-", [Playtomic getApiKey]]];
+
+    return [self generalMode:action 
+                     andType:@"playtime" 
                       andDay:day 
                     andMonth:month 
                      andYear:year];
 }
 
 - (PlaytomicResponse*)generalMode:(NSString*)mode 
+                          andType:(NSString*)type
                            andDay:(NSInteger)day 
                          andMonth:(NSInteger)month 
                           andYear:(NSInteger)year
 {
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/data/%@.aspx?swfid=%d&js=m&&day=%d&month=%d&year=%d"
-                                                , [Playtomic getGameGuid]
-                                                , mode
-                                                , [Playtomic getGameId]
-                                                , day
-                                                , month
-                                                , year];
-    return [self getDataUrl:url];
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=y"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
+    
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-", [Playtomic getApiKey]]];
+      
+    [postData setValue:[NSString stringWithFormat:@"%d", day] forKey:@"day"];
+    [postData setValue:[NSString stringWithFormat:@"%d", month] forKey:@"month"];
+    [postData setValue:[NSString stringWithFormat:@"%d", year] forKey:@"year"];
+    [postData setValue:type forKey:@"type"];
+    return [PlaytomicRequest sendRequestUrl:url andSection:section andAction:mode andPostData:postData];
 }
 
 // custom metrics
@@ -172,22 +209,29 @@
                               andMonth:(NSInteger)month 
                                andYear:(NSInteger)year
 {
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/data/custommetric.aspx?swfid=%d&js=m&&metric=%@&day=%d&month=%d&year=%d"
-                                                , [Playtomic getGameGuid]
-                                                , [Playtomic getGameId]
-                                                , [self clean:name]
-                                                , day, month
-                                                , year];
-    return [self getDataUrl:url];
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=y"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
+    
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-", [Playtomic getApiKey]]];
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-custommetric-", [Playtomic getApiKey]]];
+    
+    [postData setValue:[NSString stringWithFormat:@"%d", day] forKey:@"day"];
+    [postData setValue:[NSString stringWithFormat:@"%d", month] forKey:@"month"];
+    [postData setValue:[NSString stringWithFormat:@"%d", year] forKey:@"year"];
+    [postData setValue:name forKey:@"metric"];
+    return [PlaytomicRequest sendRequestUrl:url andSection:section andAction:action andPostData:postData];
 }
 
 // level counters
 - (PlaytomicResponse*)levelCounterMetricName:(NSString*)name 
                                     andLevel:(NSString*)level
 {
-    return [self levelMetricType:@"counter" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-levelcountermetric-", [Playtomic getApiKey]]];
+    return [self levelMetricType:action 
                          andName:name 
-                        andLevel:level 
+                        andLevel:level
                           andDay:0 
                         andMonth:0 
                          andYear:0];
@@ -198,12 +242,13 @@
                                     andMonth:(NSInteger)month 
                                      andYear:(NSInteger)year
 {
-    return [self levelMetricType:@"counter"
-                         andName:name
-                        andLevel:level 
-                          andDay:0 
-                        andMonth:0 
-                         andYear:0];
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-levelcountermetric-", [Playtomic getApiKey]]];
+    return [self levelMetricType:action 
+                         andName:name 
+                        andLevel:level
+                          andDay:0
+                        andMonth:month 
+                         andYear:year];
 }
 
 - (PlaytomicResponse*)levelCounterMetricName:(NSString*)name 
@@ -212,22 +257,24 @@
                                     andMonth:(NSInteger)month 
                                      andYear:(NSInteger)year
 {
-    return [self levelMetricType:@"counter" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-levelcountermetric-", [Playtomic getApiKey]]];
+    return [self levelMetricType:action 
                          andName:name 
-                        andLevel:level 
-                          andDay:0 
-                        andMonth:0 
-                         andYear:0];
+                        andLevel:level
+                          andDay:day 
+                        andMonth:month 
+                         andYear:year];
 }
 
 - (PlaytomicResponse*)levelCounterMetricName:(NSString*)name 
                               andLevelNumber:(NSInteger)level
 {
-    return [self levelMetricType:@"counter" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-levelcountermetric-", [Playtomic getApiKey]]];
+    return [self levelMetricType:action 
                          andName:name 
                         andLevel:[NSString stringWithFormat:@"%d", level] 
                           andDay:0 
-                        andMonth:0 
+                        andMonth:0
                          andYear:0];
 }
 
@@ -236,12 +283,13 @@
                                     andMonth:(NSInteger)month 
                                      andYear:(NSInteger)year
 {
-    return [self levelMetricType:@"counter" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-levelcountermetric-", [Playtomic getApiKey]]];
+    return [self levelMetricType:action 
                          andName:name 
                         andLevel:[NSString stringWithFormat:@"%d", level] 
                           andDay:0 
-                        andMonth:0 
-                         andYear:0];
+                        andMonth:month 
+                         andYear:year];
 }
 
 - (PlaytomicResponse*)levelCounterMetricName:(NSString*)name 
@@ -250,21 +298,23 @@
                                     andMonth:(NSInteger)month 
                                      andYear:(NSInteger)year
 {
-    return [self levelMetricType:@"counter" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-levelcountermetric-", [Playtomic getApiKey]]];
+    return [self levelMetricType:action 
                          andName:name 
                         andLevel:[NSString stringWithFormat:@"%d", level] 
-                          andDay:0 
-                        andMonth:0 
-                         andYear:0];
+                          andDay:day 
+                        andMonth:month 
+                         andYear:year];
 }
 
 // level averages
 - (PlaytomicResponse*)levelAverageMetricName:(NSString*)name 
                                     andLevel:(NSString*)level
 {
-    return [self levelMetricType:@"average" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-levelaveragemetric-", [Playtomic getApiKey]]];
+    return [self levelMetricType:action 
                          andName:name 
-                        andLevel:level 
+                        andLevel:level
                           andDay:0 
                         andMonth:0 
                          andYear:0];
@@ -275,12 +325,13 @@
                                     andMonth:(NSInteger)month 
                                      andYear:(NSInteger)year
 {
-    return [self levelMetricType:@"average" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-levelaveragemetric-", [Playtomic getApiKey]]];
+    return [self levelMetricType:action 
                          andName:name 
-                        andLevel:level 
+                        andLevel:level
                           andDay:0 
-                        andMonth:0 
-                         andYear:0];
+                        andMonth:month 
+                         andYear:year];
 }
 
 - (PlaytomicResponse*)levelAverageMetricName:(NSString*)name 
@@ -289,18 +340,20 @@
                                     andMonth:(NSInteger)month 
                                      andYear:(NSInteger)year
 {
-    return [self levelMetricType:@"average" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-levelaveragemetric-", [Playtomic getApiKey]]];
+    return [self levelMetricType:action 
                          andName:name 
-                        andLevel:level 
-                          andDay:0 
-                        andMonth:0 
-                         andYear:0];
+                        andLevel:level
+                          andDay:day 
+                        andMonth:month 
+                         andYear:year];
 }
 
 - (PlaytomicResponse*)levelAverageMetricName:(NSString*)name 
                               andLevelNumber:(NSInteger)level
 {
-    return [self levelMetricType:@"average" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-levelaveragemetric-", [Playtomic getApiKey]]];
+    return [self levelMetricType:action 
                          andName:name 
                         andLevel:[NSString stringWithFormat:@"%d", level] 
                           andDay:0 
@@ -313,13 +366,13 @@
                                     andMonth:(NSInteger)month 
                                      andYear:(NSInteger)year
 {
-    return [self levelMetricType:@"average" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-levelaveragemetric-", [Playtomic getApiKey]]];
+    return [self levelMetricType:action 
                          andName:name 
                         andLevel:[NSString stringWithFormat:@"%d", level] 
                           andDay:0 
-                        andMonth:0 
-                         andYear:0];
-}
+                        andMonth:month 
+                         andYear:year];}
 
 - (PlaytomicResponse*)levelAverageMetricName:(NSString*)name 
                               andLevelNumber:(NSInteger)level 
@@ -327,21 +380,23 @@
                                     andMonth:(NSInteger)month 
                                      andYear:(NSInteger)year
 {
-    return [self levelMetricType:@"average" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-levelaveragemetric-", [Playtomic getApiKey]]];
+    return [self levelMetricType:action 
                          andName:name 
                         andLevel:[NSString stringWithFormat:@"%d", level] 
-                          andDay:0 
-                        andMonth:0 
-                         andYear:0];
+                          andDay:day 
+                        andMonth:month 
+                         andYear:year];
 }
 
 // level rangeds
 - (PlaytomicResponse*)levelRangedMetricName:(NSString*)name 
                                    andLevel:(NSString*)level
 {
-    return [self levelMetricType:@"ranged" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-levelrangedmetric-", [Playtomic getApiKey]]];
+    return [self levelMetricType:action 
                          andName:name 
-                        andLevel:level
+                        andLevel:level 
                           andDay:0 
                         andMonth:0 
                          andYear:0];
@@ -352,12 +407,13 @@
                                    andMonth:(NSInteger)month 
                                     andYear:(NSInteger)year
 {
-    return [self levelMetricType:@"ranged" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-levelrangedmetric-", [Playtomic getApiKey]]];
+    return [self levelMetricType:action 
                          andName:name 
                         andLevel:level 
-                          andDay:0 
-                        andMonth:0 
-                         andYear:0];
+                          andDay:0
+                        andMonth:month 
+                         andYear:year];
 }
 
 - (PlaytomicResponse*)levelRangedMetricName:(NSString*)name 
@@ -366,18 +422,20 @@
                                    andMonth:(NSInteger)month
                                     andYear:(NSInteger)year
 {
-    return [self levelMetricType:@"ranged" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-levelrangedmetric-", [Playtomic getApiKey]]];
+    return [self levelMetricType:action 
                          andName:name 
                         andLevel:level 
-                          andDay:0 
-                        andMonth:0 
-                         andYear:0];
+                          andDay:day 
+                        andMonth:month 
+                         andYear:year];
 }
 
 - (PlaytomicResponse*)levelRangedMetricName:(NSString*)name 
                              andLevelNumber:(NSInteger)level
 {
-    return [self levelMetricType:@"ranged" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-levelrangedmetric-", [Playtomic getApiKey]]];
+    return [self levelMetricType:action 
                          andName:name 
                         andLevel:[NSString stringWithFormat:@"%d", level] 
                           andDay:0 
@@ -390,12 +448,13 @@
                                    andMonth:(NSInteger)month 
                                     andYear:(NSInteger)year
 {
-    return [self levelMetricType:@"ranged" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-levelrangedmetric-", [Playtomic getApiKey]]];
+    return [self levelMetricType:action 
                          andName:name 
                         andLevel:[NSString stringWithFormat:@"%d", level] 
                           andDay:0 
-                        andMonth:0 
-                         andYear:0];
+                        andMonth:month 
+                         andYear:year];
 }
 
 - (PlaytomicResponse*)levelRangedMetricName:(NSString*)name 
@@ -404,12 +463,13 @@
                                    andMonth:(NSInteger)month 
                                     andYear:(NSInteger)year
 {
-    return [self levelMetricType:@"ranged" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-levelrangedmetric-", [Playtomic getApiKey]]];
+    return [self levelMetricType:action 
                          andName:name 
                         andLevel:[NSString stringWithFormat:@"%d", level] 
-                          andDay:0 
-                        andMonth:0 
-                         andYear:0];
+                          andDay:day 
+                        andMonth:month 
+                         andYear:year];
 }
 
 - (PlaytomicResponse*)levelMetricType:(NSString*)type 
@@ -419,16 +479,18 @@
                              andMonth:(NSInteger)month 
                               andYear:(NSInteger)year
 {
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/data/levelmetric%@.aspx?swfid=%d&js=m&metric=%@&level=%@&day=%d&month=%d&year=%d"
-                                                , [Playtomic getGameGuid]
-                                                , type
-                                                , [Playtomic getGameId]
-                                                , [self clean:name]
-                                                , [self clean:level]
-                                                , day
-                                                , month
-                                                , year];
-    return [self getDataUrl:url];
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=y"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
+    
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-", [Playtomic getApiKey]]];
+    
+    [postData setValue:[NSString stringWithFormat:@"%d", day] forKey:@"day"];
+    [postData setValue:[NSString stringWithFormat:@"%d", month] forKey:@"month"];
+    [postData setValue:[NSString stringWithFormat:@"%d", year] forKey:@"year"];
+    [postData setValue:name forKey:@"metric"];
+    return [PlaytomicRequest sendRequestUrl:url andSection:section andAction:type andPostData:postData];
 }
 
 // get data
@@ -491,9 +553,12 @@
 //
 - (void)viewsAsync:(id<PlaytomicDelegate>)aDelegate
 {
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-views-", [Playtomic getApiKey]]];
+    
     requestFinished = @selector(requestViewsDataFinished:);
-    [self generalAsyncMode:@"views" 
-                    andDay:0 
+    [self generalAsyncMode:action 
+                   andType:@"views" 
+                    andDay:0
                   andMonth:0 
                    andYear:0 
                andDelegate:aDelegate];
@@ -503,8 +568,11 @@
                 andYear:(NSInteger)year
             andDelegate:(id<PlaytomicDelegate>)aDelegate
 {
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-views-", [Playtomic getApiKey]]];
+    
     requestFinished = @selector(requestViewsDataFinished:);
-    [self generalAsyncMode:@"views"
+    [self generalAsyncMode:action 
+                   andType:@"views"
                     andDay:0 
                   andMonth:month 
                    andYear:year 
@@ -516,8 +584,11 @@
               andYear:(NSInteger)year
           andDelegate:(id<PlaytomicDelegate>)aDelegate
 {
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-views-", [Playtomic getApiKey]]];
+    
     requestFinished = @selector(requestViewsDataFinished:);
-    [self generalAsyncMode:@"views" 
+    [self generalAsyncMode:action 
+                   andType:@"views" 
                     andDay:day 
                   andMonth:month 
                    andYear:year 
@@ -526,8 +597,11 @@
 
 - (void)playsAsync:(id<PlaytomicDelegate>)aDelegate
 {
-    requestFinished = @selector(requestPlaysDataFinished:);
-    [self generalAsyncMode:@"plays" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-plays-", [Playtomic getApiKey]]];
+    
+    requestFinished = @selector(requestViewsDataFinished:);
+    [self generalAsyncMode:action 
+                   andType:@"plays" 
                     andDay:0 
                   andMonth:0 
                    andYear:0 
@@ -538,8 +612,11 @@
                 andYear:(NSInteger)year 
             andDelegate:(id<PlaytomicDelegate>)aDelegate
 {
-    requestFinished = @selector(requestPlaysDataFinished:);
-    [self generalAsyncMode:@"plays" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-plays-", [Playtomic getApiKey]]];
+    
+    requestFinished = @selector(requestViewsDataFinished:);
+    [self generalAsyncMode:action 
+                   andType:@"plays" 
                     andDay:0 
                   andMonth:month 
                    andYear:year 
@@ -551,8 +628,11 @@
               andYear:(NSInteger)year 
           andDelegate:(id<PlaytomicDelegate>)aDelegate
 {
-    requestFinished = @selector(requestPlaysDataFinished:);
-    [self generalAsyncMode:@"plays" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-plays-", [Playtomic getApiKey]]];
+    
+    requestFinished = @selector(requestViewsDataFinished:);
+    [self generalAsyncMode:action 
+                   andType:@"plays" 
                     andDay:day 
                   andMonth:month 
                    andYear:year 
@@ -561,8 +641,11 @@
 
 - (void)playtimeAsync:(id<PlaytomicDelegate>)aDelegate
 {
-    requestFinished = @selector(requestPlaytimeDataFinished:);
-    [self generalAsyncMode:@"playtime" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-plays-", [Playtomic getApiKey]]];
+    
+    requestFinished = @selector(requestViewsDataFinished:);
+    [self generalAsyncMode:action 
+                   andType:@"plays" 
                     andDay:0 
                   andMonth:0 
                    andYear:0 
@@ -573,8 +656,11 @@
                    andYear:(NSInteger)year 
                andDelegate:(id<PlaytomicDelegate>)aDelegate
 {
-    requestFinished = @selector(requestPlaytimeDataFinished:);
-    [self generalAsyncMode:@"playtime" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-plays-", [Playtomic getApiKey]]];
+    
+    requestFinished = @selector(requestViewsDataFinished:);
+    [self generalAsyncMode:action 
+                   andType:@"plays" 
                     andDay:0 
                   andMonth:month 
                    andYear:year 
@@ -586,8 +672,11 @@
                  andYear:(NSInteger)year 
              andDelegate:(id<PlaytomicDelegate>)aDelegate
 {
-    requestFinished = @selector(requestPlaytimeDataFinished:);
-    [self generalAsyncMode:@"playtime" 
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-plays-", [Playtomic getApiKey]]];
+    
+    requestFinished = @selector(requestViewsDataFinished:);
+    [self generalAsyncMode:action 
+                   andType:@"plays" 
                     andDay:day 
                   andMonth:month 
                    andYear:year 
@@ -595,20 +684,26 @@
 }
 
 - (void)generalAsyncMode:(NSString*)mode 
+                 andType:(NSString*)type
                   andDay:(NSInteger)day 
                 andMonth:(NSInteger)month 
                  andYear:(NSInteger)year 
              andDelegate:(id<PlaytomicDelegate>)aDelegate
 {
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/data/%@.aspx?swfid=%d&js=m&&day=%d&month=%d&year=%d"
-                                                , [Playtomic getGameGuid]
-                                                , mode
-                                                , [Playtomic getGameId]
-                                                , day
-                                                , month
-                                                , year];
-    [self getDataAsyncUrl:url 
-              andDelegate:aDelegate];
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=y"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
+    
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-", [Playtomic getApiKey]]];
+    
+    [postData setValue:[NSString stringWithFormat:@"%d", day] forKey:@"day"];
+    [postData setValue:[NSString stringWithFormat:@"%d", month] forKey:@"month"];
+    [postData setValue:[NSString stringWithFormat:@"%d", year] forKey:@"year"];
+    [postData setValue:type forKey:@"type"];
+    delegate = aDelegate;
+    [PlaytomicRequest sendRequestUrl:url andSection:section andAction:mode andCompleteDelegate:self andCompleteSelector:@selector(requestGetDataFinished:) andPostData:postData];
+    
 }
 
 // custom metrics
@@ -640,16 +735,22 @@
                       andYear:(NSInteger)year 
                   andDelegate:(id<PlaytomicDelegate>)aDelegate
 {
+    delegate = aDelegate;
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=y"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
+    
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-", [Playtomic getApiKey]]];
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"data-custommetric-", [Playtomic getApiKey]]];
+    
+    [postData setValue:[NSString stringWithFormat:@"%d", day] forKey:@"day"];
+    [postData setValue:[NSString stringWithFormat:@"%d", month] forKey:@"month"];
+    [postData setValue:[NSString stringWithFormat:@"%d", year] forKey:@"year"];
+    [postData setValue:name forKey:@"metric"];
+    [PlaytomicRequest sendRequestUrl:url andSection:section andAction:action andCompleteDelegate:self andCompleteSelector:@selector(requestGetDataFinished:) andPostData:postData];
+    
     requestFinished = @selector(requestCustomMetricDataFinished:);
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/data/custommetric.aspx?swfid=%d&js=m&&metric=%@&day=%d&month=%d&year=%d"
-                                                , [Playtomic getGameGuid]
-                                                , [Playtomic getGameId]
-                                                , [self clean:name]
-                                                , day
-                                                , month
-                                                , year];
-    [self getDataAsyncUrl:url 
-              andDelegate:aDelegate];
 }
 
 // level counters

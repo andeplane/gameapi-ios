@@ -72,6 +72,7 @@
                            andYear:(NSInteger)year;
 
 - (PlaytomicResponse*) generalMode:(NSString*)mode 
+                           andType:(NSString*)type
                             andDay:(NSInteger)day 
                           andMonth:(NSInteger)month 
                            andYear:(NSInteger)year;
@@ -218,6 +219,7 @@
               andDelegate:(id<PlaytomicDelegate>)delegate;
 
 - (void) generalAsyncMode:(NSString*)mode 
+                  andType:(NSString*)type
                    andDay:(NSInteger)day andMonth:(NSInteger)month 
                   andYear:(NSInteger)year 
               andDelegate:(id<PlaytomicDelegate>)delegate;
