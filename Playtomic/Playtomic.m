@@ -43,13 +43,13 @@
 @property (nonatomic,copy) NSString *sourceUrl;
 @property (nonatomic,copy) NSString *baseUrl;
 @property (nonatomic,copy) NSString *apiKey;
-@property (assign) PlaytomicLog *log;
-@property (assign) PlaytomicGameVars *gameVars;
-@property (assign) PlaytomicGeoIP *geoIP;
-@property (assign) PlaytomicLeaderboards *leaderboards;
-@property (assign) PlaytomicPlayerLevels *playerLevels;
-@property (assign) PlaytomicLink *link;
-@property (assign) PlaytomicData *data;
+@property (retain) PlaytomicLog *log;
+@property (retain) PlaytomicGameVars *gameVars;
+@property (retain) PlaytomicGeoIP *geoIP;
+@property (retain) PlaytomicLeaderboards *leaderboards;
+@property (retain) PlaytomicPlayerLevels *playerLevels;
+@property (retain) PlaytomicLink *link;
+@property (retain) PlaytomicData *data;
 @property (assign) BOOL hostActive;
 @property (assign) BOOL internetActive;
 @property (assign) NSInteger offlineQueueMaxSize;
@@ -200,13 +200,13 @@ static Playtomic *instance = nil;
     instance.baseUrl = @"ios.com";
     instance.apiKey = apikey;
 
-    instance.log = [[PlaytomicLog alloc] initWithGameId:gameid andGUID:gameguid];
-    instance.gameVars = [[PlaytomicGameVars alloc] init];
-    instance.geoIP = [[PlaytomicGeoIP alloc] init];
-    instance.leaderboards = [[PlaytomicLeaderboards alloc] init];
-    instance.playerLevels = [[PlaytomicPlayerLevels alloc] init];
-    instance.link = [[PlaytomicLink alloc] init];
-    instance.data = [[PlaytomicData alloc] init];
+    instance.log = [[[PlaytomicLog alloc] initWithGameId:gameid andGUID:gameguid]autorelease ];
+    instance.gameVars = [[[PlaytomicGameVars alloc] init] autorelease];
+    instance.geoIP = [[[PlaytomicGeoIP alloc] init] autorelease];
+    instance.leaderboards = [[[PlaytomicLeaderboards alloc] init] autorelease ];
+    instance.playerLevels = [[[PlaytomicPlayerLevels alloc] init] autorelease];
+    instance.link = [[[PlaytomicLink alloc] init]autorelease ];
+    instance.data = [[[PlaytomicData alloc] init] autorelease];
    
     // check for internet connection
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];

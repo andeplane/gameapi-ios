@@ -90,7 +90,7 @@ static const short _base64DecodingTable[256] = {
 	// Get the Raw Data length and ensure we actually have data
 	int intLength = [objData length];
 	if (intLength == 0) return nil;
-http://www.accommodationhepburnsprings.com/hepburn-springs-accommodation/
+
 	// Setup the String-based Result placeholder and pointer within that placeholder
 	strResult = (char *)calloc(((intLength + 2) / 3) * 4, sizeof(char));
 	objPointer = strResult;
@@ -124,8 +124,10 @@ http://www.accommodationhepburnsprings.com/hepburn-springs-accommodation/
 	// Terminate the string-based result
 	*objPointer = '\0';
     
+    NSString * returnValue = [NSString stringWithCString:strResult encoding:NSASCIIStringEncoding];
+    free(strResult);
 	// Return the results as an NSString object
-	return [NSString stringWithCString:strResult encoding:NSASCIIStringEncoding];
+	return returnValue;
 }
 
 + (NSData *)decodeBase64WithString:(NSString *)strBase64 {

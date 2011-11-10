@@ -165,6 +165,7 @@ NSInteger compareStringValue(id a, id b, void *context) {
     
     if(error)
     {
+        //[request release];
         return [[[PlaytomicResponse alloc] initWithError:1] autorelease];
     }
     
@@ -178,7 +179,7 @@ NSInteger compareStringValue(id a, id b, void *context) {
     
     [json release];
     [parser release];
-    
+    //[request release];
     if(status == 1)
     {
         NSDictionary *dvars = [data valueForKey:@"Data"];

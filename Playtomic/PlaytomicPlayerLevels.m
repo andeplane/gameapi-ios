@@ -201,6 +201,7 @@
     
     if(![response success])
     {
+        [df release];
         return response;
     }    
     // level list completed
@@ -429,7 +430,7 @@
     NSInteger status = [[data valueForKey:@"Status"] integerValue];
     NSInteger errorcode = [[data valueForKey:@"ErrorCode"] integerValue];
     
-    [request release];
+    //[request autorelrease];
     [json release];
     [parser release];
     
@@ -549,7 +550,7 @@
     NSArray *data = [parser objectWithString:json error:nil];
     NSInteger status = [[data valueForKey:@"Status"] integerValue];
     
-    [request release];
+    //[request autorelease];
     [json release];
     [parser release];
     
@@ -755,7 +756,7 @@
         [customdata setObject:cvalue forKey:key];
     }
     
-    [md addObject:[[PlaytomicLevel alloc] initWithName:name 
+    [md addObject:[[[PlaytomicLevel alloc] initWithName:name 
                                          andPlayerName:playername 
                                            andPlayerId:playerid 
                                        andPlayerSource:playersource 
@@ -768,7 +769,7 @@
                                                andDate:date 
                                        andRelativeDate:relativedate 
                                          andCustomData:customdata
-                                            andLevelId:levelid]];
+                                            andLevelId:levelid] autorelease]];
     
     [df release];
     [customdata release];

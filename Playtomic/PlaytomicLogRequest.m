@@ -53,6 +53,7 @@ int const PLAYTOMIC_QUEUE_MAX_BYTES = 1048577; // actually the max size is 10485
 @property (nonatomic,copy) NSString *data;
 @property (nonatomic,copy) NSString *trackUrl;
 @property (assign) BOOL mustReleaseOnRequestFinished;
+@property (retain) ASIHTTPRequest* _request;
 
 
 - (void)requestFailed:(ASIHTTPRequest *)request;
@@ -64,6 +65,7 @@ int const PLAYTOMIC_QUEUE_MAX_BYTES = 1048577; // actually the max size is 10485
 @synthesize data;
 @synthesize trackUrl;
 @synthesize mustReleaseOnRequestFinished;
+@synthesize _request;
 
 - (id)initWithTrackUrl:(NSString*)url
 {
@@ -125,11 +127,11 @@ int const PLAYTOMIC_QUEUE_MAX_BYTES = 1048577; // actually the max size is 10485
     {    
         //NSLog(@"Internet is active");
         
-        ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:fullurl]];
-        [request HEADRequest];
-        [request setDelegate:self];
-        [request startAsynchronous];
-        [request release];
+        self._request = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:fullurl]] autorelease];
+        [_request HEADRequest];
+        [_request setDelegate:self];
+        [_request startAsynchronous];
+        //[request autorelease];
     }
     else
     {
@@ -167,7 +169,7 @@ int const PLAYTOMIC_QUEUE_MAX_BYTES = 1048577; // actually the max size is 10485
             [dataToSendLater setInteger:queueSize forKey:PLAYTOMIC_QUEUE_SIZE];   
             [dataToSendLater removeObjectForKey:key];
             
-            PlaytomicLogRequest* request = [[PlaytomicLogRequest alloc] initWithTrackUrl:trackUrl];
+            PlaytomicLogRequest* request = [[[PlaytomicLogRequest alloc] initWithTrackUrl:trackUrl] autorelease];
             [request queueEvent:savedData];
             request.mustReleaseOnRequestFinished = YES;
             [request send];
@@ -221,6 +223,7 @@ int const PLAYTOMIC_QUEUE_MAX_BYTES = 1048577; // actually the max size is 10485
 }
 
 - (void)dealloc {
+    self._request = nil;
     self.data = nil;
     self.trackUrl = nil;
     [super dealloc];

@@ -40,6 +40,8 @@
 #import "PlaytomicResponse.h"
 #import "JSON/JSON.h"
 #import "ASI/ASIHTTPRequest.h"
+#import "PlaytomicRequest.h"
+#import "PlaytomicEncrypt.h"
 
 @interface PlaytomicGameVars() 
 
@@ -51,73 +53,55 @@
 
 - (PlaytomicResponse*)load
 {
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/gamevars/load.aspx?swfid=%d&js=y"
-                                                , [Playtomic getGameGuid]
-                                                , [Playtomic getGameId]];
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=m"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
     
-    ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:url]];
-    [request startSynchronous];
     
-    NSError *error = [request error];
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
     
+    
+    
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"gamevars-", [Playtomic getApiKey]]];
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"gamevars-load-", [Playtomic getApiKey]]];
+    
+    
+    PlaytomicResponse* response = [PlaytomicRequest sendRequestUrl:url andSection:section andAction:action andPostData:postData];
     // failed on the client / connectivty side
-    if(error)
+    if(![response success])
     {
-        return [[[PlaytomicResponse alloc] initWithError:1] autorelease];
+        return response;
     }
     
-    // we got a response of some kind
-    NSString *response = [request responseString];
-    NSString *json = [[NSString alloc] initWithString:response];
-    SBJsonParser *parser = [[SBJsonParser alloc] init];
-    NSArray *data = [parser objectWithString:json error:nil];
-    
-    [request release];
-    [json release];
-    [parser release];
-    
-    NSInteger status = [[data valueForKey:@"Status"] integerValue];
-    
-    // failed on the server side
-    if(status != 1)
-    {
-        NSInteger errorcode = [[data valueForKey:@"ErrorCode"] integerValue];
-        return [[[PlaytomicResponse alloc] initWithError:errorcode] autorelease];
-    }
-    
-    NSDictionary *dvars = [data valueForKey:@"Data"];
-    NSMutableDictionary *md = [[NSMutableDictionary alloc] init];
-    
-    for(id key in dvars)
-    {
-        for(id name in key)
-        {
-            [md setObject:[key valueForKey:name] forKey:name];
-        }
-    }
+    NSDictionary *dvars = [response dictionary];
+        
+
 
     PlaytomicResponse *playtomicReponse = [[PlaytomicResponse alloc] initWithSuccess:YES 
                                                                         andErrorCode:0 
-                                                                             andDict:md];
+                                                                             andDict:dvars];
     [playtomicReponse autorelease];
-    [md release];
+
     
     return playtomicReponse;
 }
 
 - (void)loadAsync:(id<PlaytomicDelegate>)aDelegate
 {
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/gamevars/load.aspx?swfid=%d&js=y"
-                                                , [Playtomic getGameGuid]
-                                                , [Playtomic getGameId]];
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=m"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
     
-    ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:url]];
-
+    
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
+    
+    
+    
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"gamevars-", [Playtomic getApiKey]]];
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"gamevars-load-", [Playtomic getApiKey]]];
+    
     delegate = aDelegate;
-    
-    [request setDelegate:self];
-    request.didFinishSelector = @selector(requestLoadFinished:);
-    [request startAsynchronous];
+    [PlaytomicRequest sendRequestUrl:url andSection:section andAction:action andCompleteDelegate:self andCompleteSelector:@selector(requestLoadFinished:) andPostData:postData];
 }
 
 - (void)requestLoadFinished:(ASIHTTPRequest*)request
@@ -141,7 +125,7 @@
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     NSArray *data = [parser objectWithString:json error:nil];
     
-    [request release];
+    //[request release];
     [json release];
     [parser release];
     
@@ -156,21 +140,21 @@
     }
     
     NSDictionary *dvars = [data valueForKey:@"Data"];
-    NSMutableDictionary *md = [[NSMutableDictionary alloc] init];
+    //NSMutableDictionary *md = [[NSMutableDictionary alloc] init];
     
-    for(id key in dvars)
+ /*   for(id key in dvars)
     {
         for(id name in key)
         {
             [md setObject:[key valueForKey:name] forKey:name];
         }
     }
-    
+  */  
     PlaytomicResponse *playtomicReponse = [[PlaytomicResponse alloc] initWithSuccess:YES 
                                                                         andErrorCode:0 
-                                                                             andDict:md];
+                                                                             andDict:dvars];
     [playtomicReponse autorelease];
-    [md release];
+    //[md release];
     
     [delegate requestLoadGameVarsFinished:playtomicReponse];
 }

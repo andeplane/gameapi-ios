@@ -403,9 +403,7 @@
         return;
     }
     
-    PlaytomicLogRequest *request = [[PlaytomicLogRequest alloc] initWithTrackUrl:self.trackUrl];
-    [request massQueue:self.queue];
-    [self.queue removeAllObjects];
+    [self forceSend];
 }
 
 - (NSString*)clean:(NSString*)string

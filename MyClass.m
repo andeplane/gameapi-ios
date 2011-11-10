@@ -598,7 +598,7 @@
 {
     NSLog(@"Leaderboard Save");
     
-    PlaytomicScore* score = [[PlaytomicScore alloc] initNewScoreWithName:@"Ben" andPoints:2000000];
+    PlaytomicScore* score = [[[PlaytomicScore alloc] initNewScoreWithName:@"Ben" andPoints:2000000] autorelease];
     [score addCustomValue:@"customdata" andValue:@"this is the custom data"];
     
     PlaytomicResponse* response = [[Playtomic Leaderboards] saveTable:@"High scores" 
@@ -620,7 +620,7 @@
 {
     NSLog(@"Leaderboard SaveAsync");
     
-    PlaytomicScore* score = [[PlaytomicScore alloc] initNewScoreWithName:@"Ben" andPoints:2000000];
+    PlaytomicScore* score = [[[PlaytomicScore alloc] initNewScoreWithName:@"Ben" andPoints:2000000] autorelease];
     [score addCustomValue:@"customdata" andValue:@"this is the custom data"];
     
     
@@ -649,7 +649,7 @@
 {
     NSLog(@"Leaderboard SaveAndListAsync");
     
-    PlaytomicScore* score = [[PlaytomicScore alloc] initNewScoreWithName:@"Ben" andPoints:2000000];
+    PlaytomicScore* score = [[[PlaytomicScore alloc] initNewScoreWithName:@"Ben" andPoints:2000000] autorelease];
     [score addCustomValue:@"customdata" andValue:@"this is the custom data"];
         
     PlaytomicResponse *response = [[Playtomic Leaderboards] saveAndListTable:@"High scores" 
@@ -696,7 +696,7 @@
 {
     NSLog(@"Leaderboard SaveAndListAsync");
     
-    PlaytomicScore* score = [[PlaytomicScore alloc] initNewScoreWithName:@"Ben" andPoints:2000000];
+    PlaytomicScore* score = [[[PlaytomicScore alloc] initNewScoreWithName:@"Ben" andPoints:2000000] autorelease];
     [score addCustomValue:@"customdata" andValue:@"this is the custom data"];
     
     [[Playtomic Leaderboards] saveAndListAsyncTable:@"High scores" 
@@ -818,10 +818,10 @@
 {
     NSLog(@"Level save");
     
-    PlaytomicLevel* level = [[PlaytomicLevel alloc] initWithName:[NSString stringWithFormat:@"level name %d", arc4random() % 100]
+    PlaytomicLevel* level = [[[PlaytomicLevel alloc] initWithName:[NSString stringWithFormat:@"level name %d", arc4random() % 100]
                                                    andPlayerName:@"ben4" 
                                                      andPlayerId:0 
-                                                         andData:@"r=-152&i0=13,440,140&i1=24,440,140&i2=25,440,140&i3=37,440,140,ie,37,450,150"];
+                                                         andData:@"r=-152&i0=13,440,140&i1=24,440,140&i2=25,440,140&i3=37,440,140,ie,37,450,150"] autorelease];
     PlaytomicResponse* response = [[Playtomic PlayerLevels] saveLevel:level];
     
     if([response success])
@@ -839,10 +839,10 @@
 {
     NSLog(@"Level save asyncronous");
     
-    PlaytomicLevel* level = [[PlaytomicLevel alloc] initWithName:[NSString stringWithFormat:@"level name %d", arc4random() % 100] 
+    PlaytomicLevel* level = [[[PlaytomicLevel alloc] initWithName:[NSString stringWithFormat:@"level name %d", arc4random() % 100] 
                                                    andPlayerName:@"ben4" 
                                                      andPlayerId:0 
-                                                         andData:@"r=-152&i0=13,440,140&i1=24,440,140&i2=25,440,140&i3=37,440,140,ie,37,450,150"];
+                                                         andData:@"r=-152&i0=13,440,140&i1=24,440,140&i2=25,440,140&i3=37,440,140,ie,37,450,150"] autorelease];
     [[Playtomic PlayerLevels] saveAsyncLevel:level andDelegate:self];
 }
 

@@ -191,7 +191,7 @@
         NSString *relativedate = [score valueForKey:@"RDate"];
         NSDate *date = [df dateFromString:[score valueForKey:@"SDate"]];
         long rank = [[score valueForKey:@"Rank"] doubleValue];
-        NSMutableDictionary *customdata = [[NSMutableDictionary alloc] init];
+        NSMutableDictionary *customdata = [[[NSMutableDictionary alloc] init] autorelease];
         
         NSDictionary *returnedcustomdata = [score valueForKey:@"CustomData"];
         
@@ -202,12 +202,12 @@
             [customdata setObject:cvalue forKey:key];
         }
         
-        [md addObject:[[PlaytomicScore alloc] initWithName:username 
+        [md addObject:[[[PlaytomicScore alloc] initWithName:username 
                                                  andPoints:points 
                                                    andDate:date 
                                            andRelativeDate:relativedate 
                                              andCustomData:customdata 
-                                                   andRank:rank]];
+                                                   andRank:rank] autorelease]];
     }
     
     PlaytomicResponse *playtomicResponse = [[PlaytomicResponse alloc] initWithSuccess:YES 
@@ -332,12 +332,12 @@
             [customdata setObject:cvalue forKey:key];
         }
         
-        [md addObject:[[PlaytomicScore alloc] initWithName:username 
+        [md addObject:[[[PlaytomicScore alloc] initWithName:username 
                                                  andPoints:points 
                                                    andDate:date 
                                            andRelativeDate:relativedate 
                                              andCustomData:customdata 
-                                                   andRank:rank]];        
+                                                   andRank:rank] autorelease]];        
         [customdata release];
     }
     
@@ -507,7 +507,7 @@
     // failed on the client / connectivty side
     if(error)
     {
-        [delegate requestListLeaderboardFinished:[[PlaytomicResponse alloc] initWithError:1]];
+        [delegate requestListLeaderboardFinished:[[[PlaytomicResponse alloc] initWithError:1] autorelease]];
         return;
     }
     
@@ -518,7 +518,7 @@
     NSArray *data = [parser objectWithString:json error:nil];
     NSInteger status = [[data valueForKey:@"Status"] integerValue];
     
-    [request release];
+    //[request autorelease];
     [json release];
     [parser release];
     
@@ -546,7 +546,7 @@
         NSString *relativedate = [score valueForKey:@"RDate"];
         NSDate *date = [df dateFromString:[score valueForKey:@"SDate"]];
         long rank = [[score valueForKey:@"Rank"] doubleValue];
-        NSMutableDictionary *customdata = [[NSMutableDictionary alloc] init];
+        NSMutableDictionary *customdata = [[[NSMutableDictionary alloc] init] autorelease];
         
         NSDictionary *returnedcustomdata = [score valueForKey:@"CustomData"];
         
@@ -557,12 +557,12 @@
             [customdata setObject:cvalue forKey:key];
         }
         
-        [md addObject:[[PlaytomicScore alloc] initWithName:username 
+        [md addObject:[[[PlaytomicScore alloc] initWithName:username 
                                                  andPoints:points 
                                                    andDate:date 
                                            andRelativeDate:relativedate 
                                              andCustomData:customdata 
-                                                   andRank:rank]];
+                                                   andRank:rank] autorelease]];
     }
     
     PlaytomicResponse *playtomicResponse = [[PlaytomicResponse alloc] initWithSuccess:YES 
@@ -715,12 +715,12 @@
             [customdata setObject:cvalue forKey:key];
         }
         
-        [md addObject:[[PlaytomicScore alloc] initWithName:username 
+        [md addObject:[[[PlaytomicScore alloc] initWithName:username 
                                                  andPoints:points 
                                                    andDate:date 
                                            andRelativeDate:relativedate 
                                              andCustomData:customdata 
-                                                   andRank:rank]];
+                                                   andRank:rank] autorelease]];
         
         [customdata release];
     }

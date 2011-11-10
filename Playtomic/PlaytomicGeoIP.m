@@ -39,6 +39,8 @@
 #import "PlaytomicResponse.h"
 #import "JSON/JSON.h"
 #import "ASI/ASIHTTPRequest.h"
+#import "PlaytomicRequest.h"
+#import "PlaytomicEncrypt.h"
 
 @interface PlaytomicGeoIP() 
 
@@ -50,40 +52,26 @@
 
 - (PlaytomicResponse*)load
 {
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/geoip/lookup.aspx?swfid=%d&js=y"
-                                                , [Playtomic getGameGuid]
-                                                , [Playtomic getGameId]];
-    ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:url]];
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=y"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
     
-    [request startSynchronous];
     
-    NSError *error = [request error];
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
     
+    
+    
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"geoip-", [Playtomic getApiKey]]];
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"geoip-lookup-", [Playtomic getApiKey]]];
+    
+    
+    PlaytomicResponse* response = [PlaytomicRequest sendRequestUrl:url andSection:section andAction:action andPostData:postData];
     // failed on the client / connectivty side
-    if(error)
+    if(![response success])
     {
-        return [[[PlaytomicResponse alloc] initWithError:1] autorelease];
+        return response;
     }
-    
-    // we got a response of some kind
-    NSString *response = [request responseString];
-    NSString *json = [[NSString alloc] initWithString:response];
-    SBJsonParser *parser = [[SBJsonParser alloc] init];
-    NSArray *data = [parser objectWithString:json error:nil];
-    NSInteger status = [[data valueForKey:@"Status"] integerValue];
-    
-    [request release];
-    [json release];
-    [parser release];
-    
-    // failed on the server side
-    if(status != 1)
-    {
-        NSInteger errorcode = [[data valueForKey:@"ErrorCode"] integerValue];
-        return [[[PlaytomicResponse alloc] initWithError:errorcode] autorelease];
-    }
-
-    NSDictionary *dvars = [data valueForKey:@"Data"];
+    NSDictionary *dvars = [response dictionary];
     NSMutableDictionary *md = [[NSMutableDictionary alloc] init];
     
     for(id key in dvars)
@@ -100,16 +88,20 @@
 
 - (void) loadAsync:(id<PlaytomicDelegate>)aDelegate
 {
-    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/geoip/lookup.aspx?swfid=%d&js=y"
-                                                , [Playtomic getGameGuid]
-                                                , [Playtomic getGameId]];
-    ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:url]];
-
-    delegate = aDelegate;
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=y"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
     
-    [request setDelegate:self];
-    request.didFinishSelector = @selector(requestLoadFinished:);
-    [request startAsynchronous];
+    
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
+    
+    
+    
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"geoip-", [Playtomic getApiKey]]];
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"geoip-lookup-", [Playtomic getApiKey]]];
+    
+    delegate = aDelegate;
+    [PlaytomicRequest sendRequestUrl:url andSection:section andAction:action andCompleteDelegate:self andCompleteSelector:@selector(requestLoadFinished:) andPostData:postData];
 }
 
 - (void) requestLoadFinished:(ASIHTTPRequest *)request
@@ -134,7 +126,7 @@
     NSArray *data = [parser objectWithString:json error:nil];
     NSInteger status = [[data valueForKey:@"Status"] integerValue];
     
-    [request release];
+    //[request release];
     [json release];
     [parser release];
     
