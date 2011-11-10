@@ -53,6 +53,7 @@
         [[Playtomic Log] view];
         self.levelid = @"4e9ef2b94d81233f30921596";
     }
+    [self leaderboardCreatePrivate];
     
     return self;
 }
@@ -613,6 +614,22 @@
     else
     {
         NSLog(@"Leaderboard save failed to load because of errorcode #%d", [response errorCode]);
+    }
+}
+
+- (void)leaderboardCreatePrivate
+{
+    NSLog(@"Leaderboard create private");
+    
+    PlaytomicResponse* response = [[Playtomic Leaderboards] createPrivateLeaderboardName:@"Private test" andHighest:YES];
+    
+    if([response success])
+    {
+        NSLog(@"private leaderboard created");
+    }
+    else
+    {
+        NSLog(@"failed to create the private leaderboard because of errorcode #%d", [response errorCode]);
     }
 }
 

@@ -43,6 +43,7 @@
 #import "JSON/JSON.h"
 #import "ASI/ASIFormDataRequest.h"
 #import "ASI/ASIHTTPRequest.h"
+#import "PlaytomicPrivateLeaderboard.h"
 
 
 @interface PlaytomicLeaderboards() 
@@ -352,6 +353,43 @@
     return playtomicResponse;
 }
 
+- (PlaytomicResponse*) createPrivateLeaderboardName:(NSString *)name andHighest:(Boolean)highest
+{
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=y"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
+    
+    
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
+    // common fields
+    [postData setObject:name forKey:@"table"];
+    [postData setObject:(highest ? @"y" : @"n") forKey:@"highest"];
+    [postData setObject:[NSString stringWithFormat:@"http://%@.com", name] forKey:@"permalink"];
+    
+    
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"leaderboards-", [Playtomic getApiKey]]];
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"leaderboards-createprivateleaderboard-", [Playtomic getApiKey]]];
+    
+    PlaytomicResponse* response = [PlaytomicRequest sendRequestUrl:url andSection:section andAction:action andPostData:postData];
+    /////////////////////////////////////////
+    
+    if(![response success])
+    {
+        return response;
+    }
+    
+    // score list completed
+    NSDictionary *dvars = [response dictionary];
+    
+    PlaytomicPrivateLeaderboard* leaderboard = [[[PlaytomicPrivateLeaderboard alloc]
+                                                initWithName:[dvars objectForKey:@"Name"] 
+                                                andTableId:[dvars objectForKey:@"HableId"]
+                                                andPermalink:[dvars objectForKey:@"Bitly"]
+                                                andHighest:[[dvars objectForKey:@"Highest"] isEqualToString:@"true"] 
+                                                andRealName:[dvars objectForKey:@"RealName"]] autorelease];
+
+    return response;
+}
 // asynchronous calls
 //
 - (void)saveAsyncTable:(NSString*)table 

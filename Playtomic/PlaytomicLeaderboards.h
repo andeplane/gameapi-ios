@@ -66,6 +66,9 @@
                             andPerPage:(NSInteger)perpage 
                        andCustomFilter:(NSDictionary*)customfilter;
 
+-(PlaytomicResponse*)createPrivateLeaderboardName:(NSString*)name 
+                                       andHighest:(Boolean)highest;
+
 // asynchronous calls
 //
 - (void)saveAsyncTable:(NSString*)table 
