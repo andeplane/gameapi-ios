@@ -86,6 +86,9 @@
 - (void)requestListLeaderboardFinished:(PlaytomicResponse*)response;
 - (void)requestSaveAndListLeaderboardFinished:(PlaytomicResponse*)response;
 
+- (void)requestCreateprivateLeaderboardFinish:(PlaytomicResponse*)response;
+- (void)requestLoadprivateLeaderboardFinish:(PlaytomicResponse*)response;
+
 // GeoIP
 //
 - (void)requestLoadGeoIPFinished:(PlaytomicResponse*)response;

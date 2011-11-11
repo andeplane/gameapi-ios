@@ -69,6 +69,8 @@
 -(PlaytomicResponse*)createPrivateLeaderboardName:(NSString*)name 
                                        andHighest:(Boolean)highest;
 
+-(PlaytomicResponse*)loadPrivateLeaderboardTableId:(NSString*)tableid;
+
 // asynchronous calls
 //
 - (void)saveAsyncTable:(NSString*)table 
@@ -94,5 +96,11 @@
               andCustomFilter:(NSDictionary*)customfilter 
                   andDelegate:(id<PlaytomicDelegate>)delegate;
 
+-(void)createPrivateLeaderboardAsyncName:(NSString*)name 
+                              andHighest:(Boolean)highest 
+                             andDelegate:(id<PlaytomicDelegate>)delegate;
+
+-(void)loadPrivateLeaderboardTableAsyncId:(NSString*)tableid 
+                              andDelegate:(id<PlaytomicDelegate>)delegate;
 @end
 

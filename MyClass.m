@@ -52,9 +52,7 @@
         
         [[Playtomic Log] view];
         self.levelid = @"4e9ef2b94d81233f30921596";
-    }
-    [self leaderboardCreatePrivate];
-    
+    }    
     return self;
 }
 
@@ -346,6 +344,34 @@
     [unfreeze addTarget:self action:@selector(unfreeze) forControlEvents:UIControlEventTouchUpInside];
     [scroll addSubview:unfreeze];
     
+    top += 100;
+    
+    UIButton *createPrivate = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    createPrivate.frame = CGRectMake(col1, top, 200.0, 30.0);
+    [createPrivate setTitle:@"Create Private Leaderboard" forState:UIControlStateNormal];
+    [createPrivate addTarget:self action:@selector(leaderboardCreatePrivate) forControlEvents:UIControlEventTouchUpInside];
+    [scroll addSubview:createPrivate];
+    
+    UIButton *createPrivateAsync = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    createPrivateAsync.frame = CGRectMake(col2, top, 200.0, 30.0);
+    [createPrivateAsync setTitle:@"Create Private Leaderboard (Async)" forState:UIControlStateNormal];
+    [createPrivateAsync addTarget:self action:@selector(leaderboardCreatePrivateAsync) forControlEvents:UIControlEventTouchUpInside];
+    [scroll addSubview:createPrivateAsync];
+    
+    top += 50;
+    
+    UIButton *loadPrivate= [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    loadPrivate.frame = CGRectMake(col1, top, 200.0, 30.0);
+    [loadPrivate setTitle:@"Load Private Leaderboard" forState:UIControlStateNormal];
+    [loadPrivate addTarget:self action:@selector(leaderboardLoadPrivate) forControlEvents:UIControlEventTouchUpInside];
+    [scroll addSubview:loadPrivate];
+    
+    UIButton *loadPrivateAsync = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    loadPrivateAsync.frame = CGRectMake(col2, top, 200.0, 30.0);
+    [loadPrivateAsync setTitle:@"Load Private Leaderboard (Async)" forState:UIControlStateNormal];
+    [loadPrivateAsync addTarget:self action:@selector(leaderboardLoadPrivateAsync) forControlEvents:UIControlEventTouchUpInside];
+    [scroll addSubview:loadPrivateAsync];
+    
     top += 150;
     
     scroll.contentSize = CGSizeMake(800, top);
@@ -630,6 +656,63 @@
     else
     {
         NSLog(@"failed to create the private leaderboard because of errorcode #%d", [response errorCode]);
+    }
+}
+
+- (void)leaderboardLoadPrivate
+{
+    NSLog(@"Leaderboard create private");
+    
+    PlaytomicResponse* response = [[Playtomic Leaderboards] loadPrivateLeaderboardTableId:@"4ebd35f04d81231060639972"];
+    
+    if([response success])
+    {
+        NSLog(@"private leaderboard loaded");
+    }
+    else
+    {
+        NSLog(@"failed to load the private leaderboard because of errorcode #%d", [response errorCode]);
+    }
+}
+
+
+- (void)leaderboardCreatePrivateAsync
+{
+    NSLog(@"Leaderboard create private Async");
+    
+    [[Playtomic Leaderboards] createPrivateLeaderboardAsyncName:@"Private test" andHighest:YES andDelegate:self];
+    
+}
+
+- (void)requestCreateprivateLeaderboardFinish:(PlaytomicResponse*)response
+{
+    if([response success])
+    {
+        NSLog(@"private leaderboard created Async");
+    }
+    else
+    {
+        NSLog(@"failed to create the private leaderboard because of errorcode #%d", [response errorCode]);
+    }
+}
+
+- (void)leaderboardLoadPrivateAsync
+{
+    NSLog(@"Leaderboard load private Async");
+    
+   [[Playtomic Leaderboards] loadPrivateLeaderboardTableAsyncId:@"4ebd35f04d81231060639972" andDelegate:self];
+    
+}
+
+- (void)requestLoadprivateLeaderboardFinish:(PlaytomicResponse*)response
+{
+    if([response success])
+    {
+        NSLog(@"private leaderboard loaded async");
+    }
+    else
+    {
+        NSLog(@"failed to load the private leaderboard because of errorcode #%d", [response errorCode]);
     }
 }
 

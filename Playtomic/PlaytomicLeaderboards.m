@@ -51,6 +51,8 @@
 - (void)requestSaveFinished:(ASIHTTPRequest*)request;
 - (void)requestListFinished:(ASIHTTPRequest*)request;
 - (void)requestSaveAndListFinished:(ASIHTTPRequest*)request;
+- (void)requestCreatePrivateFinished:(ASIHTTPRequest*) request;
+- (void)requestLoadPrivateFinished:(ASIHTTPRequest*) request;
 
 @end
 
@@ -383,12 +385,67 @@
     
     PlaytomicPrivateLeaderboard* leaderboard = [[[PlaytomicPrivateLeaderboard alloc]
                                                 initWithName:[dvars objectForKey:@"Name"] 
-                                                andTableId:[dvars objectForKey:@"HableId"]
+                                                andTableId:[dvars objectForKey:@"TableId"]
                                                 andPermalink:[dvars objectForKey:@"Bitly"]
-                                                andHighest:[[dvars objectForKey:@"Highest"] isEqualToString:@"true"] 
+                                                andHighest:[[dvars objectForKey:@"Highest"] boolValue]
                                                 andRealName:[dvars objectForKey:@"RealName"]] autorelease];
 
-    return response;
+    NSMutableDictionary *md = [[NSMutableDictionary alloc] init];
+    [md setValue:leaderboard forKey:@"leaderboard"];
+    
+    PlaytomicResponse *playtomicResponse = [[PlaytomicResponse alloc] initWithSuccess:YES 
+                                                                         andErrorCode:[response errorCode] 
+                                                                              andDict:md];
+    [playtomicResponse autorelease];
+    [md release];
+    
+    return playtomicResponse;
+
+}
+
+-(PlaytomicResponse*)loadPrivateLeaderboardTableId:(NSString*)tableid
+{
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=y"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
+    
+    
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
+    // common fields
+    [postData setObject:tableid forKey:@"tableid"];
+
+    
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"leaderboards-", [Playtomic getApiKey]]];
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"leaderboards-loadprivateleaderboard-", [Playtomic getApiKey]]];
+    
+    PlaytomicResponse* response = [PlaytomicRequest sendRequestUrl:url andSection:section andAction:action andPostData:postData];
+    /////////////////////////////////////////
+    
+    if(![response success])
+    {
+        return response;
+    }
+    
+    // score list completed
+    NSDictionary *dvars = [response dictionary];
+    
+    PlaytomicPrivateLeaderboard* leaderboard = [[[PlaytomicPrivateLeaderboard alloc]
+                                                 initWithName:[dvars objectForKey:@"Name"] 
+                                                 andTableId:[dvars objectForKey:@"TableId"]
+                                                 andPermalink:[dvars objectForKey:@"Bitly"]
+                                                 andHighest:[[dvars objectForKey:@"Highest"] boolValue]
+                                                 andRealName:[dvars objectForKey:@"RealName"]] autorelease];
+    
+    NSMutableDictionary *md = [[NSMutableDictionary alloc] init];
+    [md setValue:leaderboard forKey:@"leaderboard"];
+    
+    PlaytomicResponse *playtomicResponse = [[PlaytomicResponse alloc] initWithSuccess:YES 
+                                                                         andErrorCode:[response errorCode] 
+                                                                              andDict:md];
+    [playtomicResponse autorelease];
+    [md release];
+    
+    return playtomicResponse;
 }
 // asynchronous calls
 //
@@ -772,5 +829,163 @@
     [md release];
     
     [delegate requestSaveAndListLeaderboardFinished:playtomicResponse];
+}
+
+-(void)createPrivateLeaderboardAsyncName:(NSString*)name 
+                              andHighest:(Boolean)highest 
+                             andDelegate:(id<PlaytomicDelegate>)aDelegate
+{
+    delegate = aDelegate;
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=y"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
+
+
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
+    // common fields
+    [postData setObject:name forKey:@"table"];
+    [postData setObject:(highest ? @"y" : @"n") forKey:@"highest"];
+    [postData setObject:[NSString stringWithFormat:@"http://%@.com", name] forKey:@"permalink"];
+
+
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"leaderboards-", [Playtomic getApiKey]]];
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"leaderboards-createprivateleaderboard-", [Playtomic getApiKey]]];
+
+    [PlaytomicRequest sendRequestUrl:url 
+                          andSection:section
+                           andAction:action
+                 andCompleteDelegate:self
+                 andCompleteSelector:@selector(requestCreatePrivateFinished:)
+                         andPostData:postData];
+}
+- (void)requestCreatePrivateFinished:(ASIHTTPRequest*) request
+{
+    if (!(delegate && [delegate respondsToSelector:@selector(requestCreateprivateLeaderboardFinish:)])) {
+        return;
+    }
+    
+    NSError *error = [request error];
+    
+    if(error)
+    {
+        [delegate requestCreateprivateLeaderboardFinish:[[[PlaytomicResponse alloc] initWithError:1] autorelease]];
+        return;
+    }
+    
+    NSString *response = [request responseString];       
+    NSString *json = [[NSString alloc] initWithString:response];
+    SBJsonParser *parser = [[SBJsonParser alloc] init];
+    NSArray *data = [parser objectWithString:json error:nil];
+    NSInteger status = [[data valueForKey:@"Status"] integerValue];
+    
+    [json release];
+    [parser release];
+    
+    // failed on the server side
+    if(status != 1)
+    {
+        NSInteger errorcode = [[data valueForKey:@"ErrorCode"] integerValue];
+        [delegate requestCreateprivateLeaderboardFinish:[[[PlaytomicResponse alloc] initWithError:errorcode] autorelease]];
+        return;
+    }
+    
+    // score list completed
+    NSDictionary *dvars = [data valueForKey:@"Data"];
+    
+    PlaytomicPrivateLeaderboard* leaderboard = [[[PlaytomicPrivateLeaderboard alloc]
+                                                 initWithName:[dvars objectForKey:@"Name"] 
+                                                 andTableId:[dvars objectForKey:@"TableId"]
+                                                 andPermalink:[dvars objectForKey:@"Bitly"]
+                                                 andHighest:[[dvars objectForKey:@"Highest"] boolValue]
+                                                 andRealName:[dvars objectForKey:@"RealName"]] autorelease];
+    
+    NSMutableDictionary *md = [[NSMutableDictionary alloc] init];
+    [md setValue:leaderboard forKey:@"leaderboard"];
+    
+    PlaytomicResponse *playtomicResponse = [[PlaytomicResponse alloc] initWithSuccess:YES 
+                                                                         andErrorCode:[[data valueForKey:@"ErrorCode"] integerValue]
+                                                                              andDict:md];
+    [playtomicResponse autorelease];
+    [md release];
+    [delegate requestCreateprivateLeaderboardFinish: playtomicResponse];    
+
+}
+
+-(void)loadPrivateLeaderboardTableAsyncId:(NSString*)tableid 
+                              andDelegate:(id<PlaytomicDelegate>)aDelegate
+{
+    delegate = aDelegate;
+    NSString *url = [NSString stringWithFormat:@"http://g%@.api.playtomic.com/v3/api.aspx?swfid=%d&js=y"
+                     , [Playtomic getGameGuid]
+                     , [Playtomic getGameId]];
+    
+    
+    NSMutableDictionary * postData = [[[NSMutableDictionary alloc] init] autorelease];
+    // common fields
+    [postData setObject:tableid forKey:@"tableid"];
+    
+    
+    NSString* section = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"leaderboards-", [Playtomic getApiKey]]];
+    NSString* action = [PlaytomicEncrypt md5:[NSString stringWithFormat:@"%@%@", @"leaderboards-loadprivateleaderboard-", [Playtomic getApiKey]]];
+    
+    [PlaytomicRequest sendRequestUrl:url 
+                          andSection:section 
+                           andAction:action 
+                 andCompleteDelegate:self 
+                 andCompleteSelector:@selector(requestLoadPrivateFinished:) 
+                         andPostData:postData];
+    
+}
+
+- (void)requestLoadPrivateFinished:(ASIHTTPRequest*) request
+{
+    if (!(delegate && [delegate respondsToSelector:@selector(requestLoadprivateLeaderboardFinish:)])) {
+        return;
+    }
+    
+    NSError *error = [request error];
+    
+    if(error)
+    {
+        [delegate requestLoadprivateLeaderboardFinish:[[[PlaytomicResponse alloc] initWithError:1] autorelease]];
+        return;
+    }
+    
+    NSString *response = [request responseString];       
+    NSString *json = [[NSString alloc] initWithString:response];
+    SBJsonParser *parser = [[SBJsonParser alloc] init];
+    NSArray *data = [parser objectWithString:json error:nil];
+    NSInteger status = [[data valueForKey:@"Status"] integerValue];
+    
+    [json release];
+    [parser release];
+    
+    // failed on the server side
+    if(status != 1)
+    {
+        NSInteger errorcode = [[data valueForKey:@"ErrorCode"] integerValue];
+        [delegate requestLoadprivateLeaderboardFinish:[[[PlaytomicResponse alloc] initWithError:errorcode] autorelease]];
+        return;
+    }
+    
+    // score list completed
+    NSDictionary *dvars = [data valueForKey:@"Data"];
+    
+    PlaytomicPrivateLeaderboard* leaderboard = [[[PlaytomicPrivateLeaderboard alloc]
+                                                 initWithName:[dvars objectForKey:@"Name"] 
+                                                 andTableId:[dvars objectForKey:@"TableId"]
+                                                 andPermalink:[dvars objectForKey:@"Bitly"]
+                                                 andHighest:[[dvars objectForKey:@"Highest"] boolValue]
+                                                 andRealName:[dvars objectForKey:@"RealName"]] autorelease];
+    
+    NSMutableDictionary *md = [[NSMutableDictionary alloc] init];
+    [md setValue:leaderboard forKey:@"leaderboard"];
+    
+    PlaytomicResponse *playtomicResponse = [[PlaytomicResponse alloc] initWithSuccess:YES 
+                                                                         andErrorCode:[[data valueForKey:@"ErrorCode"] integerValue]
+                                                                              andDict:md];
+    [playtomicResponse autorelease];
+    [md release];
+    [delegate requestLoadprivateLeaderboardFinish: playtomicResponse];  
 }
 @end
