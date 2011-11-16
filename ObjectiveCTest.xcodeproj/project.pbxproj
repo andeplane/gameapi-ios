@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		47B5A2E1146C66720019CE8C /* PlaytomicPrivateLeaderboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B5A2E0146C66710019CE8C /* PlaytomicPrivateLeaderboard.m */; };
+		47CFADC21472FD160092B4A5 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 47CFADC11472FD160092B4A5 /* libz.1.2.5.dylib */; };
 		47E2781414684EE300F0EBBC /* PlaytomicRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E2781314684EE300F0EBBC /* PlaytomicRequest.m */; };
 		7835BEF3137A27B400CF0211 /* PlaytomicLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835BEF1137A27B300CF0211 /* PlaytomicLog.m */; };
 		7835BEF4137A27B400CF0211 /* PlaytomicLogRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835BEF2137A27B400CF0211 /* PlaytomicLogRequest.m */; };
@@ -48,7 +49,6 @@
 		78F04DB8137C4D2F000C9E8D /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F04DA9137C4D2F000C9E8D /* ASIHTTPRequest.m */; };
 		78F04DB9137C4D2F000C9E8D /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F04DAD137C4D2F000C9E8D /* ASIInputStream.m */; };
 		78F04DBA137C4D2F000C9E8D /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F04DAF137C4D2F000C9E8D /* ASINetworkQueue.m */; };
-		78F04DBC137C4DB6000C9E8D /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F04DBB137C4DB6000C9E8D /* libz.1.2.3.dylib */; };
 		78F04DBF137C5495000C9E8D /* PlaytomicEncrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F04DBE137C5495000C9E8D /* PlaytomicEncrypt.m */; };
 		78F04DC2137C6C85000C9E8D /* PlaytomicLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F04DC1137C6C84000C9E8D /* PlaytomicLevel.m */; };
 		78F04DC8137C7983000C9E8D /* PlaytomicPlayerLevels.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F04DC7137C7982000C9E8D /* PlaytomicPlayerLevels.m */; };
@@ -58,6 +58,7 @@
 		3B71EBB3143A36E9001F583B /* PlaytomicLogRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PlaytomicLogRequest.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		47B5A2DF146C66710019CE8C /* PlaytomicPrivateLeaderboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicPrivateLeaderboard.h; sourceTree = "<group>"; };
 		47B5A2E0146C66710019CE8C /* PlaytomicPrivateLeaderboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicPrivateLeaderboard.m; sourceTree = "<group>"; };
+		47CFADC11472FD160092B4A5 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		47E2781214684EE300F0EBBC /* PlaytomicRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicRequest.h; sourceTree = "<group>"; };
 		47E2781314684EE300F0EBBC /* PlaytomicRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicRequest.m; sourceTree = "<group>"; };
 		7835BEF1137A27B300CF0211 /* PlaytomicLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PlaytomicLog.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -135,7 +136,6 @@
 		78F04DAE137C4D2F000C9E8D /* ASINetworkQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASINetworkQueue.h; sourceTree = "<group>"; };
 		78F04DAF137C4D2F000C9E8D /* ASINetworkQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASINetworkQueue.m; sourceTree = "<group>"; };
 		78F04DB0137C4D2F000C9E8D /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
-		78F04DBB137C4DB6000C9E8D /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		78F04DBD137C5494000C9E8D /* PlaytomicEncrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PlaytomicEncrypt.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		78F04DBE137C5495000C9E8D /* PlaytomicEncrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicEncrypt.m; sourceTree = "<group>"; };
 		78F04DC0137C6C84000C9E8D /* PlaytomicLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PlaytomicLevel.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -149,7 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78F04DBC137C4DB6000C9E8D /* libz.1.2.3.dylib in Frameworks */,
+				47CFADC21472FD160092B4A5 /* libz.1.2.5.dylib in Frameworks */,
 				78F04D72137C493B000C9E8D /* SystemConfiguration.framework in Frameworks */,
 				78F04D70137C4925000C9E8D /* CFNetwork.framework in Frameworks */,
 				78F04D6E137C491C000C9E8D /* MobileCoreServices.framework in Frameworks */,
@@ -203,7 +203,7 @@
 		7881E3F9135FB42600B4E7F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				78F04DBB137C4DB6000C9E8D /* libz.1.2.3.dylib */,
+				47CFADC11472FD160092B4A5 /* libz.1.2.5.dylib */,
 				78F04D71137C493B000C9E8D /* SystemConfiguration.framework */,
 				78F04D6F137C4925000C9E8D /* CFNetwork.framework */,
 				78F04D6D137C491C000C9E8D /* MobileCoreServices.framework */,
@@ -517,6 +517,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ObjectiveCTest/ObjectiveCTest-Prefix.pch";
 				INFOPLIST_FILE = "ObjectiveCTest/ObjectiveCTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../../Downloads/Flurry iPhone SDK v2.8.4/FlurryLib\"",
@@ -536,6 +537,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ObjectiveCTest/ObjectiveCTest-Prefix.pch";
 				INFOPLIST_FILE = "ObjectiveCTest/ObjectiveCTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../../Downloads/Flurry iPhone SDK v2.8.4/FlurryLib\"",
