@@ -36,6 +36,7 @@
 
 #import "Playtomic.h"
 #import "Reachability.h"
+#import "UIKit/UIDevice.h"
 
 @interface Playtomic ()
 @property (nonatomic,readwrite) NSInteger gameId;

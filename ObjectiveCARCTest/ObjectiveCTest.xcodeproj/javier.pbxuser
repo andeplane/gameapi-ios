@@ -1,0 +1,126 @@
+// !$*UTF8*$!
+{
+	3B0FCF1E143DEC990046420A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3B0FCF1F143DEC990046420A /* AvailabilityInternal.h */;
+		name = "AvailabilityInternal.h: 56";
+		rLen = 0;
+		rLoc = 2185;
+		rType = 0;
+		vrLen = 723;
+		vrLoc = 1566;
+	};
+	3B0FCF1F143DEC990046420A /* AvailabilityInternal.h */ = {
+		isa = PBXFileReference;
+		name = AvailabilityInternal.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h;
+		sourceTree = "<absolute>";
+	};
+	3B8566FB143DDF8000E8CE0C /* ObjectiveCTest */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = ObjectiveCTest;
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+	};
+	3B856706143DDF9F00E8CE0C /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	3B856707143DDF9F00E8CE0C /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	3B85672D143DE0D400E8CE0C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3B85672E143DE0D400E8CE0C /* AvailabilityInternal.h */;
+		name = "AvailabilityInternal.h: 56";
+		rLen = 0;
+		rLoc = 2185;
+		rType = 0;
+		vrLen = 723;
+		vrLoc = 1566;
+	};
+	3B85672E143DE0D400E8CE0C /* AvailabilityInternal.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = AvailabilityInternal.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/AvailabilityInternal.h;
+		sourceTree = "<absolute>";
+	};
+	7881E3ED135FB42600B4E7F5 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 3B8566FB143DDF8000E8CE0C /* ObjectiveCTest */;
+		activeSDKPreference = iphoneos;
+		activeTarget = 7881E3F5135FB42600B4E7F5 /* ObjectiveCTest */;
+		codeSenseManager = 3B856707143DDF9F00E8CE0C /* Code sense */;
+		executables = (
+			3B8566FB143DDF8000E8CE0C /* ObjectiveCTest */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					341,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 339602582;
+			PBXWorkspaceStateSaveDate = 339602582;
+		};
+		perUserProjectItems = {
+			3B0FCF1E143DEC990046420A /* PBXTextBookmark */ = 3B0FCF1E143DEC990046420A /* PBXTextBookmark */;
+			3B85672D143DE0D400E8CE0C /* PBXTextBookmark */ = 3B85672D143DE0D400E8CE0C /* PBXTextBookmark */;
+		};
+		sourceControlManager = 3B856706143DDF9F00E8CE0C /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	7881E3F5135FB42600B4E7F5 /* ObjectiveCTest */ = {
+		activeExec = 0;
+		executables = (
+			3B8566FB143DDF8000E8CE0C /* ObjectiveCTest */,
+		);
+	};
+}

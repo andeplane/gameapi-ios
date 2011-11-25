@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'LibPlaytomic' target in the 'LibPlaytomic' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif

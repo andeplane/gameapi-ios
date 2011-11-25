@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		471DC6D1147AA71100044E72 /* PlaytomicURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 471DC6D0147AA71000044E72 /* PlaytomicURLRequest.m */; };
+		476FCF3E147E9F52006C51BA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 476FCF3D147E9F52006C51BA /* SystemConfiguration.framework */; };
 		47B5A2E1146C66720019CE8C /* PlaytomicPrivateLeaderboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B5A2E0146C66710019CE8C /* PlaytomicPrivateLeaderboard.m */; };
-		47CFADC21472FD160092B4A5 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 47CFADC11472FD160092B4A5 /* libz.1.2.5.dylib */; };
 		47E2781414684EE300F0EBBC /* PlaytomicRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E2781314684EE300F0EBBC /* PlaytomicRequest.m */; };
 		7835BEF3137A27B400CF0211 /* PlaytomicLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835BEF1137A27B300CF0211 /* PlaytomicLog.m */; };
 		7835BEF4137A27B400CF0211 /* PlaytomicLogRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835BEF2137A27B400CF0211 /* PlaytomicLogRequest.m */; };
@@ -37,9 +37,6 @@
 		78F04CE9137B2238000C9E8D /* PlaytomicGeoIP.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F04CE8137B2238000C9E8D /* PlaytomicGeoIP.m */; };
 		78F04CEC137B56AD000C9E8D /* PlaytomicLeaderboards.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F04CEB137B56AD000C9E8D /* PlaytomicLeaderboards.m */; };
 		78F04CF2137B8F26000C9E8D /* PlaytomicScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F04CF1137B8F26000C9E8D /* PlaytomicScore.m */; };
-		78F04D6E137C491C000C9E8D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F04D6D137C491C000C9E8D /* MobileCoreServices.framework */; };
-		78F04D70137C4925000C9E8D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F04D6F137C4925000C9E8D /* CFNetwork.framework */; };
-		78F04D72137C493B000C9E8D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F04D71137C493B000C9E8D /* SystemConfiguration.framework */; };
 		78F04D78137C49F8000C9E8D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F04D77137C49F8000C9E8D /* Reachability.m */; };
 		78F04DBF137C5495000C9E8D /* PlaytomicEncrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F04DBE137C5495000C9E8D /* PlaytomicEncrypt.m */; };
 		78F04DC2137C6C85000C9E8D /* PlaytomicLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F04DC1137C6C84000C9E8D /* PlaytomicLevel.m */; };
@@ -50,9 +47,9 @@
 		3B71EBB3143A36E9001F583B /* PlaytomicLogRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PlaytomicLogRequest.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		471DC6CF147AA71000044E72 /* PlaytomicURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicURLRequest.h; sourceTree = "<group>"; };
 		471DC6D0147AA71000044E72 /* PlaytomicURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicURLRequest.m; sourceTree = "<group>"; };
+		476FCF3D147E9F52006C51BA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		47B5A2DF146C66710019CE8C /* PlaytomicPrivateLeaderboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicPrivateLeaderboard.h; sourceTree = "<group>"; };
 		47B5A2E0146C66710019CE8C /* PlaytomicPrivateLeaderboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicPrivateLeaderboard.m; sourceTree = "<group>"; };
-		47CFADC11472FD160092B4A5 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		47E2781214684EE300F0EBBC /* PlaytomicRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicRequest.h; sourceTree = "<group>"; };
 		47E2781314684EE300F0EBBC /* PlaytomicRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicRequest.m; sourceTree = "<group>"; };
 		7835BEF1137A27B300CF0211 /* PlaytomicLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PlaytomicLog.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -104,9 +101,6 @@
 		78F04CEB137B56AD000C9E8D /* PlaytomicLeaderboards.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PlaytomicLeaderboards.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		78F04CF0137B8F26000C9E8D /* PlaytomicScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PlaytomicScore.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		78F04CF1137B8F26000C9E8D /* PlaytomicScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PlaytomicScore.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		78F04D6D137C491C000C9E8D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		78F04D6F137C4925000C9E8D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		78F04D71137C493B000C9E8D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		78F04D76137C49F8000C9E8D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Reachability.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		78F04D77137C49F8000C9E8D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		78F04DBD137C5494000C9E8D /* PlaytomicEncrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PlaytomicEncrypt.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -122,10 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				47CFADC21472FD160092B4A5 /* libz.1.2.5.dylib in Frameworks */,
-				78F04D72137C493B000C9E8D /* SystemConfiguration.framework in Frameworks */,
-				78F04D70137C4925000C9E8D /* CFNetwork.framework in Frameworks */,
-				78F04D6E137C491C000C9E8D /* MobileCoreServices.framework in Frameworks */,
+				476FCF3E147E9F52006C51BA /* SystemConfiguration.framework in Frameworks */,
 				7881E3FB135FB42600B4E7F5 /* UIKit.framework in Frameworks */,
 				7881E3FD135FB42600B4E7F5 /* Foundation.framework in Frameworks */,
 				7881E3FF135FB42600B4E7F5 /* CoreGraphics.framework in Frameworks */,
@@ -176,10 +167,7 @@
 		7881E3F9135FB42600B4E7F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				47CFADC11472FD160092B4A5 /* libz.1.2.5.dylib */,
-				78F04D71137C493B000C9E8D /* SystemConfiguration.framework */,
-				78F04D6F137C4925000C9E8D /* CFNetwork.framework */,
-				78F04D6D137C491C000C9E8D /* MobileCoreServices.framework */,
+				476FCF3D147E9F52006C51BA /* SystemConfiguration.framework */,
 				7881E3FA135FB42600B4E7F5 /* UIKit.framework */,
 				7881E3FC135FB42600B4E7F5 /* Foundation.framework */,
 				7881E3FE135FB42600B4E7F5 /* CoreGraphics.framework */,
@@ -442,10 +430,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ObjectiveCTest/ObjectiveCTest-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "ObjectiveCTest/ObjectiveCTest-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -463,9 +453,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ObjectiveCTest/ObjectiveCTest-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "ObjectiveCTest/ObjectiveCTest-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
