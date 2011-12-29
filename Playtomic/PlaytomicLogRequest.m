@@ -124,7 +124,7 @@ int const PLAYTOMIC_QUEUE_MAX_BYTES = 1048577; // actually the max size is 10485
     
     //NSLog(@"%@", fullurl);
     
-    if ([Playtomic getInternetActive])
+    if ([Playtomic getIsWiFiActive])
     {    
         //NSLog(@"Internet is active");
         

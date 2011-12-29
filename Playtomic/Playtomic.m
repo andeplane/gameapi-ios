@@ -54,6 +54,7 @@
 @property (assign) BOOL hostActive;
 @property (assign) BOOL internetActive;
 @property (assign) NSInteger offlineQueueMaxSize;
+@property (nonatomic, assign) BOOL isWiFi;
 @end
 
 @implementation Playtomic
@@ -73,6 +74,7 @@
 @synthesize internetActive;
 @synthesize offlineQueueMaxSize;
 @synthesize apiKey;
+@synthesize isWiFi;
 
 static Playtomic *instance = nil;
 
@@ -159,6 +161,11 @@ static Playtomic *instance = nil;
     return instance.internetActive && instance.hostActive;
 }
 
++ (BOOL)getIsWiFiActive
+{
+    return [Playtomic getInternetActive] && instance.isWiFi;
+}
+
 + (NSInteger)getOfflineQueueMaxSize
 {
     return instance.offlineQueueMaxSize;
@@ -240,7 +247,7 @@ static Playtomic *instance = nil;
         {
             //NSLog(@"The internet is down.");
             instance.internetActive = NO;
-            
+            instance.isWiFi = NO;
             break;
             
         }
@@ -248,7 +255,7 @@ static Playtomic *instance = nil;
         {
             //NSLog(@"The internet is working via WIFI.");
             instance.internetActive = YES;
-            
+            instance.isWiFi = YES;
             break;
             
         }
@@ -256,6 +263,7 @@ static Playtomic *instance = nil;
         {
             //NSLog(@"The internet is working via WWAN.");
             instance.internetActive = YES;
+            instance.isWiFi = NO;
             
             break;
             

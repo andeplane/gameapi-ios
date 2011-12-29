@@ -67,6 +67,7 @@ extern int const PLAYTOMIC_QUEUE_MAX_BYTES;
     
     BOOL hostActive;
     BOOL internetActive;
+    BOOL isWiFi;
     NSInteger offlineQueueMaxSize;
 }
 
@@ -101,6 +102,8 @@ extern int const PLAYTOMIC_QUEUE_MAX_BYTES;
 + (NSString*)getBaseUrl;
 
 + (BOOL)getInternetActive;
+
++ (BOOL)getIsWiFiActive;
 
 + (NSInteger)getOfflineQueueMaxSize;
 
