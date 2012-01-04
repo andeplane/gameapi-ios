@@ -303,6 +303,7 @@ static Playtomic *instance = nil;
 }
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.gameGuid = nil;
     self.sourceUrl = nil;
     self.baseUrl = nil;
