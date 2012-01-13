@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		471DC6D1147AA71100044E72 /* PlaytomicURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 471DC6D0147AA71000044E72 /* PlaytomicURLRequest.m */; };
+		47413D8614BC763E0022F423 /* PlaytomicExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 47413D8514BC763E0022F423 /* PlaytomicExceptionHandler.m */; };
 		476FCF3E147E9F52006C51BA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 476FCF3D147E9F52006C51BA /* SystemConfiguration.framework */; };
 		47B5A2E1146C66720019CE8C /* PlaytomicPrivateLeaderboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B5A2E0146C66710019CE8C /* PlaytomicPrivateLeaderboard.m */; };
 		47E2781414684EE300F0EBBC /* PlaytomicRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 47E2781314684EE300F0EBBC /* PlaytomicRequest.m */; };
@@ -47,6 +48,8 @@
 		3B71EBB3143A36E9001F583B /* PlaytomicLogRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PlaytomicLogRequest.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		471DC6CF147AA71000044E72 /* PlaytomicURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicURLRequest.h; sourceTree = "<group>"; };
 		471DC6D0147AA71000044E72 /* PlaytomicURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicURLRequest.m; sourceTree = "<group>"; };
+		47413D8414BC763E0022F423 /* PlaytomicExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicExceptionHandler.h; sourceTree = "<group>"; };
+		47413D8514BC763E0022F423 /* PlaytomicExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicExceptionHandler.m; sourceTree = "<group>"; };
 		476FCF3D147E9F52006C51BA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		47B5A2DF146C66710019CE8C /* PlaytomicPrivateLeaderboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicPrivateLeaderboard.h; sourceTree = "<group>"; };
 		47B5A2E0146C66710019CE8C /* PlaytomicPrivateLeaderboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicPrivateLeaderboard.m; sourceTree = "<group>"; };
@@ -256,6 +259,8 @@
 				47B5A2E0146C66710019CE8C /* PlaytomicPrivateLeaderboard.m */,
 				471DC6CF147AA71000044E72 /* PlaytomicURLRequest.h */,
 				471DC6D0147AA71000044E72 /* PlaytomicURLRequest.m */,
+				47413D8414BC763E0022F423 /* PlaytomicExceptionHandler.h */,
+				47413D8514BC763E0022F423 /* PlaytomicExceptionHandler.m */,
 			);
 			path = Playtomic;
 			sourceTree = "<group>";
@@ -359,6 +364,7 @@
 				47E2781414684EE300F0EBBC /* PlaytomicRequest.m in Sources */,
 				47B5A2E1146C66720019CE8C /* PlaytomicPrivateLeaderboard.m in Sources */,
 				471DC6D1147AA71100044E72 /* PlaytomicURLRequest.m in Sources */,
+				47413D8614BC763E0022F423 /* PlaytomicExceptionHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,7 +443,7 @@
 				GCC_PREFIX_HEADER = "ObjectiveCTest/ObjectiveCTest-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "ObjectiveCTest/ObjectiveCTest-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../../Downloads/Flurry iPhone SDK v2.8.4/FlurryLib\"",
@@ -459,7 +465,7 @@
 				GCC_PREFIX_HEADER = "ObjectiveCTest/ObjectiveCTest-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "ObjectiveCTest/ObjectiveCTest-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../../Downloads/Flurry iPhone SDK v2.8.4/FlurryLib\"",

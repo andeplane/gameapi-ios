@@ -37,6 +37,7 @@
 #import "Playtomic.h"
 #import "Reachability.h"
 #import "UIKit/UIDevice.h"
+#import "PlaytomicExceptionHandler.h"
 
 @interface Playtomic ()
 @property (nonatomic,readwrite) NSInteger gameId;
@@ -194,6 +195,7 @@ static Playtomic *instance = nil;
              andGUID:(NSString*)gameguid 
            andAPIKey:(NSString*)apikey
 {
+    [PlaytomicExceptionHandler registerDefaultHandlers];
     NSString *model = [[UIDevice currentDevice] model];
     NSString *system = [[UIDevice currentDevice] systemName];
     NSString *version = [[UIDevice currentDevice] systemVersion];
@@ -209,6 +211,7 @@ static Playtomic *instance = nil;
     instance.apiKey = apikey;
 
     instance.log = [[[PlaytomicLog alloc] initWithGameId:gameid andGUID:gameguid]autorelease ];
+    //instance.log = 0x131245;
     instance.gameVars = [[[PlaytomicGameVars alloc] init] autorelease];
     instance.geoIP = [[[PlaytomicGeoIP alloc] init] autorelease];
     instance.leaderboards = [[[PlaytomicLeaderboards alloc] init] autorelease ];
@@ -303,6 +306,7 @@ static Playtomic *instance = nil;
 }
 
 - (void)dealloc {
+    [PlaytomicExceptionHandler unregisterDefaultHandlers];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.gameGuid = nil;
     self.sourceUrl = nil;
