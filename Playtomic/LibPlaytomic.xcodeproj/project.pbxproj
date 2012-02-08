@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		479AA54514E2D62300E0791E /* PlaytomicExceptionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 479AA54314E2D62300E0791E /* PlaytomicExceptionHandler.h */; };
+		479AA54614E2D62300E0791E /* PlaytomicExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 479AA54414E2D62300E0791E /* PlaytomicExceptionHandler.m */; };
 		47F0CA8C147FDD940021A50C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47F0CA8B147FDD940021A50C /* Foundation.framework */; };
 		47F0CA9A147FDD940021A50C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47F0CA99147FDD940021A50C /* SenTestingKit.framework */; };
 		47F0CA9D147FDD940021A50C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47F0CA8B147FDD940021A50C /* Foundation.framework */; };
@@ -87,6 +89,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		479AA54314E2D62300E0791E /* PlaytomicExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicExceptionHandler.h; sourceTree = SOURCE_ROOT; };
+		479AA54414E2D62300E0791E /* PlaytomicExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicExceptionHandler.m; sourceTree = SOURCE_ROOT; };
 		47F0CA88147FDD940021A50C /* LibPlaytomic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = LibPlaytomic.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		47F0CA8B147FDD940021A50C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		47F0CA8F147FDD940021A50C /* LibPlaytomic-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LibPlaytomic-Prefix.pch"; sourceTree = "<group>"; };
@@ -111,34 +115,34 @@
 		47F0CABF147FDF010021A50C /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		47F0CAC0147FDF010021A50C /* Playtomic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playtomic.h; sourceTree = SOURCE_ROOT; };
 		47F0CAC1147FDF010021A50C /* Playtomic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Playtomic.m; sourceTree = SOURCE_ROOT; };
-		47F0CAC2147FDF010021A50C /* PlaytomicData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicData.h; sourceTree = SOURCE_ROOT; };
+		47F0CAC2147FDF010021A50C /* PlaytomicData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicData.h; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		47F0CAC3147FDF010021A50C /* PlaytomicData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicData.m; sourceTree = SOURCE_ROOT; };
-		47F0CAC4147FDF010021A50C /* PlaytomicEncrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicEncrypt.h; sourceTree = SOURCE_ROOT; };
+		47F0CAC4147FDF010021A50C /* PlaytomicEncrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicEncrypt.h; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		47F0CAC5147FDF010021A50C /* PlaytomicEncrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicEncrypt.m; sourceTree = SOURCE_ROOT; };
 		47F0CAC6147FDF010021A50C /* PlaytomicGameVars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicGameVars.h; sourceTree = SOURCE_ROOT; };
 		47F0CAC7147FDF010021A50C /* PlaytomicGameVars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicGameVars.m; sourceTree = SOURCE_ROOT; };
 		47F0CAC8147FDF010021A50C /* PlaytomicGeoIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicGeoIP.h; sourceTree = SOURCE_ROOT; };
 		47F0CAC9147FDF010021A50C /* PlaytomicGeoIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicGeoIP.m; sourceTree = SOURCE_ROOT; };
-		47F0CACA147FDF010021A50C /* PlaytomicLeaderboards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicLeaderboards.h; sourceTree = SOURCE_ROOT; };
-		47F0CACB147FDF010021A50C /* PlaytomicLeaderboards.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicLeaderboards.m; sourceTree = SOURCE_ROOT; };
-		47F0CACC147FDF010021A50C /* PlaytomicLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicLevel.h; sourceTree = SOURCE_ROOT; };
+		47F0CACA147FDF010021A50C /* PlaytomicLeaderboards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicLeaderboards.h; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		47F0CACB147FDF010021A50C /* PlaytomicLeaderboards.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicLeaderboards.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		47F0CACC147FDF010021A50C /* PlaytomicLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicLevel.h; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		47F0CACD147FDF010021A50C /* PlaytomicLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicLevel.m; sourceTree = SOURCE_ROOT; };
-		47F0CACE147FDF010021A50C /* PlaytomicLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicLink.h; sourceTree = SOURCE_ROOT; };
-		47F0CACF147FDF010021A50C /* PlaytomicLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicLink.m; sourceTree = SOURCE_ROOT; };
-		47F0CAD0147FDF010021A50C /* PlaytomicLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicLog.h; sourceTree = SOURCE_ROOT; };
-		47F0CAD1147FDF010021A50C /* PlaytomicLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicLog.m; sourceTree = SOURCE_ROOT; };
-		47F0CAD2147FDF010021A50C /* PlaytomicLogRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicLogRequest.h; sourceTree = SOURCE_ROOT; };
+		47F0CACE147FDF010021A50C /* PlaytomicLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicLink.h; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		47F0CACF147FDF010021A50C /* PlaytomicLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicLink.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		47F0CAD0147FDF010021A50C /* PlaytomicLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicLog.h; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		47F0CAD1147FDF010021A50C /* PlaytomicLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicLog.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		47F0CAD2147FDF010021A50C /* PlaytomicLogRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicLogRequest.h; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		47F0CAD3147FDF010021A50C /* PlaytomicLogRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicLogRequest.m; sourceTree = SOURCE_ROOT; };
-		47F0CAD4147FDF010021A50C /* PlaytomicPlayerLevels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicPlayerLevels.h; sourceTree = SOURCE_ROOT; };
-		47F0CAD5147FDF010021A50C /* PlaytomicPlayerLevels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicPlayerLevels.m; sourceTree = SOURCE_ROOT; };
+		47F0CAD4147FDF010021A50C /* PlaytomicPlayerLevels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicPlayerLevels.h; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		47F0CAD5147FDF010021A50C /* PlaytomicPlayerLevels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicPlayerLevels.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		47F0CAD6147FDF010021A50C /* PlaytomicPrivateLeaderboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicPrivateLeaderboard.h; sourceTree = SOURCE_ROOT; };
 		47F0CAD7147FDF010021A50C /* PlaytomicPrivateLeaderboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicPrivateLeaderboard.m; sourceTree = SOURCE_ROOT; };
 		47F0CAD8147FDF010021A50C /* PlaytomicRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicRequest.h; sourceTree = SOURCE_ROOT; };
 		47F0CAD9147FDF010021A50C /* PlaytomicRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicRequest.m; sourceTree = SOURCE_ROOT; };
-		47F0CADA147FDF010021A50C /* PlaytomicResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicResponse.h; sourceTree = SOURCE_ROOT; };
-		47F0CADB147FDF010021A50C /* PlaytomicResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicResponse.m; sourceTree = SOURCE_ROOT; };
-		47F0CADC147FDF010021A50C /* PlaytomicScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicScore.h; sourceTree = SOURCE_ROOT; };
-		47F0CADD147FDF010021A50C /* PlaytomicScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicScore.m; sourceTree = SOURCE_ROOT; };
+		47F0CADA147FDF010021A50C /* PlaytomicResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicResponse.h; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		47F0CADB147FDF010021A50C /* PlaytomicResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicResponse.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		47F0CADC147FDF010021A50C /* PlaytomicScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicScore.h; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		47F0CADD147FDF010021A50C /* PlaytomicScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicScore.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		47F0CADE147FDF010021A50C /* PlaytomicURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaytomicURLRequest.h; sourceTree = SOURCE_ROOT; };
 		47F0CADF147FDF010021A50C /* PlaytomicURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaytomicURLRequest.m; sourceTree = SOURCE_ROOT; };
 		47F0CAE1147FDF010021A50C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -237,6 +241,8 @@
 				47F0CADD147FDF010021A50C /* PlaytomicScore.m */,
 				47F0CADE147FDF010021A50C /* PlaytomicURLRequest.h */,
 				47F0CADF147FDF010021A50C /* PlaytomicURLRequest.m */,
+				479AA54314E2D62300E0791E /* PlaytomicExceptionHandler.h */,
+				479AA54414E2D62300E0791E /* PlaytomicExceptionHandler.m */,
 				47F0CAE0147FDF010021A50C /* Reachability */,
 				47F0CA8E147FDD940021A50C /* Supporting Files */,
 			);
@@ -329,6 +335,7 @@
 				47F0CB0A147FDF010021A50C /* PlaytomicScore.h in Headers */,
 				47F0CB0C147FDF010021A50C /* PlaytomicURLRequest.h in Headers */,
 				47F0CB0E147FDF010021A50C /* Reachability.h in Headers */,
+				479AA54514E2D62300E0791E /* PlaytomicExceptionHandler.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +472,7 @@
 				47F0CB0B147FDF010021A50C /* PlaytomicScore.m in Sources */,
 				47F0CB0D147FDF010021A50C /* PlaytomicURLRequest.m in Sources */,
 				47F0CB0F147FDF010021A50C /* Reachability.m in Sources */,
+				479AA54614E2D62300E0791E /* PlaytomicExceptionHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
