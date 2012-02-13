@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		476FCF3E147E9F52006C51BA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 476FCF3D147E9F52006C51BA /* SystemConfiguration.framework */; };
-		47A8B58A14802132007ABEC2 /* Playtomic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A8B58914802132007ABEC2 /* Playtomic.framework */; };
+		479AA55614E400C400E0791E /* Playtomic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 479AA55514E400C400E0791E /* Playtomic.framework */; };
 		7881E3FB135FB42600B4E7F5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7881E3FA135FB42600B4E7F5 /* UIKit.framework */; };
 		7881E3FD135FB42600B4E7F5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7881E3FC135FB42600B4E7F5 /* Foundation.framework */; };
 		7881E3FF135FB42600B4E7F5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7881E3FE135FB42600B4E7F5 /* CoreGraphics.framework */; };
@@ -24,7 +24,7 @@
 
 /* Begin PBXFileReference section */
 		476FCF3D147E9F52006C51BA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		47A8B58914802132007ABEC2 /* Playtomic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Playtomic.framework; path = ../Playtomic/build/Framework/Playtomic.framework; sourceTree = "<group>"; };
+		479AA55514E400C400E0791E /* Playtomic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Playtomic.framework; path = ../Playtomic/build/Framework/Playtomic.framework; sourceTree = "<group>"; };
 		78565D9C137DDBA60062E5D5 /* ObjectiveCTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjectiveCTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7881E3FA135FB42600B4E7F5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7881E3FC135FB42600B4E7F5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -51,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				47A8B58A14802132007ABEC2 /* Playtomic.framework in Frameworks */,
+				479AA55614E400C400E0791E /* Playtomic.framework in Frameworks */,
 				476FCF3E147E9F52006C51BA /* SystemConfiguration.framework in Frameworks */,
 				7881E3FB135FB42600B4E7F5 /* UIKit.framework in Frameworks */,
 				7881E3FD135FB42600B4E7F5 /* Foundation.framework in Frameworks */,
@@ -65,7 +65,7 @@
 		7881E3EB135FB42600B4E7F5 = {
 			isa = PBXGroup;
 			children = (
-				47A8B58914802132007ABEC2 /* Playtomic.framework */,
+				479AA55514E400C400E0791E /* Playtomic.framework */,
 				7881E41F135FB46500B4E7F5 /* MyClass.h */,
 				7881E420135FB46500B4E7F5 /* MyClass.m */,
 				7881E400135FB42600B4E7F5 /* ObjectiveCTest */,

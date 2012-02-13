@@ -128,9 +128,10 @@ int const PLAYTOMIC_QUEUE_MAX_BYTES = 1048577; // actually the max size is 10485
     {    
         //NSLog(@"Internet is active");
         
-        self._request = [[PlaytomicURLRequest alloc] initWithDomain:fullurl];
-        //[_request HEADRequest];
+        self._request = [[[PlaytomicURLRequest alloc] initWithDomain:fullurl] autorelease];
+        [_request setCompleteSelector:@selector(requestFinished:)];
         [_request setDelegate:self];
+        [_request setFailedSelected:@selector(requestFailed:)];
         [_request startAsynchronous];
         //[request autorelease];
     }

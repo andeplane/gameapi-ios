@@ -16,6 +16,7 @@
 @synthesize completeSelector;
 @synthesize lastRequestData;
 @synthesize buffer;
+@synthesize failedSelected;
 
 - (id) initWithDomain:(NSString *)sourceDomain {
     
@@ -23,6 +24,7 @@
 	if (self != nil) {
 		if (sourceDomain != nil) {
 			self.domain = sourceDomain;
+            failedSelected = nil;
             request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:sourceDomain]];            
 		}
 	}
@@ -110,9 +112,16 @@
 	[connection release];
 	self.buffer = nil;
     error = connectionError;
-	if(delegate && [delegate respondsToSelector:completeSelector]) {
-        [delegate performSelector:completeSelector withObject:self];
-        
+	if(delegate)
+    {
+        if(failedSelected != nil && [delegate respondsToSelector:failedSelected])
+        {
+            [delegate performSelector:failedSelected withObject:self];
+        }
+        else if( [delegate respondsToSelector:completeSelector]) 
+        {
+            [delegate performSelector:completeSelector withObject:self];
+        }        
     }
 }
 

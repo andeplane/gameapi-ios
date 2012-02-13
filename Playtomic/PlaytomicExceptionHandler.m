@@ -121,6 +121,7 @@ void ExceptionHandler(NSException* exception)
     PlaytomicURLRequest *request = [[PlaytomicURLRequest alloc] initWithDomain:url];
     [request setPostValue:stacktrace forKey:@"stacktrace"];
     [request startSynchronous];
+    [request release];
 }
 
 @end

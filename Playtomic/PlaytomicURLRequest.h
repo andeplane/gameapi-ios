@@ -19,12 +19,14 @@
 	
 	id                      delegate;
     SEL                     completeSelector;
+    SEL                     failedSelected;
 }
 
 @property (copy,nonatomic) NSString* domain;
 @property (assign, nonatomic) id delegate;
 @property (copy,nonatomic)      NSError* error;
 @property                  SEL       completeSelector;
+@property                  SEL failedSelected;
 @property (copy, nonatomic) NSData* lastRequestData;
 @property (copy)            NSMutableData* buffer;
 

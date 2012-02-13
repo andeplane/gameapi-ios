@@ -1,4 +1,11 @@
 build/
+LibPlaytomic.build/
 xcuserdata
 .DS_Store
 
+
+Playtomic/LibPlaytomic/Release-iphoneos/LibPlaytomic.a
+
+Playtomic/LibPlaytomic/Release-iphonesimulator/LibPlaytomic.a
+
+Playtomic/.DS_Store
